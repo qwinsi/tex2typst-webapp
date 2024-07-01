@@ -1,5 +1,11 @@
 # tex2typst-webapp
 
+Translate LaTeX or TeX math markup to typst in your browser.
+
+---
+
+The following is the default Vite README.md content.
+
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
