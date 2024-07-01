@@ -1,16 +1,23 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { texToTypst } from 'tex-to-typst'
+import { copyTextToClipboard } from './clipboard'
 
-const DEFAULT_TEX = '\\frac{1}{4} \\sum_{i=1}^4 \\mathbf{P}_i^\\top \\sqrt{v} \\mathbf{\\Sigma}^{-1} \\sqrt{v} \\mathbf{P}_i \\mathbf{j} = \\mathbf{D}^\\top v \\phi'
+
+const DEFAULT_TEX = '\\prod_{p} \\frac{1}{1-p^{-s}}= \\sum _{n=1}^{\\infty} \\frac{1}{n^s}'
+
 const inputTex = ref(DEFAULT_TEX)
-// const outputTypst = ref(texToTypst(DEFAULT_TEX))
 const outputTypst = computed(() => texToTypst(inputTex.value))
+const renderedFormulaHtml = computed(() => {
+  if (inputTex.value === '') {
+    return '<div>Math formula will be rendered here.</div>'
+  } else {
+    return katex.renderToString(inputTex.value, { displayMode: true, throwOnError: false })
+  }
+})
 
-function onChange(e) {
-  inputTex.value = e.target.value
-  console.log(texToTypst(inputTex.value))
-  // outputTypst.value = texToTypst(inputTex.value)
+function sendToClipboard() {
+  copyTextToClipboard(outputTypst.value)
 }
 
 </script>
@@ -21,26 +28,33 @@ function onChange(e) {
     <h1 class="text-left text-4xl p-4">tex2typst</h1>
     </header>
     <div class="text-app-blue p-4 text-center">
-        Tips: Press <code>Esc</code> key or click any blank area to convert your input.
+        Covert LaTeX math formula code to <a href="https://typst.app/" target="_blank">Typst</a> code!
+        <br/>
+        This tool runs locally in your browser. Nothing is uploaded.
     </div>
 
     <main class="flex flex-1 p-8">
       <div class="flex-1 flex flex-col border border-gray-700 rounded-lg">
         <div class="flex justify-between p-4 border-b border-gray-700">
-          <span class="text-app-light-blue">Input language</span>
-          <span class="text-app-light-blue">LaTeX</span>
+          <span class="text-app-blue">LaTex code</span>
+          <button class="text-app-light-black" v-on:click="inputTex=''">Clear</button>
         </div>
-        <textarea class="flex-1 p-4" v-on:change="onChange">{{ inputTex }}</textarea>
+        <textarea class="flex-1 p-4" v-model="inputTex"></textarea>
       </div>
 
       <div class="flex-1 flex flex-col border border-gray-700 rounded-lg ml-8">
         <div class="flex justify-between p-4 border-b border-gray-700">
-          <span class="text-app-light-blue">Output language</span>
-          <span class="text-app-light-blue">Typst</span>
+          <span class="text-app-blue">Typst code</span>
+          <button class="text-app-light-black" v-on:click="sendToClipboard">Copy</button>
         </div>
-        <div> {{ outputTypst }} </div>
+        <div class="flex-1 p-4" id="typst"> {{ outputTypst }} </div>
       </div>
     </main>
+
+
+    <div class="p-4 text-center">
+        <div v-html="renderedFormulaHtml"></div>
+    </div>
 
     <footer class="bg-gray-800 p-4 text-center">
       <p class="text-white">Powered by <a href="https://github.com/curvenote/tex-to-typst" target="_blank">tex-to-typst</a></p>
@@ -61,8 +75,8 @@ function onChange(e) {
   color: #0D70B0;
 }
 
-.text-app-light-blue {
-  color: #80B0D0;
+.text-app-light-black {
+  color: #333333;
 }
 
 </style>
