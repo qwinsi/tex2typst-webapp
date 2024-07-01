@@ -1,0 +1,4 @@
+/* Include Tailwind. Code from https://v2.tailwindcss.com/docs/guides/vue-3-vite */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
