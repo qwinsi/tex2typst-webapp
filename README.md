@@ -2,21 +2,15 @@
 
 Translate LaTeX or TeX math markup to typst in your browser.
 
----
+## Trying Online
 
-The following is the default Vite README.md content.
+A static web App is deployed here.
 
-This template should help get you started developing with Vue 3 in Vite.
+## Developing
 
-## Recommended IDE Setup
+This project is developed with Vue 3 in [Vite](https://vitejs.dev/). So the development steps follow the general paradigm of Vite.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+### Project Setup
 
 ```sh
 npm install
@@ -32,10 +26,4 @@ npm run dev
 
 ```sh
 npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
 ```
