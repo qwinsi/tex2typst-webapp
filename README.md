@@ -2,9 +2,11 @@
 
 Translate LaTeX or TeX math markup to typst in your browser.
 
+This project is a Web UI wrapper. The core algorithm is implemented by [curvenote/tex-to-typst](https://github.com/curvenote/tex-to-typst).
+
 ## Trying Online
 
-A static web App is deployed here.
+A static web App is deployed on [Github page](https://qwinsi.github.io/tex2typst-webapp/).
 
 ## Developing
 
