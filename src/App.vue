@@ -36,7 +36,7 @@ function sendToClipboard() {
     <main class="flex flex-1 p-8">
       <div class="flex-1 flex flex-col border border-gray-700 rounded-lg">
         <div class="flex justify-between p-4 border-b border-gray-700">
-          <span class="text-app-blue">LaTex code</span>
+          <span class="text-app-blue">LaTeX code</span>
           <button class="text-app-light-black" v-on:click="inputTex=''">Clear</button>
         </div>
         <textarea class="flex-1 p-4" v-model="inputTex"></textarea>
