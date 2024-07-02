@@ -1,13 +1,13 @@
 <script setup>
 import { ref, computed } from 'vue'
-import { texToTypst } from 'tex-to-typst'
+import { convertTex2Typst } from './converter'
 import { copyTextToClipboard } from './clipboard'
 
 
 const DEFAULT_TEX = '\\prod_{p} \\frac{1}{1-p^{-s}}= \\sum _{n=1}^{\\infty} \\frac{1}{n^s}'
 
 const inputTex = ref(DEFAULT_TEX)
-const outputTypst = computed(() => texToTypst(inputTex.value))
+const outputTypst = computed(() => convertTex2Typst(inputTex.value))
 const renderedFormulaHtml = computed(() => {
   if (inputTex.value === '') {
     return '<div>Math formula will be rendered here.</div>'
