@@ -39,7 +39,7 @@ function sendToClipboard() {
           <span class="text-app-blue">LaTeX code</span>
           <button class="text-app-light-black" v-on:click="inputTex=''">Clear</button>
         </div>
-        <textarea class="flex-1 p-4" v-model="inputTex"></textarea>
+        <textarea class="flex-1 p-4 text-app-light-black" v-model="inputTex"></textarea>
       </div>
 
       <div class="flex-1 flex flex-col border border-gray-700 rounded-lg ml-8">
@@ -47,12 +47,12 @@ function sendToClipboard() {
           <span class="text-app-blue">Typst code</span>
           <button class="text-app-light-black" v-on:click="sendToClipboard">Copy</button>
         </div>
-        <div class="flex-1 p-4" id="typst"> {{ outputTypst }} </div>
+        <div class="flex-1 p-4 text-app-light-black" id="typst"> {{ outputTypst }} </div>
       </div>
     </main>
 
 
-    <div class="p-4 text-center">
+    <div class="p-4 text-center text-app-light-black">
         <div v-html="renderedFormulaHtml"></div>
     </div>
 
