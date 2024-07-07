@@ -12,6 +12,7 @@ const symbolMap = new Map([
     ["iiint", "integral.triple"],
     ["oiint", "integral.surf"],
     ["oiiint", "integral.vol"],
+    ["rightrightarrows", "arrows.rr"], // uniformly converges to
 ]);
 
 // Remove spaces between digits. This situation is caused by tex-to-typst library.
