@@ -8,8 +8,9 @@
     "build": "vite build && cp dist/index.html dist/offline.html",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
-    "predeploy" : "npm run build",
-    "deploy" : "gh-pages -d dist"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
+    "test": "npx mocha"
   },
   "dependencies": {
     "tex-to-typst": "^0.0.5",
@@ -21,6 +22,7 @@
     "eslint": "^8.57.0",
     "eslint-plugin-vue": "^9.23.0",
     "gh-pages": "^6.1.1",
+    "mocha": "^10.6.0",
     "postcss": "^8.4.39",
     "tailwindcss": "^3.4.4",
     "vite": "^5.3.1"

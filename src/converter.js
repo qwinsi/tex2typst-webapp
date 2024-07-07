@@ -17,7 +17,7 @@ const symbolMap = new Map([
 // Remove spaces between digits. This situation is caused by tex-to-typst library.
 // e.g. "A B C 3 4 5 D E F" -> "A B C 345 D E F"
 // Code from https://stackoverflow.com/questions/54764979/
-function remoteSpacesBetweenDigits(text) {
+export function remoteSpacesBetweenDigits(text) {
     return text.replace(/(?<=\d)\s+(?=\d)/g, "");
 }
 
@@ -33,7 +33,7 @@ function removeSpaceBeforePrime(text) {
 // y_{a_1}' -> y'_{a_1}
 // y_{a + b}' -> y'_{a + b}
 // {\theta}_{1}' -> {\theta}'_{1}
-function putPrimeBeforeUnderscore(text) {
+export function putPrimeBeforeUnderscore(text) {
     return text.replace(/([\\\w]+|\{.*?\})_([\\\w]+|\{.*?\})'/g, "$1'_$2");
 }
 
@@ -53,21 +53,3 @@ export function convertTex2Typst(input) {
     res = putPrimeBeforeUnderscore(res);
     return res;
 }
-
-// function test1() {
-//     console.assert("1 2 3" === texToTypst("123"));
-//     const input = "A B C 113 1134 35 D E F 553 45 2 D P D";
-//     const output = remoteSpacesBetweenDigits(input);
-//     console.log(output);
-//     console.assert(output === "A B C 113113435 D E F 553452 D P D");
-// }
-
-// function test2() {
-//     const input = "y_1' y_{a_1}' y_{a + b}' {\\theta}_{1}'";
-//     const output = putPrimeBeforeUnderscore(input);
-//     console.log(output);
-//     console.assert(output === "y'_1 y'_{a_1} y'_{a + b} {\\theta}'_{1}");
-// }
-
-// test1();
-// test2();
