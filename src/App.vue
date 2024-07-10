@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { convertTex2Typst } from './converter'
 import { copyTextToClipboard } from './clipboard'
 
@@ -27,17 +27,25 @@ function sendToClipboard() {
   copyTextToClipboard(outputTypst.value)
 }
 
+const inputArea = ref(null);
+
+onMounted(function() {
+  if (inputArea.value) {
+    inputArea.value.select();
+  }
+});
+
 </script>
 
 <template>
   <div class="bg-app text-app-blue min-h-screen flex flex-col">
     <header>
-    <h1 class="text-left text-4xl p-4">tex2typst</h1>
+      <h1 class="text-left text-4xl p-4">tex2typst</h1>
     </header>
     <div class="text-app-blue p-4 text-center">
-        Covert LaTeX math formula code to <a href="https://typst.app/" target="_blank">Typst</a> code!
-        <br/>
-        This tool runs locally in your browser. Nothing is uploaded.
+      Covert LaTeX math formula code to <a href="https://typst.app/" target="_blank">Typst</a> code!
+      <br />
+      This tool runs locally in your browser. Nothing is uploaded.
     </div>
 
     <main class="flex flex-1 p-8">
@@ -46,7 +54,7 @@ function sendToClipboard() {
           <span class="text-app-blue">LaTeX code</span>
           <button class="text-app-light-black" v-on:click="inputTex=''">Clear</button>
         </div>
-        <textarea class="flex-1 p-4 text-app-light-black" v-model="inputTex"></textarea>
+        <textarea ref="inputArea" class="flex-1 p-4 text-app-light-black" v-model="inputTex"></textarea>
       </div>
 
       <div class="flex-1 flex flex-col border border-gray-700 rounded-lg ml-8">
@@ -60,13 +68,15 @@ function sendToClipboard() {
 
 
     <div class="p-4 text-center text-app-light-black">
-        <div v-html="renderedFormulaHtml"></div>
+      <div v-html="renderedFormulaHtml"></div>
     </div>
 
     <footer class="bg-gray-800 p-4 text-center">
-      <p class="text-white">Powered by <a href="https://github.com/curvenote/tex-to-typst" target="_blank">tex-to-typst</a></p>
+      <p class="text-white">Powered by <a href="https://github.com/curvenote/tex-to-typst"
+          target="_blank">tex-to-typst</a></p>
       <p class="text-white">This is an open-source project. For more information, visit <a
-          href="https://github.com/qwinsi/tex2typst-webapp" target="_blank">https://github.com/qwinsi/tex2typst-webapp</a>
+          href="https://github.com/qwinsi/tex2typst-webapp"
+          target="_blank">https://github.com/qwinsi/tex2typst-webapp</a>
       </p>
     </footer>
 
