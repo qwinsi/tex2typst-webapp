@@ -96,4 +96,9 @@ onMounted(function() {
   color: #333333;
 }
 
+
+/* https://stackoverflow.com/questions/36260013/react-display-line-breaks-from-saved-textarea */
+#typst {
+  white-space: pre-line;
+}
 </style>

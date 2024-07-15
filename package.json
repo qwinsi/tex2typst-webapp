@@ -13,7 +13,7 @@
     "test": "npx mocha"
   },
   "dependencies": {
-    "tex2typst": "^0.0.1",
+    "tex2typst": "^0.0.4",
     "vue": "^3.4.29"
   },
   "devDependencies": {
