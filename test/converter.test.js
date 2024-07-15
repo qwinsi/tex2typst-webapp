@@ -1,32 +1,18 @@
 import assert from 'assert';
-import { convertTex2Typst, remoteSpacesBetweenDigits, putPrimeBeforeUnderscore } from '../src/converter.js';
-import { texToTypst } from "tex-to-typst";
+import { convertTex2Typst, putPrimeBeforeUnderscore } from '../src/converter.js';
+import { tex2typst } from 'tex2typst';
 
-describe('tex-to-typst', function () {
-    it('add redundant spaces between digits', function () {
-        assert.strictEqual(texToTypst("123"), "1 2 3");
-    });
-
+describe('tex2typst', function () {
+    it('convert case', function() {
+        const input = "\\zeta(s) = \\sum_{n=1}^{\\infty}\\frac{1}{n^s}";
+        const expectedOutput = "zeta(s) = sum_(n = 1)^infinity frac(1, n^s)";
+        assert.strictEqual(convertTex2Typst(input), expectedOutput);
+    })
     it('throw error for input (\\right)', function () {
-        assert.throws(() => texToTypst("\\right"), Error);
+        assert.throws(() => tex2typst("\\right"), Error);
     });
-
-    it('give wrong result for expression sqrt(1 / (x^2+y^2))', function () {
-        const input = "\\sqrt{\\frac{1}{x^2 + y^2}}";
-        const wrongResult = "sqrt(frac(1, x^2 + y^)";
-        assert.strictEqual(texToTypst(input), wrongResult);
-    });
-
 });
 
-
-describe('remoteSpacesBetweenDigits()', function () {
-    it('remove spaces between digits', function () {
-        const input = "A B C 113 1134 35 D E F 553 45 2 D P D";
-        const expectedOutput = "A B C 113113435 D E F 553452 D P D";
-        assert.strictEqual(remoteSpacesBetweenDigits(input), expectedOutput);
-    });
-})
 
 describe('putPrimeBeforeUnderscore()', function () {
     it('put prime symbol before underscore', function () {

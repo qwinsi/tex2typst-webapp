@@ -72,8 +72,8 @@ onMounted(function() {
     </div>
 
     <footer class="bg-gray-800 p-4 text-center">
-      <p class="text-white">Powered by <a href="https://github.com/curvenote/tex-to-typst"
-          target="_blank">tex-to-typst</a></p>
+      <p class="text-white">Powered by <a href="https://github.com/qwinsi/tex2typst"
+          target="_blank">tex2typst</a></p>
       <p class="text-white">This is an open-source project. For more information, visit <a
           href="https://github.com/qwinsi/tex2typst-webapp"
           target="_blank">https://github.com/qwinsi/tex2typst-webapp</a>

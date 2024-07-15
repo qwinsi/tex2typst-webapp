@@ -1,10 +1,10 @@
 /**
- * This file add some patches to the original function in tex-to-typst library.
+ * This file add some patches to the original function in tex2typst library.
  * A `convertTex2Typst` function is exported as the final converter implementation.
  */
-import { texToTypst } from "tex-to-typst";
+import { tex2typst } from "tex2typst";
 
-// symbol mapping which is not covered by tex-to-typst library.
+// symbol mapping which is not covered by tex2typst library.
 // Typst symbol table https://typst.app/docs/reference/symbols/sym/
 const symbolMap = new Map([
     ["bigcup", "union.big"],
@@ -15,12 +15,6 @@ const symbolMap = new Map([
     ["rightrightarrows", "arrows.rr"], // uniformly converges to
 ]);
 
-// Remove spaces between digits. This situation is caused by tex-to-typst library.
-// e.g. "A B C 3 4 5 D E F" -> "A B C 345 D E F"
-// Code from https://stackoverflow.com/questions/54764979/
-export function remoteSpacesBetweenDigits(text) {
-    return text.replace(/(?<=\d)\s+(?=\d)/g, "");
-}
 
 // Remove single space before prime symbol. This situation is caused by tex-to-typst library.
 // e.g. y ' -> y'
@@ -40,16 +34,15 @@ export function putPrimeBeforeUnderscore(text) {
 
 // @param input: string of TeX math formula code. 
 export function convertTex2Typst(input) {
-    let res = texToTypst(input);
+    let res = tex2typst(input);
     for (const [key, value] of symbolMap) {
-        // When tex-to-typst library encounters a unknown symbol, it just drops leading backslash. e.g. "\bigcup" -> "bigcup"
+        // When tex2typst library encounters a unknown symbol, it just drops leading backslash. e.g. "\bigcup" -> "bigcup"
         // We need to replace it with the proper symbol.
         // Replace only if the whole word is matched.
         // e.g. /(bigcup)[^a-zA-Z]/ matches "bigcup" but not "bigcups"
         res = res.replace(new RegExp(`(${key})(\\b|_)`, "g"), `${value}$2`);
     }
     res = res.replaceAll("upright(d)", "dif"); // Special case for the differential symbol
-    res = remoteSpacesBetweenDigits(res);
     res = removeSpaceBeforePrime(res);
     res = putPrimeBeforeUnderscore(res);
     return res;

@@ -1,6 +1,6 @@
 {
   "name": "tex2typst-webapp",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "private": true,
   "type": "module",
   "scripts": {
@@ -13,7 +13,7 @@
     "test": "npx mocha"
   },
   "dependencies": {
-    "tex-to-typst": "^0.0.5",
+    "tex2typst": "^0.0.1",
     "vue": "^3.4.29"
   },
   "devDependencies": {
