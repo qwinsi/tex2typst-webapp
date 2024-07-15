@@ -1,26 +1,30 @@
 {
   "name": "tex2typst-webapp",
   "version": "0.0.2",
-  "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build && cp dist/index.html dist/offline.html",
-    "preview": "vite preview",
+    "dev": "node run-erver.js",
+    "build:client": "vite build --outDir dist/client --ssrManifest",
+    "build:server": "vite build --outDir dist/server --ssr src/entry-server.js",
+    "build": "sh tools/build.sh",
+    "preview": "cross-env NODE_ENV=production node run-server.js",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
+    "deploy": "gh-pages -d dist/deploy",
     "test": "npx mocha"
   },
   "dependencies": {
+    "katex": "^0.16.11",
     "tex2typst": "^0.0.4",
     "vue": "^3.4.29"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.5",
     "autoprefixer": "^10.4.19",
+    "cross-env": "^7.0.3",
     "eslint": "^8.57.0",
     "eslint-plugin-vue": "^9.23.0",
+    "express": "^4.19.2",
     "gh-pages": "^6.1.1",
     "mocha": "^10.6.0",
     "postcss": "^8.4.39",
