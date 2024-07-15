@@ -12,12 +12,3 @@ describe('tex2typst', function () {
         assert.throws(() => tex2typst("\\right"), Error);
     });
 });
-
-
-describe('putPrimeBeforeUnderscore()', function () {
-    it('put prime symbol before underscore', function () {
-        const input = "y_1' y_{a_1}' y_{a + b}' {\\theta}_{1}'";
-        const expectedOutput = "y'_1 y'_{a_1} y'_{a + b} {\\theta}'_{1}";
-        assert.strictEqual(putPrimeBeforeUnderscore(input), expectedOutput);
-    });
-});

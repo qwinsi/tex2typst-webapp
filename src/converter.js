@@ -16,12 +16,6 @@ const symbolMap = new Map([
 ]);
 
 
-// Remove single space before prime symbol. This situation is caused by tex-to-typst library.
-// e.g. y ' -> y'
-function removeSpaceBeforePrime(text) {
-    return text.replace(/([^\s])\s'/g, "$1'");
-}
-
 // Put prime symbol before '_'. Because $y_1'$ is not displayed properly in Typst (so far)
 // e.g. 
 // y_1' -> y'_1
@@ -43,7 +37,5 @@ export function convertTex2Typst(input) {
         res = res.replace(new RegExp(`(${key})(\\b|_)`, "g"), `${value}$2`);
     }
     res = res.replaceAll("upright(d)", "dif"); // Special case for the differential symbol
-    res = removeSpaceBeforePrime(res);
-    res = putPrimeBeforeUnderscore(res);
     return res;
 }
