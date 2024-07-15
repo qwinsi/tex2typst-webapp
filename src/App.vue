@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+import katex from 'katex'
 import { convertTex2Typst } from './converter'
 import { copyTextToClipboard } from './clipboard'
 
