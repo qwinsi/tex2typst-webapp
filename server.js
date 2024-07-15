@@ -11,22 +11,21 @@ import { fileURLToPath } from 'node:url'
 import express from 'express'
 import { createServer as createViteServer } from 'vite'
 
-// Constants
-const isProduction = process.env.NODE_ENV === 'production'
-const port = process.env.PORT || 5173
-const base = process.env.BASE || '/tex2typst-webapp/'
-
-// Cached production assets
-const templateHtml = isProduction
-  ? fs.readFileSync('./dist/client/index.html', 'utf-8')
-  : ''
-const ssrManifest = isProduction
-  ? fs.readFileSync('./dist/client/.vite/ssr-manifest.json', 'utf-8')
-  : undefined
-
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-export async function startServer() {
+export async function startServer(isProduction) {
+  // Constants
+  const port = process.env.PORT || 5173
+  const base = process.env.BASE || '/tex2typst-webapp/'
+
+  // Cached production assets
+  const templateHtml = isProduction
+    ? fs.readFileSync('./dist/client/index.html', 'utf-8')
+    : ''
+  const ssrManifest = isProduction
+    ? fs.readFileSync('./dist/client/.vite/ssr-manifest.json', 'utf-8')
+    : undefined
+
   const app = express()
 
   // Create Vite server in middleware mode and configure the app type as
@@ -48,8 +47,7 @@ export async function startServer() {
 
   app.use('*', async (req, res, next) => {
     const url = req.originalUrl.replace(base, '')
-    console.log('url:', url)
-  
+
     try {
       if (url !== '' && url !== 'index.html') {
           const filePath = path.resolve(__dirname, 'dist/client', url)
@@ -103,13 +101,13 @@ export async function startServer() {
         template = templateHtml
         render = (await import('./dist/server/entry-server.js')).render
       }
-  
+
       const rendered = await render(url, ssrManifest)
 
       const html = template
         .replace(`<!--app-head-->`, rendered.head ?? '')
         .replace(`<!--app-html-->`, rendered.html ?? '')
-  
+
       // 6. Send the rendered HTML back.
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
     } catch (e) {
@@ -126,7 +124,7 @@ export async function startServer() {
 
    // https://stackoverflow.com/a/63629410
    const promise = new Promise((resolve, _reject) => {
-      server = app.listen(3000, () => {
+      server = app.listen(port, () => {
         resolve();
       });
     });
