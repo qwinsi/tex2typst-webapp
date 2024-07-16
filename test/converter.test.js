@@ -8,6 +8,13 @@ describe('tex2typst', function () {
         const expectedOutput = "zeta(s) = sum_(n = 1)^infinity frac(1, n^s)";
         assert.strictEqual(convertTex2Typst(input), expectedOutput);
     })
+
+    it('convert binom', function() {
+        const input = "\\binom{n}{k}";
+        const expectedOutput = "binom(n, k)";
+        assert.strictEqual(convertTex2Typst(input), expectedOutput);
+    })
+
     it('throw error for input (\\right)', function () {
         assert.throws(() => tex2typst("\\right"), Error);
     });
