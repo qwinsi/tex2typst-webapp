@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { convertTex2Typst, putPrimeBeforeUnderscore } from '../src/converter.js';
+import { convertTex2Typst } from '../src/converter.js';
 import { tex2typst } from 'tex2typst';
 
 describe('tex2typst', function () {
@@ -12,6 +12,12 @@ describe('tex2typst', function () {
     it('convert binom', function() {
         const input = "\\binom{n}{k}";
         const expectedOutput = "binom(n, k)";
+        assert.strictEqual(convertTex2Typst(input), expectedOutput);
+    })
+
+    it('sech', function() {
+        const input = "\\sech(x)";
+        const expectedOutput = "sech(x)";
         assert.strictEqual(convertTex2Typst(input), expectedOutput);
     })
 

@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import katex from 'katex'
-import { convertTex2Typst } from './converter'
+import { convertTex2Typst, customTexMacros } from './converter'
 import { copyTextToClipboard } from './clipboard'
 
 
@@ -20,7 +20,7 @@ const renderedFormulaHtml = computed(() => {
   if (inputTex.value === '') {
     return '<div>Math formula will be rendered here.</div>'
   } else {
-    return katex.renderToString(inputTex.value, { displayMode: true, throwOnError: false })
+    return katex.renderToString(inputTex.value, { macros: customTexMacros, displayMode: true, throwOnError: false })
   }
 })
 
