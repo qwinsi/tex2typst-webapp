@@ -20,7 +20,13 @@ const renderedFormulaHtml = computed(() => {
   if (inputTex.value === '') {
     return '<div>Math formula will be rendered here.</div>'
   } else {
-    return katex.renderToString(inputTex.value, { macros: customTexMacros, displayMode: true, throwOnError: false })
+    const options = {
+      macros: customTexMacros,
+      displayMode: true,
+      throwOnError: false,
+      errorColor: '#bc6f17'
+    }
+    return katex.renderToString(inputTex.value, options)
   }
 })
 
