@@ -2,6 +2,8 @@
 
 Translate LaTeX or TeX math markup to typst in your browser.
 
+Demo screenshot:
+
 ![Screenshot](./screenshot.png)
 
 This project is a Web UI wrapper. The core algorithm is implemented in [qwinsi/tex2typst](https://github.com/qwinsi/tex2typst).
