@@ -1,6 +1,6 @@
 {
   "name": "tex2typst-webapp",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "type": "module",
   "scripts": {
     "dev": "node run-server.js",
