@@ -49,19 +49,19 @@ onMounted(function() {
     <header>
       <h1 class="text-left text-4xl p-4">tex2typst</h1>
     </header>
-    <div class="text-app-blue p-4 text-center">
+    <div class="text-center text-app-blue p-4">
       Covert LaTeX math formula code to <a href="https://typst.app/" target="_blank">Typst</a> code!
       <br />
       This tool runs locally in your browser. Nothing is uploaded.
     </div>
 
-    <main class="flex flex-1 p-8">
+    <main class="flex-1 flex p-8">
       <div class="flex-1 flex flex-col border border-gray-700 rounded-lg">
         <div class="flex justify-between p-4 border-b border-gray-700">
           <span class="text-app-blue">LaTeX code</span>
           <button class="text-app-light-black" v-on:click="inputTex=''">Clear</button>
         </div>
-        <textarea ref="inputArea" class="flex-1 p-4 text-app-light-black" v-model="inputTex"></textarea>
+        <textarea ref="inputArea" class="flex-1 text-app-light-black p-4" v-model="inputTex"></textarea>
       </div>
 
       <div class="flex-1 flex flex-col border border-gray-700 rounded-lg ml-8">
@@ -69,16 +69,16 @@ onMounted(function() {
           <span class="text-app-blue">Typst code</span>
           <button class="text-app-light-black" v-on:click="sendToClipboard">Copy</button>
         </div>
-        <div class="flex-1 p-4 text-app-light-black" id="typst"> {{ outputTypst }} </div>
+        <div class="flex-1 text-app-light-black p-4" id="typst"> {{ outputTypst }} </div>
       </div>
     </main>
 
 
-    <div class="p-4 text-center text-app-light-black">
+    <div class="text-center text-app-light-black p-4">
       <div v-html="renderedFormulaHtml"></div>
     </div>
 
-    <footer class="bg-gray-800 p-4 text-center">
+    <footer class="bg-gray-800 text-center p-4">
       <p class="text-white">Powered by <a href="https://github.com/qwinsi/tex2typst"
           target="_blank">tex2typst</a></p>
       <p class="text-white">This is an open-source project. For more information, visit <a
