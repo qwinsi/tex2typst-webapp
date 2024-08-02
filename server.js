@@ -53,7 +53,12 @@ export async function startServer(isProduction) {
           const filePath = path.resolve(__dirname, 'dist/client', url)
           // if the file not found, return 404
           if (!fs.existsSync(filePath)) {
-            res.status(404).end('File not found')
+            res.status(404).end('404 not found')
+            return;
+          }
+          // if filePath is a directory, return 403
+          if (fs.statSync(filePath).isDirectory()) {
+            res.status(403).end('403 Forbidden')
             return;
           }
           const content = fs.readFileSync(filePath, 'utf-8')
