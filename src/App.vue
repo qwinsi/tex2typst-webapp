@@ -18,7 +18,7 @@ const outputTypst = computed(() => {
 
 const renderedFormulaHtml = computed(() => {
   if (inputTex.value === '') {
-    return '<div>Math formula will be rendered here.</div>'
+    return '<div><span>Math formula will be rendered here.</span></div>'
   } else {
     const options = {
       macros: customTexMacros,
@@ -74,8 +74,9 @@ onMounted(function() {
     </main>
 
 
-    <div class="text-center text-app-light-black p-4">
-      <div v-html="renderedFormulaHtml"></div>
+    <!-- style="align-items:center" is for vertical centering -->
+    <div class="flex items-center text-center text-app-light-black min-h-[130px] p-4">
+      <div class="flex-1" v-html="renderedFormulaHtml"></div>
     </div>
 
     <footer class="bg-gray-800 text-center p-4">
