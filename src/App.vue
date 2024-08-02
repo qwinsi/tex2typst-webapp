@@ -64,7 +64,7 @@ onMounted(function() {
 
     <!-- flex-row for desktop, flex-col for mobile -->
     <main class="flex-1 flex md:flex-row flex-col p-4">
-      <div class="flex-1 flex flex-col border border-gray-700 rounded-lg m-2">
+      <div class="flex-1 flex flex-col border border-gray-700 min-h-[200px] rounded-lg m-2">
         <div class="flex justify-between p-4 border-b border-gray-700">
           <span class="text-app-blue">LaTeX code</span>
           <button class="text-app-light-black" v-on:click="inputTex=''">Clear</button>
@@ -72,7 +72,7 @@ onMounted(function() {
         <textarea ref="inputArea" class="flex-1 text-app-light-black p-4" v-model="inputTex"></textarea>
       </div>
 
-      <div class="flex-1 flex flex-col border border-gray-700 rounded-lg m-2">
+      <div class="flex-1 flex flex-col border border-gray-700 min-h-[200px] rounded-lg m-2">
         <div class="flex justify-between p-4 border-b border-gray-700">
           <span class="text-app-blue">Typst code</span>
           <button class="text-app-light-black" v-on:click="sendToClipboard">Copy</button>
