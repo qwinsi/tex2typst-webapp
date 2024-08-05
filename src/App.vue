@@ -84,7 +84,7 @@ onMounted(function() {
           <span class="text-app-blue p-2">LaTeX code</span>
           <button class="text-app-light-black p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400" v-on:click="inputTex=''">Clear</button>
         </div>
-        <textarea ref="inputArea" class="flex-1 text-app-light-black p-4" v-model="inputTex"></textarea>
+        <textarea ref="inputArea" class="flex-1 text-app-light-black p-4" v-model="inputTex" spellcheck="false"></textarea>
       </div>
 
       <div class="flex-1 flex flex-col border border-gray-700 min-h-[200px] rounded-lg m-2">
