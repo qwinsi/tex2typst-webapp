@@ -53,9 +53,15 @@ onMounted(function() {
 
 <template>
   <div class="bg-app text-app-blue min-h-screen flex flex-col">
-    <header>
-      <h1 class="text-left text-4xl p-4">tex2typst</h1>
-    </header>
+    <nav class="theme-app flex justify-between text-white">
+      <h1 class="flex items-center h-16 ml-4">
+        <span class="text-4xl">tex2typst</span>
+      </h1>
+      <a class="flex items-center font-medium p-2 hover:bg-gray-900" href="https://github.com/qwinsi/tex2typst-webapp" target="_blank">
+        <img class="inline h-9" src="./assets/github-mark-white.svg" alt="Github log logo" />
+        <span class="text-lg ml-2 mr-4">Open-source</span>
+      </a>
+    </nav>
     <div class="text-center text-app-blue p-4">
       Covert LaTeX math formula code to <a href="https://typst.app/" target="_blank">Typst</a> code!
       <br />
@@ -87,13 +93,9 @@ onMounted(function() {
       <div class="flex-1" v-html="renderedFormulaHtml"></div>
     </div>
 
-    <footer class="bg-gray-800 text-center p-4">
+    <footer class="theme-app text-center p-4">
       <p class="text-white">Powered by <a href="https://github.com/qwinsi/tex2typst"
           target="_blank">tex2typst</a></p>
-      <p class="text-white">This is an open-source project. For more information, visit <a
-          href="https://github.com/qwinsi/tex2typst-webapp"
-          target="_blank">https://github.com/qwinsi/tex2typst-webapp</a>
-      </p>
     </footer>
 
   </div>
@@ -102,6 +104,10 @@ onMounted(function() {
 <style scoped>
 .bg-app {
   background-color: #eeeeee;
+}
+
+.theme-app {
+  background-color: #1F2937;
 }
 
 .text-app-blue {
