@@ -50,10 +50,12 @@ onMounted(function() {
   }
 
   // Enable ":active" pseudo-class on mobile safari. https://stackoverflow.com/q/3885018/
-  const buttons = document.querySelectorAll('button');
-  buttons.forEach(btn => {
-    btn.addEventListener('touchstart', function() {}, { passive: false });
-  });
+  if(/iPad|iPhone|iPod/.test(window.navigator.userAgent)) {
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(btn => {
+      btn.addEventListener('touchstart', function() {}, { passive: false });
+    });
+  }
 });
 
 </script>
