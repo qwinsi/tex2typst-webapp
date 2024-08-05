@@ -41,12 +41,19 @@ onMounted(function() {
   if (inputArea.value) {
     inputArea.value.select();
   }
+
   if (renderArea.value) {
     // To prevent the renderArea collapsing when the input is empty,
     // we set the min-height as the initial height for DEFAULT_TEX
     const height = renderArea.value.clientHeight;
     renderArea.value.style.minHeight = height + 'px';
   }
+
+  // Enable ":active" pseudo-class on mobile safari. https://stackoverflow.com/q/3885018/
+  const buttons = document.querySelectorAll('button');
+  buttons.forEach(btn => {
+    btn.addEventListener('touchstart', function() {}, { passive: false });
+  });
 });
 
 </script>
