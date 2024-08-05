@@ -1,4 +1,5 @@
 // Code from https://stackoverflow.com/questions/400212/how-do-i-copy-to-the-clipboard-in-javascript
+// Added "textArea.style.zIndex = "-1";" to ensure the textArea is not visible anytime.
 // Added "textArea.setAttribute('readonly', true);" to avoid screen bouncing on mobile Safari
 // because textArea.focus() causes Safari to scroll up the page and pop the keyboard.
 // See https://stackoverflow.com/a/45308151/
@@ -11,6 +12,7 @@ function fallbackCopyTextToClipboard(text) {
     textArea.style.top = "0";
     textArea.style.left = "0";
     textArea.style.position = "fixed";
+    textArea.style.zIndex = "-1";
     textArea.setAttribute('readonly', true);
 
     document.body.appendChild(textArea);
