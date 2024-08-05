@@ -18,7 +18,7 @@ const outputTypst = computed(() => {
 
 const renderedFormulaHtml = computed(() => {
   if (inputTex.value === '') {
-    return '<div><span>Math formula will be rendered here.</span></div>'
+    return '<div><span style="opacity: 0.6;">Math formula will be rendered here.</span></div>'
   } else {
     const options = {
       macros: customTexMacros,
@@ -71,17 +71,17 @@ onMounted(function() {
     <!-- flex-row for desktop, flex-col for mobile -->
     <main class="flex-1 flex md:flex-row flex-col p-4">
       <div class="flex-1 flex flex-col border border-gray-700 min-h-[200px] rounded-lg m-2">
-        <div class="flex justify-between p-4 border-b border-gray-700">
-          <span class="text-app-blue">LaTeX code</span>
-          <button class="text-app-light-black" v-on:click="inputTex=''">Clear</button>
+        <div class="flex justify-between p-2 border-b border-gray-700">
+          <span class="text-app-blue p-2">LaTeX code</span>
+          <button class="text-app-light-black p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400" v-on:click="inputTex=''">Clear</button>
         </div>
         <textarea ref="inputArea" class="flex-1 text-app-light-black p-4" v-model="inputTex"></textarea>
       </div>
 
       <div class="flex-1 flex flex-col border border-gray-700 min-h-[200px] rounded-lg m-2">
-        <div class="flex justify-between p-4 border-b border-gray-700">
-          <span class="text-app-blue">Typst code</span>
-          <button class="text-app-light-black" v-on:click="sendToClipboard">Copy</button>
+        <div class="flex justify-between p-2 border-b border-gray-700">
+          <span class="text-app-blue p-2">Typst code</span>
+          <button class="text-app-light-black p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400" v-on:click="sendToClipboard">Copy</button>
         </div>
         <div class="flex-1 text-app-light-black p-4" id="typst"> {{ outputTypst }} </div>
       </div>
