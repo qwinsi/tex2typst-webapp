@@ -27,7 +27,6 @@ export const customTexMacros = {
     "\\dim": "\\operatorname{dim}",
     "\\id": "\\operatorname{id}",
     "\\im": "\\operatorname{im}",
-    "\\mod": "\\operatorname{mod}",
     "\\Pr": "\\operatorname{Pr}",
 };
 
