@@ -30,8 +30,13 @@ const renderedFormulaHtml = computed(() => {
   }
 })
 
-function sendToClipboard() {
-  copyTextToClipboard(outputTypst.value)
+async function sendToClipboard() {
+  const ok = await copyTextToClipboard(outputTypst.value);
+  if (ok) {
+    alert('Copied!');
+  } else {
+    alert('Failed to copy to clipboard. Please report this issue.');
+  }
 }
 
 const inputArea = ref(null);
