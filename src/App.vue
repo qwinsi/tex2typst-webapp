@@ -3,6 +3,7 @@ import { ref, computed, onMounted } from 'vue'
 import katex from 'katex'
 import { convertTex2Typst, customTexMacros } from './converter'
 import { copyTextToClipboard } from './clipboard'
+import CopiedToast, { LIFETIME } from './CopiedToast.vue'
 
 
 const DEFAULT_TEX = '\\prod_{p} \\frac{1}{1-p^{-s}}= \\sum _{n=1}^{\\infty} \\frac{1}{n^s}'
@@ -30,10 +31,20 @@ const renderedFormulaHtml = computed(() => {
   }
 })
 
+const copiedToastShowing = ref(false);
+function triggerToast() {
+  copiedToastShowing.value = true;
+
+  setTimeout(() => { copiedToastShowing.value = false }, LIFETIME);
+}
+
 async function sendToClipboard() {
+  if(inputTex.value === '') {
+    return;
+  }
   const ok = await copyTextToClipboard(outputTypst.value);
-  if (ok) {
-    alert('Copied!');
+  if(ok) {
+    triggerToast();
   } else {
     alert('Failed to copy to clipboard. Please report this issue.');
   }
@@ -87,7 +98,10 @@ onMounted(function() {
       <div class="flex-1 flex flex-col border border-gray-700 min-h-[200px] rounded-lg m-2">
         <div class="flex justify-between p-2 border-b border-gray-700">
           <span class="text-app-blue p-2">LaTeX code</span>
-          <button class="text-app-light-black p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400" v-on:click="inputTex=''">Clear</button>
+          <div>
+            <button class="text-app-light-black p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
+                    v-on:click="inputTex=''">Clear</button>
+          </div>
         </div>
         <textarea ref="inputArea" class="flex-1 text-app-light-black p-4" v-model="inputTex" spellcheck="false"></textarea>
       </div>
@@ -95,7 +109,11 @@ onMounted(function() {
       <div class="flex-1 flex flex-col border border-gray-700 min-h-[200px] rounded-lg m-2">
         <div class="flex justify-between p-2 border-b border-gray-700">
           <span class="text-app-blue p-2">Typst code</span>
-          <button class="text-app-light-black p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400" v-on:click="sendToClipboard">Copy</button>
+          <div class="relative">
+            <button class="text-app-light-black p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
+                    v-on:click="sendToClipboard">Copy</button>
+            <CopiedToast id="copiedToast" :showing="copiedToastShowing" />
+          </div>
         </div>
         <div class="flex-1 text-app-light-black p-4" id="typst"> {{ outputTypst }} </div>
       </div>
@@ -111,7 +129,6 @@ onMounted(function() {
       <p class="text-white">Powered by <a href="https://github.com/qwinsi/tex2typst"
           target="_blank">tex2typst</a></p>
     </footer>
-
   </div>
 </template>
 
@@ -136,5 +153,11 @@ onMounted(function() {
 /* https://stackoverflow.com/questions/36260013/react-display-line-breaks-from-saved-textarea */
 #typst {
   white-space: pre-line;
+}
+
+#copiedToast {
+  position: absolute;
+  top: -55px;
+  right: -4px;
 }
 </style>
