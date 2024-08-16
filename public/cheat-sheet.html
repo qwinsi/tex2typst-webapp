@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.27.4/tocbot.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.27.4/tocbot.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/latex.min.js"></script>
+
+  <title>LaTeX-to-typst Cheat Sheet</title>
+  <style>
+    h1 {
+      text-align: center;
+      margin: 0;
+      padding: 1em;
+      background-color: #f0f0f0;
+    }
+
+    h2 {
+      margin: 1em;
+      margin-top: 2em;
+    }
+
+    table {
+      min-width: 800px;
+      border-collapse: collapse;
+      margin: 1em;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.5em;
+    }
+
+    th {
+      background-color: #f0f0f0;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tr:hover {
+      background-color: #f0f0f0;
+    }
+
+    /* Hide the specific column */
+    .h-table.hide-latex tr > *:nth-child(1) {
+      display: none;
+    }
+
+    .h-table.hide-preview tr > *:nth-child(2) {
+      display: none;
+    }
+
+    .h-table.hide-typst tr > *:nth-child(3) {
+      display: none;
+    }
+
+    .v-table.hide-latex tr:nth-child(1) {
+      display: none;
+    }
+
+    .toggle-panel {
+      position: fixed;
+      margin: 1em;
+      left: 30px;
+      bottom: 30px;
+
+      display: flex;
+      flex-direction: column;
+    }
+
+    .toggle-button {
+      margin: 0.1em;
+      padding: 0.5em;
+      background-color: #f0f0f0;
+      border: 1px solid #ddd;
+      cursor: pointer;
+    }
+
+    .js-toc {
+      position: fixed;
+      padding: 1em;
+    }
+
+    aside {
+      width: 15%;
+      min-height: 90%;
+      padding: 1em;
+      margin: 0.5em;
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+
+<body>
+<script>
+function toggleLatex() {
+  const hTables = document.getElementsByClassName('h-table');
+  const vTables = document.getElementsByClassName('v-table');
+  const tables = [...hTables, ...vTables];
+  for(const table of tables) {
+    table.classList.toggle('hide-latex');
+  }
+}
+
+function togglePreview() {
+  const hTables = document.getElementsByClassName('h-table');
+  const vTables = document.getElementsByClassName('v-table');
+  const tables = [...hTables, ...vTables];
+  for(const table of tables) {
+    table.classList.toggle('hide-preview');
+  }
+}
+
+function toggleTypst() {
+  const hTables = document.getElementsByClassName('h-table');
+  const vTables = document.getElementsByClassName('v-table');
+  const tables = [...hTables, ...vTables];
+  for(const table of tables) {
+    table.classList.toggle('hide-typst');
+  }
+}
+
+function ready(fn) {
+  if (document.readyState !== 'loading') {
+    fn();
+  } else {
+    document.addEventListener('DOMContentLoaded', fn);
+  }
+}
+
+ready(function() {
+  tocbot.init({
+    tocSelector: '.js-toc',
+    contentSelector: '.js-toc-content',
+    headingSelector: 'h2, h3',
+    hasInnerContainers: true,
+  });
+
+  hljs.highlightAll();
+
+  const renderAreas = document.getElementsByClassName('render-m');
+  for(const renderArea of renderAreas) {
+    const latexCode = renderArea.textContent;
+    katex.render(latexCode, renderArea, {
+      displayMode: renderArea.tagName === 'DIV',
+      throwOnError: false,
+    });
+  }
+});
+</script>
+
+  <nav style="display: flex; justify-content: space-between; padding: 0.8em;">
+    <a href="." target="_blank">Home</a>
+    <a href="https://github.com/qwinsi/tex2typst-webapp" target="_blank">Open-source</a>
+  </nav>
+
+  <h1>LaTeX-to-typst Cheat Sheet</h1>
+
+  <div style="display: flex;">
+  <aside>
+    <div class="js-toc"></div>
+    <div class="toggle-panel">
+      <div>
+        <input type="checkbox" id="toggle-latex" onclick="toggleLatex()" checked>
+        <label for="toggle-latex">LaTeX</label>
+      </div>
+      <div>
+        <input type="checkbox" id="toggle-preview" onclick="togglePreview()" checked>
+        <label for="toggle-preview">Preview</label>
+      </div>
+      <div>
+        <input type="checkbox" id="toggle-typst" onclick="toggleTypst()" checked>
+        <label for="toggle-typst">Typst</label>
+      </div>
+    </div>
+  </aside>
+
+
+<main class="js-toc-content">
+  <h2 id="greek-letters">Greek Letters</h2>
+  <!-- 
+    latex: \alpha \beta \gamma \delta \epsilon \zeta \eta \theta \iota \kappa \lambda \mu \nu \xi \omicron \pi \rho \sigma \tau \upsilon \phi \chi \psi \omega
+    typst: alpha beta gamma delta epsilon.alt zeta eta theta iota kappa lambda mu nu xi omicron pi rho sigma tau upsilon phi.alt chi psi omega
+    latex: \varepsilon \vartheta \varpi \varrho \varsigma \varphi
+    typst: epsilon theta.alt pi.alt rho.alt sigma.alt phi
+    latex: \Gamma \Delta \Theta \Lambda \Xi \Pi \Sigma \Upsilon \Phi \Psi \Omega
+    typst: Gamma Delta Theta Lambda Xi Pi Sigma Upsilon Phi Psi Omega
+  -->
+  <table class="h-table">
+    <thead>
+      <tr><th>LaTeX</th><th>Preview</th><th>Typst</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>\alpha</code></td><td>α</td><td><code>alpha</code></td></tr>
+      <tr><td><code>\beta</code></td><td>β</td><td><code>beta</code></td></tr>
+      <tr><td><code>\gamma</code></td><td>γ</td><td><code>gamma</code></td></tr>
+      <tr><td><code>\delta</code></td><td>δ</td><td><code>delta</code></td></tr>
+      <tr><td><code>\epsilon</code></td><td>ε</td><td><code>epsilon.alt</code></td></tr>
+      <tr><td><code>\zeta</code></td><td>ζ</td><td><code>zeta</code></td></tr>
+      <tr><td><code>\eta</code></td><td>η</td><td><code>eta</code></td></tr>
+      <tr><td><code>\theta</code></td><td>θ</td><td><code>theta</code></td></tr>
+      <tr><td><code>\iota</code></td><td>ι</td><td><code>iota</code></td></tr>
+      <tr><td><code>\kappa</code></td><td>κ</td><td><code>kappa</code></td></tr>
+      <tr><td><code>\lambda</code></td><td>λ</td><td><code>lambda</code></td></tr>
+      <tr><td><code>\mu</code></td><td>μ</td><td><code>mu</code></td></tr>
+      <tr><td><code>\nu</code></td><td>ν</td><td><code>nu</code></td></tr>
+      <tr><td><code>\xi</code></td><td>ξ</td><td><code>xi</code></td></tr>
+      <tr><td><code>\omicron</code></td><td>ο</td><td><code>omicron</code></td></tr>
+      <tr><td><code>\pi</code></td><td>π</td><td><code>pi</code></td></tr>
+      <tr><td><code>\rho</code></td><td>ρ</td><td><code>rho</code></td></tr>
+      <tr><td><code>\sigma</code></td><td>σ</td><td><code>sigma</code></td></tr>
+      <tr><td><code>\tau</code></td><td>τ</td><td><code>tau</code></td></tr>
+      <tr><td><code>\upsilon</code></td><td>υ</td><td><code>upsilon</code></td></tr>
+      <tr><td><code>\phi</code></td><td>φ</td><td><code>phi.alt</code></td></tr>
+      <tr><td><code>\chi</code></td><td>χ</td><td><code>chi</code></td></tr>
+      <tr><td><code>\psi</code></td><td>ψ</td><td><code>psi</code></td></tr>
+      <tr><td><code>\omega</code></td><td>ω</td><td><code>omega</code></td></tr>
+      <tr><td><code>\varepsilon</code></td><td>ε</td><td><code>epsilon</code></td></tr>
+      <tr><td><code>\vartheta</code></td><td>θ</td><td><code>theta.alt</code></td></tr>
+      <tr><td><code>\varpi</code></td><td>π</td><td><code>pi.alt</code></td></tr>
+      <tr><td><code>\varrho</code></td><td>ρ</td><td><code>rho.alt</code></td></tr>
+      <tr><td><code>\varsigma</code></td><td>σ</td><td><code>sigma.alt</code></td></tr>
+      <tr><td><code>\varphi</code></td><td>φ</td><td><code>phi</code></td></tr>
+      <tr><td><code>\Gamma</code></td><td>Γ</td><td><code>Gamma</code></td></tr>
+      <tr><td><code>\Delta</code></td><td>Δ</td><td><code>Delta</code></td></tr>
+      <tr><td><code>\Theta</code></td><td>Θ</td><td><code>Theta</code></td></tr>
+      <tr><td><code>\Lambda</code></td><td>Λ</td><td><code>Lambda</code></td></tr>
+      <tr><td><code>\Xi</code></td><td>Ξ</td><td><code>Xi</code></td></tr>
+      <tr><td><code>\Pi</code></td><td>Π</td><td><code>Pi</code></td></tr>
+      <tr><td><code>\Sigma</code></td><td>Σ</td><td><code>Sigma</code></td></tr>
+      <tr><td><code>\Upsilon</code></td><td>Υ</td><td><code>Upsilon</code></td></tr>
+      <tr><td><code>\Phi</code></td><td>Φ</td><td><code>Phi</code></td></tr>
+      <tr><td><code>\Psi</code></td><td>Ψ</td><td><code>Psi</code></td></tr>
+      <tr><td><code>\Omega</code></td><td>Ω</td><td><code>Omega</code></td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="integral">Integral</h2>
+  <table class="v-table">
+      <tr>
+        <th>LaTeX</th>
+        <td><pre><code class="language-latex">\int_a^b f(x) \mathrm{d} x</code></pre></td>
+      </tr>
+      <tr>
+        <th>Preview</th>
+        <td><div class="render-m">\int_a^b f(x) \mathrm{d}x</div></td>
+      </tr>
+      <tr>
+        <th>Typst</th>
+        <td><pre><code class="language-text">integral_a^b f(x) dif x</code></pre></td>
+      </tr>
+  </table>
+  <!-- 
+    latex:  \int \oint \iint \oiint \iiint \oiiint
+    typst: integral integral.cont integral.double integral.surf integral.triple integral.vol
+  -->
+  <table class="h-table">
+    <thead>
+      <tr><th>LaTeX</th><th>Preview</th><th>Typst</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>\int</code></td><td>∫</td><td><code>integral</code></td></tr>
+      <tr><td><code>\oint</code></td><td>∮</td><td><code>integral.cont</code></td></tr>
+      <tr><td><code>\iint</code></td><td>∬</td><td><code>integral.double</code></td></tr>
+      <tr><td><code>\oiint</code></td><td>∯</td><td><code>integral.surf</code></td></tr>
+      <tr><td><code>\iiint</code></td><td>∭</td><td><code>integral.triple</code></td></tr>
+      <tr><td><code>\oiiint</code></td><td>∰</td><td><code>integral.vol</code></td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="fonts">Fonts</h2>
+  <!--
+    latex: \mathbb{A} \mathcal{A} \mathfrak{A} \mathsf{A} \mathtt{A}
+    typst: bb(A) cal(A) frak(A) sans(A) mono(A)
+  -->
+  <table class="h-table">
+    <thead>
+      <tr><th>LaTeX</th><th>Preview</th><th>Typst</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>\mathbb{A}</code></td><td><span class="render-m">\mathbb{A}</span></td><td><code>bb(A)</code></td></tr>
+      <tr><td><code>\mathcal{A}</code></td><td><span class="render-m">\mathcal{A}</span></td><td><code>cal(A)</code></td></tr>
+      <tr><td><code>\mathfrak{A}</code></td><td><span class="render-m">\mathfrak{A}</span></td><td><code>frak(A)</code></td></tr>
+      <tr><td><code>\mathsf{A}</code></td><td><span class="render-m">\mathsf{A}</span></td><td><code>sans(A)</code></td></tr>
+      <tr><td><code>\mathtt{A}</code></td><td><span class="render-m">\mathtt{A}</span></td><td><code>mono(A)</code></td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="monetary-symbols">Monetary Symbols</h2>
+  <!-- 
+    latex: \$ \pounds \yen
+    typst: \$ pound yen
+  -->
+  <table class="h-table">
+    <thead>
+      <tr><th>LaTeX</th><th>Preview</th><th>Typst</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>\$</code></td><td>$</td><td><code>\$</code></tr>
+      <tr><td><code>\pounds</code></td><td>£</td><td>pound</td></tr>
+      <tr><td><code>\yen</code></td><td>¥</td><td>yen</td></tr>
+    </tbody>
+  </table>
+
+</main>
+</div>
+</body>
+
+</html>

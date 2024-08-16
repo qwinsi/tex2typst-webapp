@@ -82,10 +82,16 @@ onMounted(function() {
       <h1 class="flex items-center h-16 ml-4">
         <span class="text-4xl">tex2typst</span>
       </h1>
-      <a class="flex items-center font-medium p-2 hover:bg-gray-900" href="https://github.com/qwinsi/tex2typst-webapp" target="_blank">
-        <img class="inline h-9" src="./assets/github-mark-white.svg" alt="Github log logo" />
-        <span class="text-lg ml-2 mr-4">Open-source</span>
-      </a>
+      <div class="flex">
+        <a class="flex items-center font-medium p-2 mr-2 hover:bg-gray-900" href="cheat-sheet.html" target="_blank">
+          <img class="inline h-9" src="./assets/notebook-icon.svg" alt="Cheat sheet icon" />
+          <span class="text-lg ml-2 mr-4">Cheat Sheet</span>
+        </a>
+        <a class="flex items-center font-medium p-2 mr-2 hover:bg-gray-900" href="https://github.com/qwinsi/tex2typst-webapp" target="_blank">
+          <img class="inline h-9" src="./assets/github-mark-white.svg" alt="Github logo" />
+          <span class="text-lg ml-2 mr-4">Open-source</span>
+        </a>
+      </div>
     </nav>
     <div class="text-center text-app-blue p-4">
       Convert LaTeX math formula code to <a href="https://typst.app/" target="_blank">Typst</a> code!
