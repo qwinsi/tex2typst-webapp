@@ -4,10 +4,10 @@ import katex from 'katex'
 import { convertTex2Typst, customTexMacros } from './converter'
 import { copyTextToClipboard } from './clipboard'
 import CopiedToast, { LIFETIME } from './CopiedToast.vue'
+import { getRandomFormula } from './random'
 
 
-const DEFAULT_TEX = '\\prod_{p} \\frac{1}{1-p^{-s}}= \\sum _{n=1}^{\\infty} \\frac{1}{n^s}'
-const inputTex = ref(DEFAULT_TEX)
+const inputTex = ref('');
 const output = computed(() => {
   try {
     const tex = inputTex.value;
@@ -106,7 +106,7 @@ const renderArea = ref(null);
 
 onMounted(function() {
   if (inputArea.value) {
-    inputArea.value.select();
+    inputArea.value.focus();
   }
 
   if (renderArea.value) {
@@ -156,6 +156,8 @@ onMounted(function() {
         <div class="flex justify-between p-2 border-b border-gray-700">
           <span class="text-app-blue p-2">LaTeX code</span>
           <div>
+            <button class="text-app-light-black p-2 mr-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
+                    v-on:click="inputTex=getRandomFormula()">Random</button>
             <button class="text-app-light-black p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
                     v-on:click="inputTex=''">Clear</button>
           </div>
