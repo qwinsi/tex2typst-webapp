@@ -47,5 +47,18 @@ export function convertTex2Typst(input) {
     // }
     res = res.replaceAll("upright(d)", "dif"); // \mathrm{d} -> dif
     res = res.replaceAll('op("d")', "dif"); // \operatorname("d") -> dif
+
+    if(/\\lfloor(.*?)\\rfloor/.test(input)) {
+        // Use regex to replace all "⌊ xxx ⌋" with "floor(xxx)"
+        res = res.replace(/⌊\s*(.*?)\s*⌋/g, "floor($1)");
+        // Typst disallow "floor()" with empty argument, so add am empty string inside if it's empty.
+        res = res.replace(/floor\(\)/g, 'floor("")');
+    }
+    if(/\\lceil(.*?)\\rceil/.test(input)) {
+        // Use regex to replace all "⌈ xxx ⌉" with "ceil(xxx)"
+        res = res.replace(/⌈\s*(.*?)\s*⌉/g, "ceil($1)");
+        // Typst disallow "ceil()" with empty argument, so add an empty string inside if it's empty.
+        res = res.replace(/ceil\(\)/g, 'ceil("")');
+    }
     return res;
 }

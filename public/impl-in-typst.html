@@ -55,9 +55,9 @@
   <li>
     Usage example:
     <pre><code>
-$$
+$
 y = scr(A) x
-$$
+$
 </code></pre>
   </li>
 </ul>
@@ -110,18 +110,30 @@ You can use $#LaTeX$ in math environments as well.
 
 <p>
 However, you cannot use a separated left or right version of the symbols. e.g. There is no <code>lfloor</code> function in Typst.
-If you really need them, you may directly use the Unicode characters for these symbols.
+If you really need them, you may define them directly using their Unicode characters as the following:
 </p>
-<table>
-  <thead>
-    <tr><th>LaTeX macro</th><th>Unicode character</th></tr>
-  </thead>
-  <tbody>
-    <tr><td><code>\lfloor</code></td><td>⌊</td></tr>
-    <tr><td><code>\rfloor</code></td><td>⌋</td></tr>
-    <tr><td><code>\lceil</code></td><td>⌈</td></tr>
-    <tr><td><code>\rceil</code></td><td>⌉</td></tr>
-</table>
+
+
+
+<ul>
+  <li>
+    Implementation in Typst
+    <pre><code>
+#let lfloor = $⌊$;
+#let rfloor = $⌋$;
+#let lceil = $⌈$;
+#let rceil = $⌉$;
+      </code></pre>
+  </li>
+  <li>
+    Usage example:
+    <pre><code>
+$
+y = lfloor x rceil
+$
+</code></pre>
+  </li>
+</ul>
 
 <h2 id="custom-operators">Using the <code>op</code> function to define custom operators</h2>
 <p>
@@ -137,9 +149,9 @@ If you really need them, you may directly use the Unicode characters for these s
   <li>
     Usage example:
     <pre><code>
-$$
+$
 y = myopr x
-$$
+$
 </code></pre>
   </li>
 </ul>

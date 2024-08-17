@@ -21,12 +21,28 @@ const output = computed(() => {
     if(tex.includes('\\TeX')) {
       macros_to_define.push('#TeX');
     }
+    if(tex.includes('\\lfloor') && !tex.includes('\\rfloor')) {
+      macros_to_define.push('unpaired \\lfloor');
+    }
+    if(tex.includes('\\rfloor') && !tex.includes('\\lfloor')) {
+      macros_to_define.push('unpaired \\rfloor');
+    }
+    if(tex.includes('\\lceil') && !tex.includes('\\rceil')) {
+      macros_to_define.push('unpaired \\lceil');
+    }
+    if(tex.includes('\\rceil') && !tex.includes('\\lceil')) {
+      macros_to_define.push('unpaired \\rceil');
+    }
     let msg = '';
     if(macros_to_define.length > 0) {
       const map = new Map([
         ['scr', 'mathscr'],
         ['#LaTeX', 'latex-and-tex'],
         ['#TeX', 'latex-and-tex'],
+        ['unpaired \\lfloor', 'floor-and-ceil'],
+        ['unpaired \\rfloor', 'floor-and-ceil'],
+        ['unpaired \\lceil', 'floor-and-ceil'],
+        ['unpaired \\rceil', 'floor-and-ceil'],
       ]);
       if(macros_to_define.length === 1) {
         const macro = macros_to_define[0];
