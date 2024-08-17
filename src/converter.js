@@ -38,14 +38,11 @@ export function convertTex2Typst(input) {
         customTexMacros: customTexMacros,
     };
     let res = tex2typst(input, options);
-    // for (const [key, value] of symbolMap) {
-    //     // When tex2typst library encounters a unknown symbol, it just drops leading backslash. e.g. "\bigcup" -> "bigcup"
-    //     // We need to replace it with the proper symbol.
-    //     // Replace only if the whole word is matched.
-    //     // e.g. /(bigcup)[^a-zA-Z]/ matches "bigcup" but not "bigcups"
-    //     res = res.replace(new RegExp(`(${key})(\\b|_)`, "g"), `${value}$2`);
-    // }
     res = res.replaceAll("upright(d)", "dif"); // \mathrm{d} -> dif
     res = res.replaceAll('op("d")', "dif"); // \operatorname("d") -> dif
+    res = res.replaceAll('⌊', "lfloor");
+    res = res.replaceAll('⌋', "rfloor");
+    res = res.replaceAll('⌈', "lceil");
+    res = res.replaceAll('⌉', "rceil");
     return res;
 }
