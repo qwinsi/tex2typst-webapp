@@ -38,27 +38,11 @@ export function convertTex2Typst(input) {
         customTexMacros: customTexMacros,
     };
     let res = tex2typst(input, options);
-    // for (const [key, value] of symbolMap) {
-    //     // When tex2typst library encounters a unknown symbol, it just drops leading backslash. e.g. "\bigcup" -> "bigcup"
-    //     // We need to replace it with the proper symbol.
-    //     // Replace only if the whole word is matched.
-    //     // e.g. /(bigcup)[^a-zA-Z]/ matches "bigcup" but not "bigcups"
-    //     res = res.replace(new RegExp(`(${key})(\\b|_)`, "g"), `${value}$2`);
-    // }
     res = res.replaceAll("upright(d)", "dif"); // \mathrm{d} -> dif
     res = res.replaceAll('op("d")', "dif"); // \operatorname("d") -> dif
-
-    if(/\\lfloor(.*?)\\rfloor/.test(input)) {
-        // Use regex to replace all "⌊ xxx ⌋" with "floor(xxx)"
-        res = res.replace(/⌊\s*(.*?)\s*⌋/g, "floor($1)");
-        // Typst disallow "floor()" with empty argument, so add am empty string inside if it's empty.
-        res = res.replace(/floor\(\)/g, 'floor("")');
-    }
-    if(/\\lceil(.*?)\\rceil/.test(input)) {
-        // Use regex to replace all "⌈ xxx ⌉" with "ceil(xxx)"
-        res = res.replace(/⌈\s*(.*?)\s*⌉/g, "ceil($1)");
-        // Typst disallow "ceil()" with empty argument, so add an empty string inside if it's empty.
-        res = res.replace(/ceil\(\)/g, 'ceil("")');
-    }
+    res = res.replaceAll('⌊', "lfloor");
+    res = res.replaceAll('⌋', "rfloor");
+    res = res.replaceAll('⌈', "lceil");
+    res = res.replaceAll('⌉', "rceil");
     return res;
 }

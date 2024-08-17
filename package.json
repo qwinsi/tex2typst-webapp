@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "katex": "^0.16.11",
-    "tex2typst": "^0.0.15",
+    "tex2typst": "^0.0.17",
     "vue": "^3.4.29"
   },
   "devDependencies": {
