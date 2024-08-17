@@ -7,13 +7,47 @@ import CopiedToast, { LIFETIME } from './CopiedToast.vue'
 
 
 const DEFAULT_TEX = '\\prod_{p} \\frac{1}{1-p^{-s}}= \\sum _{n=1}^{\\infty} \\frac{1}{n^s}'
-
 const inputTex = ref(DEFAULT_TEX)
-const outputTypst = computed(() => {
+const output = computed(() => {
   try {
-    return convertTex2Typst(inputTex.value)
+    const tex = inputTex.value;
+    const macros_to_define = [];
+    if(tex.includes('\\mathscr')) {
+      macros_to_define.push('scr');
+    } 
+    if(tex.includes('\\LaTeX')) {
+      macros_to_define.push('#LaTeX');
+    }
+    if(tex.includes('\\TeX')) {
+      macros_to_define.push('#TeX');
+    }
+    let msg = '';
+    if(macros_to_define.length > 0) {
+      const map = new Map([
+        ['scr', 'mathscr'],
+        ['#LaTeX', 'latex-and-tex'],
+        ['#TeX', 'latex-and-tex'],
+      ]);
+      if(macros_to_define.length === 1) {
+        const macro = macros_to_define[0];
+        const a_link = `<a href="impl-in-typst.html#${map.get(macro)}" target="_blank">${macro}</a>`;
+        msg = `&#x24D8; Define ${a_link} yourself as it's not supported in Typst. Click the link to see the definition code.`
+      } else {
+        const a_links = macros_to_define.map(macro => {
+          return `<a href="impl-in-typst.html#${map.get(macro)}" target="_blank">${macro}</a>`;
+        });
+        msg = `&#x24D8; Define ${a_links.join(', ')} yourself as they're not supported in Typst. Click the link for the definition code.`
+      }
+    }
+    return {
+      typst: convertTex2Typst(tex),
+      message: msg,
+    }
   } catch (e) {
-    return '[ERROR: Invalid LaTeX code]'
+    return {
+      typst: '',
+      message: '&#x24D8; [ERROR: Invalid LaTeX code]',
+    }
   }
 })
 
@@ -42,7 +76,7 @@ async function sendToClipboard() {
   if(inputTex.value === '') {
     return;
   }
-  const ok = await copyTextToClipboard(outputTypst.value);
+  const ok = await copyTextToClipboard(output.value.typst);
   if(ok) {
     triggerToast();
   } else {
@@ -121,7 +155,10 @@ onMounted(function() {
             <CopiedToast id="copiedToast" :showing="copiedToastShowing" />
           </div>
         </div>
-        <div class="flex-1 text-app-light-black p-4" id="typst"> {{ outputTypst }} </div>
+        <div class="flex-1 flex flex-col" id="typst">
+          <div class="flex-1 text-app-light-black p-4"> {{ output.typst }} </div>
+          <div class="h-20 text-sm text-app-light-black theme-warning border-t rounded border-yellow-700 p-4" v-if="output.message" v-html="output.message"></div>
+        </div>
       </div>
     </main>
 
@@ -138,7 +175,7 @@ onMounted(function() {
   </div>
 </template>
 
-<style scoped>
+<style>
 .bg-app {
   background-color: #eeeeee;
 }
@@ -147,12 +184,29 @@ onMounted(function() {
   background-color: #1F2937;
 }
 
+.theme-warning {
+  background-color: #fdf8e4;
+}
+
 .text-app-blue {
   color: #0D70B0;
 }
 
 .text-app-light-black {
   color: #333333;
+}
+
+#typst a {
+  font-weight: bold;
+  text-decoration: underline !important;
+}
+
+#typst a:link, #typst a:visited { 
+  color: #0000EE !important;
+}
+
+#typst a:link:active, #typst a:visited:active {
+  color: #FF0000 !important;
 }
 
 

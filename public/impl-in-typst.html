@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Implementing LaTeX macros unsupported by Typst</title>
+  <style>
+    h1 {
+      text-align: center;
+      margin: 0;
+      padding: 1em;
+      background-color: #f0f0f0;
+    }
+
+    h2 {
+      margin: 1em;
+      margin-top: 2em;
+    }
+
+    p {
+      margin-left: 2em;
+    }
+
+    table {
+      margin: 2em;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.5em;
+    }
+  </style>
+</head>
+<body>
+<nav style="display: flex; justify-content: space-between; padding: 0.8em;">
+  <a href="." target="_blank">Homepage</a>
+  <a href="https://github.com/qwinsi/tex2typst-webapp" target="_blank">Source on Github</a>
+</nav>
+
+<h1>Implementing LaTeX macros unsupported by Typst</h1>
+
+<h2>Background</h2>
+<p>There is not always a Typst equivalent for every LaTeX macro. This document provides a guide on how to implement unsupported LaTeX macros in Typst.</p>
+
+<h2 id="mathscr">The <code>\mathscr</code> macro</h2>
+<ul>
+  <li>LaTeX: <code>\mathscr</code></li>
+  <li>Implementation in Typst <sup><a href="#ref-mathscr">[1]</a></sup>
+  <pre><code>
+#let scr(a) = text(
+    font: "STIX Two Math",
+    stylistic-set: 01,
+)[#math.cal(a)]</code></pre>
+  </li>
+  <li>
+    Usage example:
+    <pre><code>
+$$
+y = scr(A) x
+$$
+</code></pre>
+  </li>
+</ul>
+
+<h2 id="latex-and-tex">The <code>\LaTeX</code> and <code>\TeX</code> macro</h2>
+<ul>
+  <li>LaTeX: <code>\LaTeX</code></li>
+  <li>Implementation in Typst <sup><a href="#ref-latex">[2]</a></sup>
+  <pre><code>
+#let TeX = style(styles => {
+  set text(font: "New Computer Modern")
+  let e = measure("E", styles)
+  let T = "T"
+  let E = text(1em, baseline: e.height * 0.31, "E")
+  let X = "X"
+  box(T + h(-0.15em) + E + h(-0.125em) + X)
+})
+
+#let LaTeX = style(styles => {
+  set text(font: "New Computer Modern")
+  let a-size = 0.66em
+  let l = measure("L", styles)
+  let a = measure(text(a-size, "A"), styles)
+  let L = "L"
+  let A = box(scale(x: 105%, text(a-size, baseline: a.height - l.height, "A")))
+  box(L + h(-a.width * 0.67) + A + h(-a.width * 0.25) + TeX)
+})
+</code></pre>
+  </li>
+  <li>
+    Usage example:
+    <pre><code>
+You can use #LaTeX in text environments.
+You can use $#LaTeX$ in math environments as well.
+</code></pre>
+  </li>
+</ul>
+
+<h2 id="floor-and-ceil">The <code>\lfloor</code>, <code>\rfloor</code>, <code>\lceil</code>, and <code>\rceil</code> macros</h2>
+
+<p>
+  In Typst, there are <code>floor</code> and <code>ceil</code> functions to make the floor and ceiling symbols, respectively.
+</p>
+<ul>
+  <li>LaTeX: <code>\lfloor x \rfloor</code></li>
+  <li>Typst: <code>floor(x)</code></li>
+  <li>LaTeX: <code>\lceil x \rceil</code></li>
+  <li>Typst: <code>ceil(x)</code></li>
+</ul>
+
+<p>
+However, you cannot use a separated left or right version of the symbols. e.g. There is no <code>lfloor</code> function in Typst.
+If you really need them, you may directly use the Unicode characters for these symbols.
+</p>
+<table>
+  <thead>
+    <tr><th>LaTeX macro</th><th>Unicode character</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>\lfloor</code></td><td>⌊</td></tr>
+    <tr><td><code>\rfloor</code></td><td>⌋</td></tr>
+    <tr><td><code>\lceil</code></td><td>⌈</td></tr>
+    <tr><td><code>\rceil</code></td><td>⌉</td></tr>
+</table>
+
+<h2 id="custom-operators">Using the <code>op</code> function to define custom operators</h2>
+<p>
+  For example, if you want to define a custom operator <code>\myopr</code>.
+</p>
+<ul>
+  <li>LaTeX: <code>\newcommand{\myopr}{\operatorname{myopr}}</code></li>
+  <li>Equivalent in Typst
+  <pre><code>
+#let myopr = op("myopr");
+</code></pre>
+  </li>
+  <li>
+    Usage example:
+    <pre><code>
+$$
+y = myopr x
+$$
+</code></pre>
+  </li>
+</ul>
+
+<h2>References and Credits</h2>
+<p>
+  The following resources were used to create this document:
+</p>
+<ol>
+  <li id="ref-mathscr">
+    <code>\mathscr</code>:
+    <a href="https://qiita.com/Yarakashi_Kikohshi/items/b7beaa0fba62a527df2b" target="_blank">
+      Typst の数式で Stylistic set したい話 #Typst - Qiita
+    </a>
+  </li>
+  <li id="ref-latex">
+    <code>\TeX</code> and <code>\LaTeX</code>:
+    <a href="https://github.com/typst/typst/discussions/1732#discussioncomment-6566999" target="_blank">
+      How do I insert the `LaTeX` symbol in Typst? · typst/typst · Discussion #1732
+    </a>
+  </li>
+</ol>
+</body>
+</html>
