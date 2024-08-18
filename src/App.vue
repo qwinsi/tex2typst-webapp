@@ -189,7 +189,7 @@ onMounted(function() {
 
     <footer class="theme-app text-center p-4">
       <p class="text-white">Powered by <a href="https://github.com/qwinsi/tex2typst"
-          target="_blank">tex2typst</a></p>
+          target="_blank">tex2typst.js</a></p>
     </footer>
   </div>
 </template>
