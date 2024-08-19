@@ -11,13 +11,14 @@
     "test": "npx mocha"
   },
   "dependencies": {
-    "@tauri-apps/api": "^1",
+    "@tauri-apps/api": "^2.0.0-rc.0",
+    "@tauri-apps/plugin-shell": "^2.0.0-rc.0",
     "katex": "^0.16.11",
     "tex2typst": "^0.0.18",
     "vue": "^3.4.29"
   },
   "devDependencies": {
-    "@tauri-apps/cli": "^1",
+    "@tauri-apps/cli": "^2.0.0-rc.4",
     "@vitejs/plugin-vue": "^5.0.5",
     "autoprefixer": "^10.4.19",
     "cross-env": "^7.0.3",
