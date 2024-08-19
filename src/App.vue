@@ -47,11 +47,11 @@ const output = computed(() => {
       ]);
       if(macros_to_define.length === 1) {
         const macro = macros_to_define[0];
-        const a_link = `<a href="impl-in-typst.html#${map.get(macro)}" target="_blank">${macro}</a>`;
+        const a_link = `<a href="https://qwinsi.github.io/tex2typst-webapp/impl-in-typst.html#${map.get(macro)}" target="_blank">${macro}</a>`;
         msg = `&#x24D8; Define ${a_link} yourself as it's not supported in Typst. Click the link to see the definition code.`
       } else {
         const a_links = macros_to_define.map(macro => {
-          return `<a href="impl-in-typst.html#${map.get(macro)}" target="_blank">${macro}</a>`;
+          return `<a href="https://qwinsi.github.io/tex2typst-webapp/impl-in-typst.html#${map.get(macro)}" target="_blank">${macro}</a>`;
         });
         msg = `&#x24D8; Define ${a_links.join(', ')} yourself as they're not supported in Typst. Click the link for the definition code.`
       }
@@ -134,7 +134,7 @@ onMounted(function() {
         <span class="text-4xl">tex2typst</span>
       </h1>
       <div class="flex">
-        <a class="flex items-center font-medium p-2 mr-2 hover:bg-gray-900" href="cheat-sheet.html" target="_blank">
+        <a class="flex items-center font-medium p-2 mr-2 hover:bg-gray-900" href="https://qwinsi.github.io/tex2typst-webapp/cheat-sheet.html" target="_blank">
           <img class="inline h-9" src="./assets/notebook-icon.svg" alt="Cheat sheet icon" />
           <span class="text-lg ml-2 mr-4">Cheat Sheet</span>
         </a>

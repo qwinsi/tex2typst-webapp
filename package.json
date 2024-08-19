@@ -3,22 +3,21 @@
   "version": "0.0.7",
   "type": "module",
   "scripts": {
-    "dev": "node run-server.js",
-    "build:client": "vite build --outDir dist/client --ssrManifest",
-    "build:server": "vite build --outDir dist/server --ssr src/entry-server.js",
-    "build": "sh tools/build.sh",
-    "preview": "cross-env NODE_ENV=production node run-server.js",
+    "tauri": "tauri",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist/deploy",
     "test": "npx mocha"
   },
   "dependencies": {
+    "@tauri-apps/api": "^1",
     "katex": "^0.16.11",
     "tex2typst": "^0.0.18",
     "vue": "^3.4.29"
   },
   "devDependencies": {
+    "@tauri-apps/cli": "^1",
     "@vitejs/plugin-vue": "^5.0.5",
     "autoprefixer": "^10.4.19",
     "cross-env": "^7.0.3",

@@ -33,3 +33,10 @@ npm run dev
 ```sh
 npm run build
 ```
+
+### Desktop App development
+
+```sh
+npm run tauri dev
+npm run tauri build
+```

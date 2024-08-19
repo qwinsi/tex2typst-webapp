@@ -10,15 +10,7 @@
     <!--app-head-->
   </head>
   <body>
-    <noscript style="color: red;font-size: 2em;">
-      We're sorry but this app doesn't work properly without JavaScript enabled. Please enable it to continue.
-    </noscript>
     <div id="app"><!--app-html--></div>
-    <script type="module" src="/src/entry-client.js"></script>
-    <script>
-      if (!navigator.serviceWorker.controller) {
-          navigator.serviceWorker.register("/tex2typst-webapp/sw.js");
-      }
-     </script>
+    <script type="module" src="/src/main-csr.js"></script>
   </body>
 </html>
