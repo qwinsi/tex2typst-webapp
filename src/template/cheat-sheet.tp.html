@@ -66,6 +66,14 @@
       display: none;
     }
 
+    .v-table.hide-preview tr:nth-child(2) {
+      display: none;
+    }
+
+    .v-table.hide-typst tr:nth-child(3) {
+      display: none;
+    }
+
     .toggle-panel {
       position: fixed;
       margin: 1em;
@@ -95,6 +103,13 @@
       padding: 1em;
       margin: 0.5em;
       background-color: #f0f0f0;
+    }
+
+    /* hide <aside> on mobile */
+    @media (max-width: 1000px) {
+      aside {
+        display: none;
+      }
     }
   </style>
 </head>
@@ -158,8 +173,8 @@ ready(function() {
 </script>
 
   <nav style="display: flex; justify-content: space-between; padding: 0.8em;">
-    <a href="." target="_blank">Home</a>
-    <a href="https://github.com/qwinsi/tex2typst-webapp" target="_blank">Open-source</a>
+    <a href="." target="_blank">Homepage</a>
+    <a href="https://github.com/qwinsi/tex2typst-webapp" target="_blank">Source on Github</a>
   </nav>
 
   <h1>LaTeX-to-typst Cheat Sheet</h1>
@@ -185,6 +200,9 @@ ready(function() {
 
 
 <main class="js-toc-content">
+  <p>
+    (WIP: This page is currently under construction...)
+  </p>
   <h2 id="greek-letters">Greek Letters</h2>
   <!-- 
     latex: \alpha \beta \gamma \delta \epsilon \zeta \eta \theta \iota \kappa \lambda \mu \nu \xi \omicron \pi \rho \sigma \tau \upsilon \phi \chi \psi \omega
@@ -267,12 +285,12 @@ ready(function() {
       <tr><th>LaTeX</th><th>Preview</th><th>Typst</th></tr>
     </thead>
     <tbody>
-      <tr><td><code>\int</code></td><td>∫</td><td><code>integral</code></td></tr>
-      <tr><td><code>\oint</code></td><td>∮</td><td><code>integral.cont</code></td></tr>
-      <tr><td><code>\iint</code></td><td>∬</td><td><code>integral.double</code></td></tr>
-      <tr><td><code>\oiint</code></td><td>∯</td><td><code>integral.surf</code></td></tr>
-      <tr><td><code>\iiint</code></td><td>∭</td><td><code>integral.triple</code></td></tr>
-      <tr><td><code>\oiiint</code></td><td>∰</td><td><code>integral.vol</code></td></tr>
+      <tr><td><code>\int</code></td><td><span class="render-m">\int</span></td><td><code>integral</code></td></tr>
+      <tr><td><code>\oint</code></td><td><span class="render-m">\oint</span></td><td><code>integral.cont</code></td></tr>
+      <tr><td><code>\iint</code></td><td><span class="render-m">\iint</span></td><td><code>integral.double</code></td></tr>
+      <tr><td><code>\oiint</code></td><td><span class="render-m">\oiint</span></td><td><code>integral.surf</code></td></tr>
+      <tr><td><code>\iiint</code></td><td><span class="render-m">\iiint</span></td><td><code>integral.triple</code></td></tr>
+      <tr><td><code>\oiiint</code></td><td><span class="render-m">\oiiint</span></td><td><code>integral.vol</code></td></tr>
     </tbody>
   </table>
 
@@ -286,11 +304,32 @@ ready(function() {
       <tr><th>LaTeX</th><th>Preview</th><th>Typst</th></tr>
     </thead>
     <tbody>
+      <tr><td><code>\boldsymbol{A}</code></td><td><span class="render-m">\boldsymbol{A}</span></td><td><code>bold(A)</code></td></tr>
       <tr><td><code>\mathbb{A}</code></td><td><span class="render-m">\mathbb{A}</span></td><td><code>bb(A)</code></td></tr>
+      <tr><td><code>\mathbf{A}</code></td><td><span class="render-m">\mathbf{A}</span></td><td><code>upright(bold(A))</code></td></tr>
       <tr><td><code>\mathcal{A}</code></td><td><span class="render-m">\mathcal{A}</span></td><td><code>cal(A)</code></td></tr>
       <tr><td><code>\mathfrak{A}</code></td><td><span class="render-m">\mathfrak{A}</span></td><td><code>frak(A)</code></td></tr>
       <tr><td><code>\mathsf{A}</code></td><td><span class="render-m">\mathsf{A}</span></td><td><code>sans(A)</code></td></tr>
       <tr><td><code>\mathtt{A}</code></td><td><span class="render-m">\mathtt{A}</span></td><td><code>mono(A)</code></td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="set-and-elements">Set and Elements</h2>
+  <!--
+    latex: \in \subset \subseteq \supset \supseteq \varnothing
+    typst: in subset subset.eq supset supset.eq diameter
+  -->
+  <table class="h-table">
+    <thead>
+      <tr><th>LaTeX</th><th>Preview</th><th>Typst</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>\in</code></td><td><span class="render-m">\in</span></td><td><code>in</code></td></tr>
+      <tr><td><code>\subset</code></td><td><span class="render-m">\subset</span></td><td><code>subset</code></td></tr>
+      <tr><td><code>\subseteq</code></td><td><span class="render-m">\subseteq</span></td><td><code>subset.eq</code></td></tr>
+      <tr><td><code>\supset</code></td><td><span class="render-m">\supset</span></td><td><code>supset</code></td></tr>
+      <tr><td><code>\supseteq</code></td><td><span class="render-m">\supseteq</span></td><td><code>supset.eq</code></td></tr>
+      <tr><td><code>\varnothing</code></td><td><span class="render-m">\varnothing</span></td><td><code>diameter</code></td></tr>
     </tbody>
   </table>
 
@@ -310,6 +349,17 @@ ready(function() {
     </tbody>
   </table>
 
+  <h2 id="misecllaneous-symbols">Miscellaneous Symbols</h2>
+  <table class="h-table">
+    <thead>
+      <tr><th>LaTeX</th><th>Preview</th><th>Typst</th></tr>
+    </thead>
+    <tbody>
+      {{@foreach(it.math_symbols) => key, val}}
+    <tr><td><code>\{{key}}</code></td><td><span class="render-m">\{{key}}</span></td><td><code>{{val}}</code></td></tr>
+      {{/foreach}}
+    </tbody>
+  </table>
 </main>
 </div>
 </body>
