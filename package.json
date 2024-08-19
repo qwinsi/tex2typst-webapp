@@ -1,9 +1,10 @@
 {
   "name": "tex2typst-webapp",
-  "version": "0.0.7",
+  "version": "0.1.8",
   "type": "module",
   "scripts": {
     "dev": "node run-server.js",
+    "make:html": "node tools/make-cheat-sheet-html.js",
     "build:client": "vite build --outDir dist/client --ssrManifest",
     "build:server": "vite build --outDir dist/server --ssr src/entry-server.js",
     "build": "sh tools/build.sh",
