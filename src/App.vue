@@ -102,18 +102,10 @@ async function sendToClipboard() {
 }
 
 const inputArea = ref(null);
-const renderArea = ref(null);
 
 onMounted(function() {
   if (inputArea.value) {
     inputArea.value.focus();
-  }
-
-  if (renderArea.value) {
-    // To prevent the renderArea collapsing when the input is empty,
-    // we set the min-height as the initial height for DEFAULT_TEX
-    const height = renderArea.value.clientHeight;
-    renderArea.value.style.minHeight = height + 'px';
   }
 
   // Enable ":active" pseudo-class on mobile safari. https://stackoverflow.com/q/3885018/
@@ -183,7 +175,7 @@ onMounted(function() {
 
 
     <!-- items-center (i.e. style="align-items:center") is for vertical centering -->
-    <div ref="renderArea" class="flex items-center text-center text-app-light-black p-4">
+    <div class="flex items-center text-center text-app-light-black pb-4 min-h-28">
       <div class="flex-1" v-html="renderedFormulaHtml"></div>
     </div>
 
