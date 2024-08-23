@@ -1,20 +1,26 @@
 <!-- Code from https://stackoverflow.com/questions/71608124/ -->
 <script>
+const LIFETIME = 1300; // milliseconds
+
 export default {
   name: "CopiedToast",
-  props: {
-    // This prop will be used to determine whether the snackbar should be shown or not
-    showing: {
-      type: Boolean,
-      default: false
+  data() {
+    return {
+      visible: false
     }
   },
+  methods: {
+    trigger() {
+      this.visible = true;
+      setTimeout(() => { this.visible = false }, LIFETIME);
+    }
+  },
+  expose: ['trigger']
 }
-export const LIFETIME = 1300; // milliseconds
 </script>
 
 <template>
-    <div :class="showing? 'snackbar show': 'snackbar hide'">Copied!</div>
+    <div :class="visible? 'snackbar show': 'snackbar hide'">Copied!</div>
 </template>
 
 <style scoped>

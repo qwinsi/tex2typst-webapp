@@ -3,7 +3,7 @@ import { ref, computed, onMounted } from 'vue'
 import katex from 'katex'
 import { convertTex2Typst, customTexMacros } from './converter'
 import { copyTextToClipboard } from './clipboard'
-import CopiedToast, { LIFETIME } from './CopiedToast.vue'
+import CopiedToast from './components/CopiedToast.vue'
 import { getRandomFormula } from './random'
 
 
@@ -82,12 +82,8 @@ const renderedFormulaHtml = computed(() => {
   }
 })
 
-const copiedToastShowing = ref(false);
-function triggerToast() {
-  copiedToastShowing.value = true;
 
-  setTimeout(() => { copiedToastShowing.value = false }, LIFETIME);
-}
+const copiedToast = ref(null);
 
 async function sendToClipboard() {
   if(inputTex.value === '') {
@@ -95,7 +91,7 @@ async function sendToClipboard() {
   }
   const ok = await copyTextToClipboard(output.value.typst);
   if(ok) {
-    triggerToast();
+    copiedToast.value.trigger();
   } else {
     alert('Failed to copy to clipboard. Please report this issue.');
   }
@@ -163,7 +159,7 @@ onMounted(function() {
           <div class="relative">
             <button class="text-app-light-black p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
                     v-on:click="sendToClipboard">Copy</button>
-            <CopiedToast id="copiedToast" :showing="copiedToastShowing" />
+            <CopiedToast ref="copiedToast" id="copiedToast" />
           </div>
         </div>
         <div class="flex-1 flex flex-col" id="typst">
