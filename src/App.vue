@@ -159,7 +159,7 @@ onMounted(() => {
       </div>
     </nav>
     <div class="text-center text-app-blue p-4">
-      Convert LaTeX math formula code to <a href="https://typst.app/" target="_blank">Typst</a> code!
+      Convert LaTeX math formula code to Typst code!
       <br />
       This tool runs locally in your browser. Nothing is uploaded.
     </div>
