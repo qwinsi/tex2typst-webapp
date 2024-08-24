@@ -146,15 +146,15 @@ onMounted(() => {
       <div class="flex">
         <a class="flex items-center font-medium p-2 mr-2 hover:bg-gray-900" href="cheat-sheet.html" target="_blank">
           <img class="inline h-9" src="./assets/notebook-icon.svg" alt="Cheat sheet icon" />
-          <span class="text-lg ml-2 mr-4">Cheat Sheet</span>
+          <span class="text-lg ml-2 mr-4 hide-on-mobile">Cheat Sheet</span>
         </a>
         <a class="flex items-center font-medium p-2 mr-2 hover:bg-gray-900" href="https://github.com/qwinsi/tex2typst-webapp" target="_blank">
           <img class="inline h-9" src="./assets/github-mark-white.svg" alt="Github logo" />
-          <span class="text-lg ml-2 mr-4">Open-source</span>
+          <span class="text-lg ml-2 mr-4 hide-on-mobile">Open-source</span>
         </a>
         <button class="flex items-center font-medium p-2 mr-2 hover:bg-gray-900" v-on:click="handleSettingsClick">
           <img class="inline h-9" src="./assets/settings-icon.svg" alt="Settings icon" />
-          <span class="text-lg ml-2 mr-4">Settings</span>
+          <span class="text-lg ml-2 mr-4 hide-on-mobile">Settings</span>
         </button>
       </div>
     </nav>
@@ -253,5 +253,11 @@ onMounted(() => {
   position: absolute;
   top: -55px;
   right: -4px;
+}
+
+@media (max-width: 500px) {
+  .hide-on-mobile {
+    display: none;
+  }
 }
 </style>
