@@ -1,9 +1,10 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onBeforeMount, onMounted } from 'vue'
 import katex from 'katex'
 import { convertTex2Typst, customTexMacros } from './converter'
 import { copyTextToClipboard } from './clipboard'
 import CopiedToast from './components/CopiedToast.vue'
+import SettingsDialog from './components/SettingsDialog.vue'
 import { getRandomFormula } from './random'
 
 
@@ -97,9 +98,30 @@ async function sendToClipboard() {
   }
 }
 
+const settingsDialog = ref(null);
+
 const inputArea = ref(null);
 
-onMounted(function() {
+function handleSettingsClick() {
+  settingsDialog.value.open();
+}
+
+const settings = ref({
+  optionShowPreview: true,
+});
+
+function handleNewSettings(data) {
+  settings.value = data;
+  localStorage.setItem('settings', JSON.stringify(data));
+}
+
+
+onBeforeMount(() => {
+  const settingsStr = localStorage.getItem('settings');
+  settings.value = settingsStr ? JSON.parse(settingsStr) : { optionShowPreview: true };
+});
+
+onMounted(() => {
   if (inputArea.value) {
     inputArea.value.focus();
   }
@@ -130,6 +152,10 @@ onMounted(function() {
           <img class="inline h-9" src="./assets/github-mark-white.svg" alt="Github logo" />
           <span class="text-lg ml-2 mr-4">Open-source</span>
         </a>
+        <button class="flex items-center font-medium p-2 mr-2 hover:bg-gray-900" v-on:click="handleSettingsClick">
+          <img class="inline h-9" src="./assets/settings-icon.svg" alt="Settings icon" />
+          <span class="text-lg ml-2 mr-4">Settings</span>
+        </button>
       </div>
     </nav>
     <div class="text-center text-app-blue p-4">
@@ -172,7 +198,7 @@ onMounted(function() {
 
     <!-- items-center (i.e. style="align-items:center") is for vertical centering -->
     <div class="flex items-center text-center text-app-light-black pb-4 min-h-28">
-      <div class="flex-1" v-html="renderedFormulaHtml"></div>
+      <div class="flex-1" v-if="settings.optionShowPreview" v-html="renderedFormulaHtml"></div>
     </div>
 
     <footer class="theme-app text-center p-4">
@@ -180,6 +206,7 @@ onMounted(function() {
           target="_blank">tex2typst.js</a></p>
     </footer>
   </div>
+  <SettingsDialog ref="settingsDialog" @new-settings="handleNewSettings" :initial="settings" />
 </template>
 
 <style>
