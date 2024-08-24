@@ -7,11 +7,11 @@ function getRandomInt(max) {
 }
 
 
-const EXAMPLE_FORMULAS = [
+export const EXAMPLE_FORMULAS = [
     // base of natural logarithm
     String.raw`e = \lim_{{n \to \infty}} \left(1 + \frac{1}{n}\right)^n`,
     // Euler's product formula
-    String.raw`\prod_{p} \frac{1}{1-p^{-s}}= \sum _{n=1}^{\infty} \frac{1}{n^s}`,
+    String.raw`\prod_{p} \frac{1}{1-p^{-s}}= \sum_{n=1}^{\infty} \frac{1}{n^s}`,
     // Fermat's little theorem
     String.raw`a^{p-1} \equiv 1 \mod{p}`, // TODO: a^{p-1} \equiv 1 \pmod{p}
     // Maxwell's equations
@@ -26,7 +26,7 @@ const EXAMPLE_FORMULAS = [
     // Chen's inequality
     String.raw`\yen 2000 > \$ 3000`,
     // harmonic series
-    String.raw`1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\cdots + \frac{1}{n} = \ln n + \gamma + O\left(\frac{1}{n}\right)`,
+    String.raw`\sum_{k=1}^n \frac{1}{k} = \ln n + \gamma + O\left(\frac{1}{n}\right)`,
     // Euler's complex exponential formula
     String.raw`e^{ix} = \cos x + i \sin x`,
     // Gauss's divergence theorem

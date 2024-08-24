@@ -1,12 +1,14 @@
 {
   "name": "tex2typst-webapp",
-  "version": "0.0.7",
+  "version": "0.1.8",
   "type": "module",
   "scripts": {
     "tauri": "tauri",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "make:html": "node tools/make-cheat-sheet-html.js",
+    "prebuild": "npm run make:html",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "test": "npx mocha"
   },
@@ -14,7 +16,7 @@
     "@tauri-apps/api": "^2.0.0-rc.0",
     "@tauri-apps/plugin-shell": "^2.0.0-rc.0",
     "katex": "^0.16.11",
-    "tex2typst": "^0.0.18",
+    "tex2typst": "^0.2.6",
     "vue": "^3.4.29"
   },
   "devDependencies": {
@@ -28,7 +30,9 @@
     "gh-pages": "^6.1.1",
     "mocha": "^10.6.0",
     "postcss": "^8.4.39",
+    "squirrelly": "^9.1.0",
     "tailwindcss": "^3.4.4",
+    "toml": "^3.0.0",
     "vite": "^5.3.1"
   }
 }

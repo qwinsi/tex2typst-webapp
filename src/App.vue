@@ -1,9 +1,10 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onBeforeMount, onMounted } from 'vue'
 import katex from 'katex'
 import { convertTex2Typst, customTexMacros } from './converter'
 import { copyTextToClipboard } from './clipboard'
-import CopiedToast, { LIFETIME } from './CopiedToast.vue'
+import CopiedToast from './components/CopiedToast.vue'
+import SettingsDialog from './components/SettingsDialog.vue'
 import { getRandomFormula } from './random'
 
 
@@ -82,12 +83,8 @@ const renderedFormulaHtml = computed(() => {
   }
 })
 
-const copiedToastShowing = ref(false);
-function triggerToast() {
-  copiedToastShowing.value = true;
 
-  setTimeout(() => { copiedToastShowing.value = false }, LIFETIME);
-}
+const copiedToast = ref(null);
 
 async function sendToClipboard() {
   if(inputTex.value === '') {
@@ -95,25 +92,38 @@ async function sendToClipboard() {
   }
   const ok = await copyTextToClipboard(output.value.typst);
   if(ok) {
-    triggerToast();
+    copiedToast.value.trigger();
   } else {
     alert('Failed to copy to clipboard. Please report this issue.');
   }
 }
 
-const inputArea = ref(null);
-const renderArea = ref(null);
+const settingsDialog = ref(null);
 
-onMounted(function() {
+const inputArea = ref(null);
+
+function handleSettingsClick() {
+  settingsDialog.value.open();
+}
+
+const settings = ref({
+  optionShowPreview: true,
+});
+
+function handleNewSettings(data) {
+  settings.value = data;
+  localStorage.setItem('settings', JSON.stringify(data));
+}
+
+
+onBeforeMount(() => {
+  const settingsStr = localStorage.getItem('settings');
+  settings.value = settingsStr ? JSON.parse(settingsStr) : { optionShowPreview: true };
+});
+
+onMounted(() => {
   if (inputArea.value) {
     inputArea.value.focus();
-  }
-
-  if (renderArea.value) {
-    // To prevent the renderArea collapsing when the input is empty,
-    // we set the min-height as the initial height for DEFAULT_TEX
-    const height = renderArea.value.clientHeight;
-    renderArea.value.style.minHeight = height + 'px';
   }
 
   // Enable ":active" pseudo-class on mobile safari. https://stackoverflow.com/q/3885018/
@@ -136,16 +146,20 @@ onMounted(function() {
       <div class="flex">
         <a class="flex items-center font-medium p-2 mr-2 hover:bg-gray-900" href="https://qwinsi.github.io/tex2typst-webapp/cheat-sheet.html" target="_blank">
           <img class="inline h-9" src="./assets/notebook-icon.svg" alt="Cheat sheet icon" />
-          <span class="text-lg ml-2 mr-4">Cheat Sheet</span>
+          <span class="text-lg ml-2 mr-4 hide-on-mobile">Cheat Sheet</span>
         </a>
         <a class="flex items-center font-medium p-2 mr-2 hover:bg-gray-900" href="https://github.com/qwinsi/tex2typst-webapp" target="_blank">
           <img class="inline h-9" src="./assets/github-mark-white.svg" alt="Github logo" />
-          <span class="text-lg ml-2 mr-4">Open-source</span>
+          <span class="text-lg ml-2 mr-4 hide-on-mobile">Open-source</span>
         </a>
+        <button class="flex items-center font-medium p-2 mr-2 hover:bg-gray-900" v-on:click="handleSettingsClick">
+          <img class="inline h-9" src="./assets/settings-icon.svg" alt="Settings icon" />
+          <span class="text-lg ml-2 mr-4 hide-on-mobile">Settings</span>
+        </button>
       </div>
     </nav>
     <div class="text-center text-app-blue p-4">
-      Convert LaTeX math formula code to <a href="https://typst.app/" target="_blank">Typst</a> code!
+      Convert LaTeX math formula code to Typst code!
       <br />
       This tool runs locally in your browser. Nothing is uploaded.
     </div>
@@ -171,7 +185,7 @@ onMounted(function() {
           <div class="relative">
             <button class="text-app-light-black p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
                     v-on:click="sendToClipboard">Copy</button>
-            <CopiedToast id="copiedToast" :showing="copiedToastShowing" />
+            <CopiedToast ref="copiedToast" id="copiedToast" />
           </div>
         </div>
         <div class="flex-1 flex flex-col" id="typst">
@@ -183,8 +197,8 @@ onMounted(function() {
 
 
     <!-- items-center (i.e. style="align-items:center") is for vertical centering -->
-    <div ref="renderArea" class="flex items-center text-center text-app-light-black p-4">
-      <div class="flex-1" v-html="renderedFormulaHtml"></div>
+    <div class="flex items-center text-center text-app-light-black pb-4 min-h-28">
+      <div class="flex-1" v-if="settings.optionShowPreview" v-html="renderedFormulaHtml"></div>
     </div>
 
     <footer class="theme-app text-center p-4">
@@ -192,6 +206,7 @@ onMounted(function() {
           target="_blank">tex2typst.js</a></p>
     </footer>
   </div>
+  <SettingsDialog ref="settingsDialog" @new-settings="handleNewSettings" :initial="settings" />
 </template>
 
 <style>
@@ -238,5 +253,11 @@ onMounted(function() {
   position: absolute;
   top: -55px;
   right: -4px;
+}
+
+@media (max-width: 500px) {
+  .hide-on-mobile {
+    display: none;
+  }
 }
 </style>

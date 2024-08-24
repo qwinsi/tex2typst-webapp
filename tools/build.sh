@@ -1,4 +1,5 @@
 rm -rf dist/deploy &&
+npm run make:html &&
 npm run build:client &&
 npm run build:server &&
 cp -r dist/client dist/deploy &&

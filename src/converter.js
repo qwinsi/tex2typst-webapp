@@ -39,6 +39,7 @@ export function convertTex2Typst(input) {
     };
     let res = tex2typst(input, options);
     res = res.replaceAll("upright(d)", "dif"); // \mathrm{d} -> dif
+    res = res.replaceAll(" thin dif", " dif");
     res = res.replaceAll('op("d")', "dif"); // \operatorname("d") -> dif
     res = res.replaceAll('⌊', "lfloor");
     res = res.replaceAll('⌋', "rfloor");
