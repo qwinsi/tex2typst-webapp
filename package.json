@@ -1,6 +1,6 @@
 {
   "name": "tex2typst-webapp",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "type": "module",
   "scripts": {
     "dev": "node run-server.js",
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "katex": "^0.16.11",
-    "tex2typst": "^0.2.6",
+    "tex2typst": "^0.2.7",
     "vue": "^3.4.29"
   },
   "devDependencies": {
