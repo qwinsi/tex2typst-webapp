@@ -164,37 +164,49 @@ onMounted(() => {
       This tool runs locally in your browser. Nothing is uploaded.
     </div>
 
-    <!-- flex-row for desktop, flex-col for mobile -->
-    <main class="flex-1 flex md:flex-row flex-col p-4">
-      <div class="flex-1 flex flex-col border border-gray-700 min-h-[200px] rounded-lg m-2">
-        <div class="flex justify-between p-2 border-b border-gray-700">
+    <main class="flex-1 flex flex-col justify-between m-4 ml-6 mr-6 border border-gray-700 rounded-lg">
+      <div class="flex justify-between p-2 border-b border-gray-700">
+        <div class="flex-1 flex justify-between">
           <span class="text-app-blue p-2">LaTeX code</span>
           <div>
             <button class="text-app-light-black p-2 mr-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
-                    v-on:click="inputTex=getRandomFormula()">Random</button>
+              v-on:click="inputTex = getRandomFormula()">Random</button>
             <button class="text-app-light-black p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
-                    v-on:click="inputTex=''">Clear</button>
+              v-on:click="inputTex = ''">Clear</button>
           </div>
         </div>
-        <textarea ref="inputArea" class="flex-1 text-app-light-black p-4" v-model="inputTex" spellcheck="false"></textarea>
-      </div>
 
-      <div class="flex-1 flex flex-col border border-gray-700 min-h-[200px] rounded-lg m-2">
-        <div class="flex justify-between p-2 border-b border-gray-700">
+        <button class="pl-1 pr-1 rounded-lg ml-3 mr-3 hover:bg-gray-300 active:bg-gray-400">
+          <img class="inline" src="./assets/swap-icon.svg" alt="Swap icon" />
+        </button>
+
+        <div class="flex-1 flex-1 flex justify-between relative">
           <span class="text-app-blue p-2">Typst code</span>
-          <div class="relative">
-            <button class="text-app-light-black p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
-                    v-on:click="sendToClipboard">Copy</button>
-            <CopiedToast ref="copiedToast" id="copiedToast" />
-          </div>
-        </div>
-        <div class="flex-1 flex flex-col" id="typst">
-          <div class="flex-1 text-app-light-black p-4"> {{ output.typst }} </div>
-          <div class="h-20 text-sm text-app-light-black theme-warning border-t rounded border-yellow-700 p-4" v-if="output.message" v-html="output.message"></div>
+          <button class="text-app-light-black p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
+            v-on:click="sendToClipboard">Copy</button>
+          <CopiedToast ref="copiedToast" id="copiedToast" />
         </div>
       </div>
-    </main>
 
+      <!-- flex-row for desktop, flex-col for mobile -->
+      <div class="flex-1 flex md:flex-row flex-col">
+        <!-- input area -->
+        <div class="flex-1 flex flex-col border border-gray-700 min-h-[200px]">
+          <textarea ref="inputArea" class="flex-1 text-app-light-black p-4" v-model="inputTex"
+            spellcheck="false"></textarea>
+        </div>
+
+        <!-- output area -->
+        <div class="flex-1 flex flex-col border border-gray-700 min-h-[200px]">
+          <div class="flex-1 flex flex-col" id="typst">
+            <div class="flex-1 text-app-light-black p-4"> {{ output.typst }} </div>
+            <div class="h-20 text-sm text-app-light-black theme-warning border-t rounded border-yellow-700 p-4"
+              v-if="output.message" v-html="output.message"></div>
+          </div>
+        </div>
+      </div>
+
+    </main>
 
     <!-- items-center (i.e. style="align-items:center") is for vertical centering -->
     <div class="flex items-center text-center text-app-light-black pb-4 min-h-28">
@@ -235,11 +247,13 @@ onMounted(() => {
   text-decoration: underline !important;
 }
 
-#typst a:link, #typst a:visited { 
+#typst a:link,
+#typst a:visited {
   color: #0000EE !important;
 }
 
-#typst a:link:active, #typst a:visited:active {
+#typst a:link:active,
+#typst a:visited:active {
   color: #FF0000 !important;
 }
 
