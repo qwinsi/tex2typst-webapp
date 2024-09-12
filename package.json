@@ -1,6 +1,6 @@
 {
   "name": "tex2typst-webapp",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "type": "module",
   "scripts": {
     "tauri": "tauri",
@@ -16,7 +16,7 @@
     "@tauri-apps/api": "^2.0.0-rc.0",
     "@tauri-apps/plugin-shell": "^2.0.0-rc.0",
     "katex": "^0.16.11",
-    "tex2typst": "^0.2.6",
+    "tex2typst": "^0.2.9",
     "vue": "^3.4.29"
   },
   "devDependencies": {
