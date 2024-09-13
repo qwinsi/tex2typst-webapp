@@ -269,6 +269,11 @@
   resolved "https://registry.yarnpkg.com/@pkgjs/parseargs/-/parseargs-0.11.0.tgz#a77ea742fab25775145434eb1d2328cf5013ac33"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
 
+"@qwinsi/clipboard-js@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@qwinsi/clipboard-js/-/clipboard-js-0.1.0.tgz#3a6cd10c3b0df6273912411158bd61d1c6e3029e"
+  integrity sha512-eu/Q+FUcDw/sbQp6xofpg8uYVxylIrC0AI8Ifl9rLPDNqr05ihHx/wlEkLZKvi1UN+e9FF5T83o38msF5diatQ==
+
 "@rollup/rollup-android-arm-eabi@4.21.3":
   version "4.21.3"
   resolved "https://registry.yarnpkg.com/@rollup/rollup-android-arm-eabi/-/rollup-android-arm-eabi-4.21.3.tgz#155c7d82c1b36c3ad84d9adf9b3cd520cba81a0f"

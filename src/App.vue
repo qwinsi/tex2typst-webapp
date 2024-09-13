@@ -2,7 +2,7 @@
 import { ref, computed, onBeforeMount, onMounted } from 'vue'
 import katex from 'katex'
 import { convertTex2Typst, customTexMacros } from './converter'
-import { copyTextToClipboard } from './clipboard'
+import { copyTextToClipboard } from '@qwinsi/clipboard-js'
 import CopiedToast from './components/CopiedToast.vue'
 import SettingsDialog from './components/SettingsDialog.vue'
 import { getRandomFormula } from './random'
