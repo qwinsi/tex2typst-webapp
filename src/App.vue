@@ -185,7 +185,7 @@ onMounted(() => {
           <div class="relative">
             <button class="text-app-light-black p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
                     v-on:click="sendToClipboard">Copy</button>
-            <CopiedToast ref="copiedToast" id="copiedToast" />
+            <CopiedToast ref="copiedToast" id="copiedToast" msg="Copied!" />
           </div>
         </div>
         <div class="flex-1 flex flex-col" id="typst">

@@ -274,10 +274,10 @@
   resolved "https://registry.yarnpkg.com/@qwinsi/clipboard-js/-/clipboard-js-0.1.0.tgz#3a6cd10c3b0df6273912411158bd61d1c6e3029e"
   integrity sha512-eu/Q+FUcDw/sbQp6xofpg8uYVxylIrC0AI8Ifl9rLPDNqr05ihHx/wlEkLZKvi1UN+e9FF5T83o38msF5diatQ==
 
-"@qwinsi/vue-components@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@qwinsi/vue-components/-/vue-components-0.0.1.tgz#b5adc1b903be3c97dd2aef343810745d8bce6e62"
-  integrity sha512-AbvB490cVRk5H1qfrCbmzzP9nbFisCswwuMtEM5f6F9zRpW5QHL9LL4mmDIK833wZfwtE0OLm5kepgf0dNET4A==
+"@qwinsi/vue-components@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@qwinsi/vue-components/-/vue-components-0.0.2.tgz#a429a50ff04a8d2ce60569fd3252acd04245381c"
+  integrity sha512-3S7VGc/i4BdZ3iSXR/NaBcrfKf7ttgeBVZNo0PoFQl8gKyoUwjallTWDomRTyeOx0OzZaQTgCjL4YJP7NtibNA==
 
 "@rollup/rollup-android-arm-eabi@4.21.3":
   version "4.21.3"
