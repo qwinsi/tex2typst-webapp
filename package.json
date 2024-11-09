@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@qwinsi/clipboard-js": "^0.1.0",
+    "@qwinsi/vue-components": "^0.0.1",
     "katex": "^0.16.11",
     "tex2typst": "^0.2.9",
     "vue": "^3.4.29"
