@@ -1,6 +1,6 @@
 {
   "name": "tex2typst-webapp",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "type": "module",
   "scripts": {
     "dev": "node run-server.js",
@@ -15,6 +15,8 @@
     "test": "npx mocha"
   },
   "dependencies": {
+    "@qwinsi/clipboard-js": "^0.1.0",
+    "@qwinsi/vue-components": "^0.0.2",
     "katex": "^0.16.11",
     "tex2typst": "^0.2.9",
     "vue": "^3.4.29"

@@ -225,36 +225,9 @@ ready(function() {
       <tr><th>LaTeX</th><th>Preview</th><th>Typst</th></tr>
     </thead>
     <tbody>
-      <tr><td><code>\alpha</code></td><td>α</td><td><code>alpha</code></td></tr>
-      <tr><td><code>\beta</code></td><td>β</td><td><code>beta</code></td></tr>
-      <tr><td><code>\gamma</code></td><td>γ</td><td><code>gamma</code></td></tr>
-      <tr><td><code>\delta</code></td><td>δ</td><td><code>delta</code></td></tr>
-      <tr><td><code>\epsilon</code></td><td>ε</td><td><code>epsilon.alt</code></td></tr>
-      <tr><td><code>\zeta</code></td><td>ζ</td><td><code>zeta</code></td></tr>
-      <tr><td><code>\eta</code></td><td>η</td><td><code>eta</code></td></tr>
-      <tr><td><code>\theta</code></td><td>θ</td><td><code>theta</code></td></tr>
-      <tr><td><code>\iota</code></td><td>ι</td><td><code>iota</code></td></tr>
-      <tr><td><code>\kappa</code></td><td>κ</td><td><code>kappa</code></td></tr>
-      <tr><td><code>\lambda</code></td><td>λ</td><td><code>lambda</code></td></tr>
-      <tr><td><code>\mu</code></td><td>μ</td><td><code>mu</code></td></tr>
-      <tr><td><code>\nu</code></td><td>ν</td><td><code>nu</code></td></tr>
-      <tr><td><code>\xi</code></td><td>ξ</td><td><code>xi</code></td></tr>
-      <tr><td><code>\omicron</code></td><td>ο</td><td><code>omicron</code></td></tr>
-      <tr><td><code>\pi</code></td><td>π</td><td><code>pi</code></td></tr>
-      <tr><td><code>\rho</code></td><td>ρ</td><td><code>rho</code></td></tr>
-      <tr><td><code>\sigma</code></td><td>σ</td><td><code>sigma</code></td></tr>
-      <tr><td><code>\tau</code></td><td>τ</td><td><code>tau</code></td></tr>
-      <tr><td><code>\upsilon</code></td><td>υ</td><td><code>upsilon</code></td></tr>
-      <tr><td><code>\phi</code></td><td>φ</td><td><code>phi.alt</code></td></tr>
-      <tr><td><code>\chi</code></td><td>χ</td><td><code>chi</code></td></tr>
-      <tr><td><code>\psi</code></td><td>ψ</td><td><code>psi</code></td></tr>
-      <tr><td><code>\omega</code></td><td>ω</td><td><code>omega</code></td></tr>
-      <tr><td><code>\varepsilon</code></td><td>ε</td><td><code>epsilon</code></td></tr>
-      <tr><td><code>\vartheta</code></td><td>θ</td><td><code>theta.alt</code></td></tr>
-      <tr><td><code>\varpi</code></td><td>π</td><td><code>pi.alt</code></td></tr>
-      <tr><td><code>\varrho</code></td><td>ρ</td><td><code>rho.alt</code></td></tr>
-      <tr><td><code>\varsigma</code></td><td>σ</td><td><code>sigma.alt</code></td></tr>
-      <tr><td><code>\varphi</code></td><td>φ</td><td><code>phi</code></td></tr>
+      {{@foreach(it.lowercase_greek_letters) => key, val}}
+      <tr><td><code>\{{key}}</code></td><td><span class="render-m">\{{key}}</span></td><td><code>{{val}}</code></td></tr>
+      {{/foreach}}
     </tbody>
   </table>
 
@@ -268,17 +241,9 @@ ready(function() {
       <tr><th>LaTeX</th><th>Preview</th><th>Typst</th></tr>
     </thead>
     <tbody>
-      <tr><td><code>\Gamma</code></td><td>Γ</td><td><code>Gamma</code></td></tr>
-      <tr><td><code>\Delta</code></td><td>Δ</td><td><code>Delta</code></td></tr>
-      <tr><td><code>\Theta</code></td><td>Θ</td><td><code>Theta</code></td></tr>
-      <tr><td><code>\Lambda</code></td><td>Λ</td><td><code>Lambda</code></td></tr>
-      <tr><td><code>\Xi</code></td><td>Ξ</td><td><code>Xi</code></td></tr>
-      <tr><td><code>\Pi</code></td><td>Π</td><td><code>Pi</code></td></tr>
-      <tr><td><code>\Sigma</code></td><td>Σ</td><td><code>Sigma</code></td></tr>
-      <tr><td><code>\Upsilon</code></td><td>Υ</td><td><code>Upsilon</code></td></tr>
-      <tr><td><code>\Phi</code></td><td>Φ</td><td><code>Phi</code></td></tr>
-      <tr><td><code>\Psi</code></td><td>Ψ</td><td><code>Psi</code></td></tr>
-      <tr><td><code>\Omega</code></td><td>Ω</td><td><code>Omega</code></td></tr>
+      {{@foreach(it.uppercase_greek_letters) => key, val}}
+      <tr><td><code>\{{key}}</code></td><td><span class="render-m">\{{key}}</span></td><td><code>{{val}}</code></td></tr>
+      {{/foreach}}
     </tbody>
   </table>
 
@@ -349,7 +314,7 @@ ready(function() {
     </thead>
     <tbody>
       {{@foreach(it.arrow_symbols) => key, val}}
-    <tr><td><code>\{{key}}</code></td><td><span class="render-m">\{{key}}</span></td><td><code>{{val}}</code></td></tr>
+      <tr><td><code>\{{key}}</code></td><td><span class="render-m">\{{key}}</span></td><td><code>{{val}}</code></td></tr>
       {{/foreach}}
     </tbody>
   </table>
@@ -399,7 +364,7 @@ ready(function() {
     </thead>
     <tbody>
       {{@foreach(it.math_symbols) => key, val}}
-    <tr><td><code>\{{key}}</code></td><td><span class="render-m">\{{key}}</span></td><td><code>{{val}}</code></td></tr>
+      <tr><td><code>\{{key}}</code></td><td><span class="render-m">\{{key}}</span></td><td><code>{{val}}</code></td></tr>
       {{/foreach}}
     </tbody>
   </table>
