@@ -140,7 +140,7 @@ onMounted(() => {
 <template>
   <div class="bg-app text-app-blue min-h-screen flex flex-col">
     <nav class="theme-app flex justify-between text-white">
-      <h1 class="flex items-center h-16 ml-4">
+      <h1 class="flex items-center h-16 ml-4 select-none">
         <span class="text-4xl">tex2typst</span>
       </h1>
       <div class="flex">
