@@ -12,6 +12,16 @@ import { tex2typst, symbolMap } from 'tex2typst';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const lowercase_greek_letters = [
+    'alpha', 'beta', 'gamma', 'delta', 'epsilon', 'zeta', 'eta', 'theta', 'iota', 'kappa', 'lambda', 'mu', 'nu', 'xi',
+    'omicron', 'pi', 'rho', 'sigma', 'tau', 'upsilon', 'phi', 'chi', 'psi', 'omega',
+    'varepsilon', 'vartheta', 'varpi', 'varrho', 'varsigma', 'varphi',
+]
+
+const uppercase_greek_letters = [
+    'Gamma', 'Delta', 'Theta', 'Lambda', 'Xi', 'Pi', 'Sigma', 'Upsilon', 'Phi', 'Psi', 'Omega',
+]
+
 const arrows = [
     'leftarrow',
     'gets',
@@ -65,6 +75,16 @@ function main() {
     ]
     for (const symbol of symbols_unsupported_by_katex) {
         delete data.math_symbols[symbol];
+    }
+
+    data.lowercase_greek_letters = {};
+    for(const letter of lowercase_greek_letters) {
+        data.lowercase_greek_letters[letter] = tex2typst(`\\${letter}`);
+    }
+
+    data.uppercase_greek_letters = {};
+    for(const letter of uppercase_greek_letters) {
+        data.uppercase_greek_letters[letter] = tex2typst(`\\${letter}`);
     }
 
     data.arrow_symbols = {};

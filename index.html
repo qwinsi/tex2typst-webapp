@@ -7,10 +7,17 @@
     <link rel="icon" href="/favicon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" crossorigin="anonymous">
     <title>tex2typst Web App - Convert LaTex formula code to Typst</title>
-    <!--app-head-->
   </head>
   <body>
-    <div id="app"><!--app-html--></div>
-    <script type="module" src="/src/main-csr.js"></script>
+    <noscript style="color: red;font-size: 2em;">
+      We're sorry but this app doesn't work properly without JavaScript enabled. Please enable it to continue.
+    </noscript>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+    <script>
+      if (!navigator.serviceWorker.controller) {
+          navigator.serviceWorker.register("/tex2typst-webapp/sw.js");
+      }
+     </script>
   </body>
 </html>
