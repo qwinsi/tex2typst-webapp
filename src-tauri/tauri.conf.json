@@ -17,7 +17,7 @@
     ]
   },
   "productName": "tex2typst-desktop",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "identifier": "com.tex2typst-desktop.app",
   "plugins": {},
   "app": {

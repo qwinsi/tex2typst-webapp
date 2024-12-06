@@ -40,3 +40,11 @@ npm run build
 npm run tauri dev
 npm run tauri build
 ```
+
+### Android App development
+
+```sh
+yarn tauri android init
+yarn tauri android dev
+yarn tauri android build --apk
+```

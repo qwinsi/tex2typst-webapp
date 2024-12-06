@@ -4,9 +4,9 @@
   "type": "module",
   "scripts": {
     "tauri": "tauri",
-    "dev": "vite dev",
+    "dev": "vite dev --host",
     "make:html": "node tools/make-cheat-sheet-html.js",
-    "build": "npm run make:html && vite-ssg build && rm -r dist/.vite && cp dist/index.html dist/offline.html",
+    "build": "vite-ssg build",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "predeploy": "npm run build",
@@ -21,9 +21,9 @@
     "vue": "^3.4.29"
   },
   "devDependencies": {
-    "@tauri-apps/api": "^2.0.0-rc.0",
-    "@tauri-apps/plugin-shell": "^2.0.0-rc.0",
-    "@tauri-apps/cli": "^2.0.0-rc.4",
+    "@tauri-apps/api": "^2.0.0",
+    "@tauri-apps/cli": "^2.0.0",
+    "@tauri-apps/plugin-shell": "~2",
     "@vitejs/plugin-vue": "^5.0.5",
     "autoprefixer": "^10.4.19",
     "cross-env": "^7.0.3",
