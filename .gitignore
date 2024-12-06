@@ -4,3 +4,4 @@
 node_modules/
 dist/
 public/cheat-sheet.html
+.vite-ssg-temp/
