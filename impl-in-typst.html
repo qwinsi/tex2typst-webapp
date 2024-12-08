@@ -111,44 +111,7 @@ You can use $#LaTeX$ in math environments as well.
   </li>
 </ul>
 
-<h2 id="floor-and-ceil">The <code>\lfloor</code>, <code>\rfloor</code>, <code>\lceil</code>, and <code>\rceil</code> macros</h2>
 
-<p>
-  In Typst, there are <code>floor</code> and <code>ceil</code> functions to make the floor and ceiling symbols, respectively.
-</p>
-<ul>
-  <li>LaTeX: <code>\lfloor x \rfloor</code></li>
-  <li>Typst: <code>floor(x)</code></li>
-  <li>LaTeX: <code>\lceil x \rceil</code></li>
-  <li>Typst: <code>ceil(x)</code></li>
-</ul>
-
-<p>
-However, you cannot use a separated left or right version of the symbols. e.g. There is no <code>lfloor</code> function in Typst.
-If you really need them, you may define them directly using their Unicode characters as the following:
-</p>
-
-
-
-<ul>
-  <li>
-    Implementation in Typst
-    <pre><code>
-#let lfloor = $⌊$;
-#let rfloor = $⌋$;
-#let lceil = $⌈$;
-#let rceil = $⌉$;
-      </code></pre>
-  </li>
-  <li>
-    Usage example:
-    <pre><code>
-$
-y = lfloor x rceil
-$
-</code></pre>
-  </li>
-</ul>
 
 <h2 id="custom-operators">Using the <code>op</code> function to define custom operators</h2>
 <p>
