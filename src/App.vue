@@ -35,7 +35,7 @@ const output = computed(() => {
     if(typst.includes('rceil')) {
       macros_to_define.push('unpaired rceil');
     }
-    let msg = '';
+    let messages = [];
     if(macros_to_define.length > 0) {
       const map = new Map([
         ['scr', 'mathscr'],
@@ -46,22 +46,29 @@ const output = computed(() => {
         ['unpaired lceil', 'floor-and-ceil'],
         ['unpaired rceil', 'floor-and-ceil'],
       ]);
-      if(macros_to_define.length === 1) {
-        const macro = macros_to_define[0];
+      for(const macro of macros_to_define) {
         const a_link = `<a href="impl-in-typst.html#${map.get(macro)}" target="_blank">${macro}</a>`;
-        msg = `&#x24D8; Define ${a_link} yourself as it's not supported in Typst. Click the link to see the details.`
-      } else {
-        const a_links = macros_to_define.map(macro => {
-          return `<a href="impl-in-typst.html#${map.get(macro)}" target="_blank">${macro}</a>`;
-        });
-        msg = `&#x24D8; Define ${a_links.join(', ')} yourself as they're not supported in Typst. Click the link for the details.`
+        const msg = `&#x24D8; Define ${a_link} yourself as it's not supported in Typst.`;
+        messages.push(msg);
       }
+    }
+
+    // show suggestion when the user try to write vertical bar for evaluation like "F(x) \bigg\rvert_a^b x"
+    if(/\\bigg\s*(\\rvert|\\vert|\|)\s*_/.test(tex)) {
+      const a_link = `<a href="impl-in-typst.html#vertical-bar-for-evaluation" target="_blank">vertical bar for evaluation</a>`;
+      messages.push(`&#x24D8; Did you mean ${a_link}?`);
+    }
+    let final_msg = '';
+    if(messages.length > 0) {
+      messages.push('Click the link for the details.');
+      final_msg = messages.join('<br />');
     }
     return {
       typst: typst,
-      message: msg,
+      message: final_msg,
     }
   } catch (e) {
+    console.error(e);
     return {
       typst: '',
       message: '&#x24D8; [ERROR: Invalid LaTeX code]',
@@ -190,7 +197,7 @@ onMounted(() => {
         </div>
         <div class="flex-1 flex flex-col" id="typst">
           <div class="flex-1 text-app-light-black p-4"> {{ output.typst }} </div>
-          <div class="h-20 text-sm text-app-light-black theme-warning border-t rounded border-yellow-700 p-4" v-if="output.message" v-html="output.message"></div>
+          <div class="min-h-20 text-sm text-app-light-black theme-warning border-t rounded border-yellow-700 p-4" v-if="output.message" v-html="output.message"></div>
         </div>
       </div>
     </main>
