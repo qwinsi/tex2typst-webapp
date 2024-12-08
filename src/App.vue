@@ -23,28 +23,12 @@ const output = computed(() => {
     if(tex.includes('\\TeX')) {
       macros_to_define.push('#TeX');
     }
-    if(typst.includes('lfloor')) {
-      macros_to_define.push('unpaired lfloor');
-    }
-    if(typst.includes('rfloor')) {
-      macros_to_define.push('unpaired rfloor');
-    }
-    if(typst.includes('lceil')) {
-      macros_to_define.push('unpaired lceil');
-    }
-    if(typst.includes('rceil')) {
-      macros_to_define.push('unpaired rceil');
-    }
     let messages = [];
     if(macros_to_define.length > 0) {
       const map = new Map([
         ['scr', 'mathscr'],
         ['#LaTeX', 'latex-and-tex'],
         ['#TeX', 'latex-and-tex'],
-        ['unpaired lfloor', 'floor-and-ceil'],
-        ['unpaired rfloor', 'floor-and-ceil'],
-        ['unpaired lceil', 'floor-and-ceil'],
-        ['unpaired rceil', 'floor-and-ceil'],
       ]);
       for(const macro of macros_to_define) {
         const a_link = `<a href="impl-in-typst.html#${map.get(macro)}" target="_blank">${macro}</a>`;

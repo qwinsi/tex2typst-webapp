@@ -12,13 +12,13 @@ const TYPST_EXAMPLE_FORMULAS = [
 nabla dot.op bold(B) & = 0 \
 nabla times bold(E) & = - frac(diff bold(B), diff t) \
 nabla times bold(B) & = - mu_0 (bold(J) + epsilon frac(diff bold(E), diff t))`,
-    'upright(C H_3 C H_2 B r) + upright(O H)^- arrow.long upright(C H_3 C H_2 O H) + upright(B r)^-',
+    'upright(C H_3 C H_2 B r) + upright(O H)^- arrow.r.long upright(C H_3 C H_2 O H) + upright(B r)^-',
     String.raw`yen 2000 > \$ 3000`,
     'sum_(k = 1)^n frac(1, k) = ln n + gamma + O(frac(1, n))',
     'e^(i x) = cos x + i sin x',
     'integral.triple_Omega op("div")(arrow(F)) dif V = integral.surf_(diff Omega) arrow(F) dot.op dif arrow(S)',
     'integral.double_Sigma op("curl")(arrow(F)) dot.op dif arrow(S) = integral.cont_(diff Sigma) arrow(F) times dif arrow(l)',
-    'pi(x) tilde frac(x, log x)',
+    'pi(x) tilde.op frac(x, log x)',
     'i_D = mu_n C_"ox" frac(W, L) [(v_"GS" - V_t) v_"DS" - frac(1, 2) v_"DS"^2 ]',
     String.raw`C & = N(d_1) S_t - N(d_2) K e^(-r t) \
 d_1 & = frac(ln frac(S_t, K) +(r + frac(sigma^2, 2)) t, sigma sqrt(t)) \
