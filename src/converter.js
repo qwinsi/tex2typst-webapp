@@ -41,9 +41,5 @@ export function convertTex2Typst(input) {
     res = res.replaceAll("upright(d)", "dif"); // \mathrm{d} -> dif
     res = res.replaceAll(" thin dif", " dif");
     res = res.replaceAll('op("d")', "dif"); // \operatorname("d") -> dif
-    res = res.replaceAll('⌊', "lfloor");
-    res = res.replaceAll('⌋', "rfloor");
-    res = res.replaceAll('⌈', "lceil");
-    res = res.replaceAll('⌉', "rceil");
     return res;
 }
