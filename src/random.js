@@ -28,7 +28,7 @@ export const EXAMPLE_FORMULAS = [
     // harmonic series
     String.raw`\sum_{k=1}^n \frac{1}{k} = \ln n + \gamma + O\left(\frac{1}{n}\right)`,
     // Euler's complex exponential formula
-    String.raw`e^{ix} = \cos x + i \sin x`,
+    String.raw`e^{ix} \overset{\text{def}}{=} \cos x + i \sin x`,
     // Gauss's divergence theorem
     String.raw`\iiint_{\Omega} \operatorname{div}(\vec{F}) \mathrm{d}V = \oiint_{\partial \Omega} \vec{F} \cdot \mathrm{d}\vec{S}`,
     // Stokes' theorem
