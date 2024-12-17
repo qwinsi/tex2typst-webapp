@@ -5,7 +5,7 @@ import { EXAMPLE_FORMULAS } from '../src/random.js';
 
 
 const TYPST_EXAMPLE_FORMULAS = [
-    'e = lim_(n arrow.r infinity)(1 + frac(1, n))^n',
+    'e eq.def lim_(n arrow.r infinity)(1 + frac(1, n))^n',
     'product_p frac(1, 1 - p^(-s)) = sum_(n = 1)^infinity frac(1, n^s)',
     'a^(p - 1) equiv 1 mod p',
     String.raw`nabla times bold(H) & = bold(J) + frac(diff bold(D), diff t) \
@@ -15,7 +15,7 @@ nabla dot.op bold(D) & = rho`,
     'upright(C H_3 C H_2 B r) + upright(O H)^- arrow.r.long upright(C H_3 C H_2 O H) + upright(B r)^-',
     String.raw`yen 2000 > \$ 3000`,
     'sum_(k = 1)^n frac(1, k) = ln n + gamma + O(frac(1, n))',
-    'e^(i x) eq.def cos x + i sin x',
+    'e^(i x) = cos x + i sin x',
     'integral.triple_Omega op("div")(arrow(F)) dif V = integral.surf_(diff Omega) arrow(F) dot.op dif arrow(S)',
     'integral.double_Sigma op("curl")(arrow(F)) dot.op dif arrow(S) = integral.cont_(diff Sigma) arrow(F) times dif arrow(l)',
     'pi(x) tilde.op frac(x, log x)',

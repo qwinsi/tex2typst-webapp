@@ -9,7 +9,7 @@ function getRandomInt(max) {
 
 export const EXAMPLE_FORMULAS = [
     // base of natural logarithm
-    String.raw`e = \lim_{{n \to \infty}} \left(1 + \frac{1}{n}\right)^n`,
+    String.raw`e \overset{\text{def}}{=} \lim_{{n \to \infty}} \left(1 + \frac{1}{n}\right)^n`,
     // Euler's product formula
     String.raw`\prod_{p} \frac{1}{1-p^{-s}}= \sum_{n=1}^{\infty} \frac{1}{n^s}`,
     // Fermat's little theorem
@@ -28,7 +28,7 @@ export const EXAMPLE_FORMULAS = [
     // harmonic series
     String.raw`\sum_{k=1}^n \frac{1}{k} = \ln n + \gamma + O\left(\frac{1}{n}\right)`,
     // Euler's complex exponential formula
-    String.raw`e^{ix} \overset{\text{def}}{=} \cos x + i \sin x`,
+    String.raw`e^{ix} = \cos x + i \sin x`,
     // Gauss's divergence theorem
     String.raw`\iiint_{\Omega} \operatorname{div}(\vec{F}) \mathrm{d}V = \oiint_{\partial \Omega} \vec{F} \cdot \mathrm{d}\vec{S}`,
     // Stokes' theorem
