@@ -44,7 +44,18 @@ d_1 &= \frac{\ln \frac{S_t}{K} + (r + \frac{\sigma^2}{2}) t}{\sigma \sqrt{t}} \\
 d_2 &= d_1-\sigma\sqrt{t}
 \end{aligned}`,
     // Cauchy's integral formula
-    String.raw`f(z_0) = \frac{1}{2\pi \mathrm{i}} \oint_{C} \frac{f(z)}{z-z_0}\, \mathrm{d} z`
+    String.raw`f(z_0) = \frac{1}{2\pi \mathrm{i}} \oint_{C} \frac{f(z)}{z-z_0}\, \mathrm{d} z`,
+    // determinant of a Vandermonde matrix
+    String.raw`\left|
+\begin{matrix}
+1 & 1 & \dots & 1 \\
+x_1 & x_2 & \dots & x_n \\
+x_1^2 & x_2^2 & \dots & x_n^2 \\
+\vdots & \vdots & \ddots & \vdots \\
+x_1^{n-1} & x_2^{n-1} & \dots & x_n^{n-1}
+\end{matrix}
+\right|
+= \prod_{1 \leq i < j \leq n} (x_j - x_i)`
 ];
 
 const NUM_EXAMPLES = EXAMPLE_FORMULAS.length;
