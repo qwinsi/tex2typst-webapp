@@ -1,67 +1,77 @@
 <script setup>
 import { ref, computed, onBeforeMount, onMounted } from 'vue'
 import katex from 'katex'
-import { convertTex2Typst, customTexMacros } from './converter'
+import { convertTex2Typst, convertTypst2Tex, customTexMacros } from './converter'
 import { copyTextToClipboard } from '@qwinsi/clipboard-js'
 import CopiedToast from '@qwinsi/vue-components/CopiedToast.vue'
 import SettingsDialog from './components/SettingsDialog.vue'
 import { getRandomFormula } from './random'
 
+const directionToTypst = ref(true);
 
-const inputTex = ref('');
+const inputStr = ref('');
 const output = computed(() => {
   try {
-    const tex = inputTex.value;
-    const typst = convertTex2Typst(tex);
-    const macros_to_define = [];
-    if(tex.includes('\\mathscr')) {
-      macros_to_define.push('scr');
-    } 
-    if(tex.includes('\\LaTeX')) {
-      macros_to_define.push('#LaTeX');
-    }
-    if(tex.includes('\\TeX')) {
-      macros_to_define.push('#TeX');
-    }
-    let messages = [];
-    if(macros_to_define.length > 0) {
-      const map = new Map([
-        ['scr', 'mathscr'],
-        ['#LaTeX', 'latex-and-tex'],
-        ['#TeX', 'latex-and-tex'],
-      ]);
-      for(const macro of macros_to_define) {
-        const a_link = `<a href="impl-in-typst.html#${map.get(macro)}" target="_blank">${macro}</a>`;
-        const msg = `&#x24D8; Define ${a_link} yourself as it's not supported in Typst.`;
-        messages.push(msg);
+    const tex = inputStr.value;
+    if(directionToTypst.value) {
+      const typst = convertTex2Typst(tex);
+      const macros_to_define = [];
+      if(tex.includes('\\mathscr')) {
+        macros_to_define.push('scr');
+      } 
+      if(tex.includes('\\LaTeX')) {
+        macros_to_define.push('#LaTeX');
       }
-    }
+      if(tex.includes('\\TeX')) {
+        macros_to_define.push('#TeX');
+      }
+      let messages = [];
+      if(macros_to_define.length > 0) {
+        const map = new Map([
+          ['scr', 'mathscr'],
+          ['#LaTeX', 'latex-and-tex'],
+          ['#TeX', 'latex-and-tex'],
+        ]);
+        for(const macro of macros_to_define) {
+          const a_link = `<a href="impl-in-typst.html#${map.get(macro)}" target="_blank">${macro}</a>`;
+          const msg = `&#x24D8; Define ${a_link} yourself as it's not supported in Typst.`;
+          messages.push(msg);
+        }
+      }
 
-    // show suggestion when the user try to write vertical bar for evaluation like "F(x) \bigg\rvert_a^b x"
-    if(/\\bigg\s*(\\rvert|\\vert|\|)\s*_/.test(tex)) {
-      const a_link = `<a href="impl-in-typst.html#vertical-bar-for-evaluation" target="_blank">vertical bar for evaluation</a>`;
-      messages.push(`&#x24D8; Did you mean ${a_link}?`);
-    }
-    let final_msg = '';
-    if(messages.length > 0) {
-      messages.push('Click the link for the details.');
-      final_msg = messages.join('<br />');
-    }
-    return {
-      typst: typst,
-      message: final_msg,
+      // show suggestion when the user try to write vertical bar for evaluation like "F(x) \bigg\rvert_a^b x"
+      if(/\\bigg\s*(\\rvert|\\vert|\|)\s*_/.test(tex)) {
+        const a_link = `<a href="impl-in-typst.html#vertical-bar-for-evaluation" target="_blank">vertical bar for evaluation</a>`;
+        messages.push(`&#x24D8; Did you mean ${a_link}?`);
+      }
+      let final_msg = '';
+      if(messages.length > 0) {
+        messages.push('Click the link for the details.');
+        final_msg = messages.join('<br />');
+      }
+      return {
+        target: typst,
+        message: final_msg,
+      }
+    } else {
+      // convert Typst to LaTeX
+      return {
+        target: convertTypst2Tex(tex),
+        message: '',
+      }
     }
   } catch (e) {
     console.error(e);
     return {
-      typst: '',
-      message: '&#x24D8; [ERROR: Invalid LaTeX code]',
+      target: '',
+      message: `&#x24D8; [ERROR: Invalid ${directionToTypst? 'LaTeX': 'Typst'} code]`,
     }
   }
 })
 
 const renderedFormulaHtml = computed(() => {
-  if (inputTex.value === '') {
+  const latex = directionToTypst.value ? inputStr.value : output.value.target;
+  if (latex === '') {
     return '<div><span style="opacity: 0.6;">Math formula will be rendered here.</span></div>'
   } else {
     const options = {
@@ -70,7 +80,7 @@ const renderedFormulaHtml = computed(() => {
       throwOnError: false,
       errorColor: '#bc6f17'
     }
-    return katex.renderToString(inputTex.value, options)
+    return katex.renderToString(latex, options)
   }
 })
 
@@ -78,10 +88,10 @@ const renderedFormulaHtml = computed(() => {
 const copiedToast = ref(null);
 
 async function sendToClipboard() {
-  if(inputTex.value === '') {
+  if(inputStr.value === '') {
     return;
   }
-  const ok = await copyTextToClipboard(output.value.typst);
+  const ok = await copyTextToClipboard(output.value.target);
   if(ok) {
     copiedToast.value.trigger();
   } else {
@@ -104,6 +114,12 @@ const settings = ref({
 function handleNewSettings(data) {
   settings.value = data;
   localStorage.setItem('settings', JSON.stringify(data));
+}
+
+function handleFlipDirection() {
+  const outputStr = output.value.target;
+  directionToTypst.value = !directionToTypst.value;
+  inputStr.value = outputStr;
 }
 
 
@@ -158,15 +174,15 @@ onMounted(() => {
     <main class="flex-1 flex flex-col justify-between m-4 ml-6 mr-6 border border-gray-700 rounded-lg">
       <div class="flex justify-between p-2 border-b border-gray-700">
         <div class="flex-1 flex justify-between">
-          <span class="text-app-blue p-2">LaTeX</span>
+          <span class="text-app-blue p-2">{{ directionToTypst? "LaTeX": "Typst" }}</span>
           <div>
             <button class="text-app-light-black p-2 mr-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
-              v-on:click="inputTex = getRandomFormula()">
+              v-on:click="inputStr = getRandomFormula()">
               <span class="hide-on-mobile">Random</span>
               <span class="hide-on-desktop">R</span>
             </button>
             <button class="text-app-light-black p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
-              v-on:click="inputTex = ''">
+              v-on:click="inputStr = ''">
               <span class="hide-on-mobile">Clear</span>
               <span class="hide-on-desktop">C</span>
             </button>
@@ -174,11 +190,11 @@ onMounted(() => {
         </div>
 
         <button class="pl-1 pr-1 rounded-lg ml-3 mr-3 hover:bg-gray-300 active:bg-gray-400">
-          <img class="inline" src="./assets/swap-icon.svg" alt="Swap icon" />
+          <img class="inline" src="./assets/swap-icon.svg" alt="Swap icon" v-on:click="handleFlipDirection" />
         </button>
 
         <div class="flex-1 flex-1 flex justify-between relative">
-          <span class="text-app-blue p-2">Typst</span>
+          <span class="text-app-blue p-2">{{ directionToTypst? "Typst": "LaTeX" }}</span>
             <button class="text-app-light-black p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
                     v-on:click="sendToClipboard">Copy</button>
             <CopiedToast ref="copiedToast" id="copiedToast" msg="Copied!" />
@@ -189,14 +205,14 @@ onMounted(() => {
       <div class="flex-1 flex md:flex-row flex-col">
         <!-- input area -->
         <div class="flex-1 flex flex-col border border-gray-700 min-h-[200px]">
-          <textarea ref="inputArea" class="flex-1 text-app-light-black p-4" v-model="inputTex"
+          <textarea ref="inputArea" class="flex-1 text-app-light-black p-4" v-model="inputStr"
             spellcheck="false"></textarea>
         </div>
 
         <!-- output area -->
         <div class="flex-1 flex flex-col border border-gray-700 min-h-[200px]">
           <div class="flex-1 flex flex-col" id="typst">
-            <div class="flex-1 text-app-light-black p-4"> {{ output.typst }} </div>
+            <div class="flex-1 text-app-light-black p-4"> {{ output.target }} </div>
             <div class="h-20 text-sm text-app-light-black theme-warning border-t rounded border-yellow-700 p-4"
               v-if="output.message" v-html="output.message"></div>
           </div>
