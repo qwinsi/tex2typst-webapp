@@ -1,6 +1,6 @@
 <script>
-import { ref } from 'vue';
 import ToggleSwitch from './ToggleSwitch.vue';
+import packageJson from '../../package.json'
 
 export default {
   name: "SettingsDialog",
@@ -19,6 +19,11 @@ export default {
       this.$el.close();
       this.$emit('newSettings', { optionShowPreview });
     },
+  },
+  computed: {
+    version() {
+      return packageJson.version;
+    }
   },
   expose: ['open', 'close'],
   emits: ['newSettings'],
@@ -43,10 +48,14 @@ export default {
   <br>
   <br>
   <br>
+  <div class="text-center text-gray-500">
+    tex2typst Web App version {{ version }}
+  </div>
+  <!--
   <div style="max-width: 90%; text-align: left; color:gray; font-size: small; margin-left: 10%;">
-
     (More customization features are under development...)
   </div>
+  -->
 </dialog>
 </template>
 

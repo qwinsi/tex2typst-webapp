@@ -9,17 +9,17 @@ function getRandomInt(max) {
 
 export const EXAMPLE_FORMULAS = [
     // base of natural logarithm
-    String.raw`e = \lim_{{n \to \infty}} \left(1 + \frac{1}{n}\right)^n`,
+    String.raw`e \overset{\text{def}}{=} \lim_{{n \to \infty}} \left(1 + \frac{1}{n}\right)^n`,
     // Euler's product formula
     String.raw`\prod_{p} \frac{1}{1-p^{-s}}= \sum_{n=1}^{\infty} \frac{1}{n^s}`,
     // Fermat's little theorem
     String.raw`a^{p-1} \equiv 1 \mod{p}`, // TODO: a^{p-1} \equiv 1 \pmod{p}
     // Maxwell's equations
     String.raw`\begin{aligned}
-\nabla \cdot \boldsymbol{E}  &= \frac{\rho}{\varepsilon_0} \\
-\nabla \cdot \boldsymbol{B} &= 0 \\
+\nabla \times \boldsymbol{H} &= \boldsymbol{J} + \frac{\partial \boldsymbol{D}}{\partial t} \\
 \nabla \times \boldsymbol{E} &= -\frac{\partial \boldsymbol{B}}{\partial t} \\
-\nabla \times \boldsymbol{B} &= -\mu_0(\boldsymbol{J} + \varepsilon \frac{\partial \boldsymbol{E}}{\partial t})
+\nabla \cdot \boldsymbol{B} &= 0 \\
+\nabla \cdot \boldsymbol{D}  &= \rho
 \end{aligned}`,
     // chemical equation example： bromoethane to ethanol
     String.raw`\mathrm{CH_3CH_2Br} + \mathrm{OH}^- \longrightarrow \mathrm{CH_3CH_2OH} + \mathrm{Br}^-`,
@@ -44,7 +44,18 @@ d_1 &= \frac{\ln \frac{S_t}{K} + (r + \frac{\sigma^2}{2}) t}{\sigma \sqrt{t}} \\
 d_2 &= d_1-\sigma\sqrt{t}
 \end{aligned}`,
     // Cauchy's integral formula
-    String.raw`f(z_0) = \frac{1}{2\pi \mathrm{i}} \oint_{C} \frac{f(z)}{z-z_0}\, \mathrm{d} z`
+    String.raw`f(z_0) = \frac{1}{2\pi \mathrm{i}} \oint_{C} \frac{f(z)}{z-z_0}\, \mathrm{d} z`,
+    // determinant of a Vandermonde matrix
+    String.raw`\left|
+\begin{matrix}
+1 & 1 & \dots & 1 \\
+x_1 & x_2 & \dots & x_n \\
+x_1^2 & x_2^2 & \dots & x_n^2 \\
+\vdots & \vdots & \ddots & \vdots \\
+x_1^{n-1} & x_2^{n-1} & \dots & x_n^{n-1}
+\end{matrix}
+\right|
+= \prod_{1 \leq i < j \leq n} (x_j - x_i)`
 ];
 
 const NUM_EXAMPLES = EXAMPLE_FORMULAS.length;

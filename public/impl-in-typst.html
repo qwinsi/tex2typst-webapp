@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" crossorigin="anonymous"></script>
   <title>Implementing LaTeX macros unsupported by Typst</title>
   <style>
     h1 {
@@ -32,6 +34,19 @@
   </style>
 </head>
 <body>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const renderAreas = document.getElementsByClassName('render-m');
+  for(const renderArea of renderAreas) {
+    const latexCode = renderArea.textContent;
+    katex.render(latexCode, renderArea, {
+      displayMode: renderArea.tagName === 'DIV',
+      throwOnError: false,
+    });
+  }
+});
+</script>
+
 <nav style="display: flex; justify-content: space-between; padding: 0.8em;">
   <a href="." target="_blank">Homepage</a>
   <a href="https://github.com/qwinsi/tex2typst-webapp" target="_blank">Source on Github</a>
@@ -64,7 +79,7 @@ $
 
 <h2 id="latex-and-tex">The <code>\LaTeX</code> and <code>\TeX</code> macro</h2>
 <ul>
-  <li>LaTeX: <code>\LaTeX</code></li>
+  <li>LaTeX: <code>\LaTeX</code> and <code>\TeX</code></li>
   <li>Implementation in Typst <sup><a href="#ref-latex">[2]</a></sup>
   <pre><code>
 #let TeX = context {
@@ -96,44 +111,7 @@ You can use $#LaTeX$ in math environments as well.
   </li>
 </ul>
 
-<h2 id="floor-and-ceil">The <code>\lfloor</code>, <code>\rfloor</code>, <code>\lceil</code>, and <code>\rceil</code> macros</h2>
 
-<p>
-  In Typst, there are <code>floor</code> and <code>ceil</code> functions to make the floor and ceiling symbols, respectively.
-</p>
-<ul>
-  <li>LaTeX: <code>\lfloor x \rfloor</code></li>
-  <li>Typst: <code>floor(x)</code></li>
-  <li>LaTeX: <code>\lceil x \rceil</code></li>
-  <li>Typst: <code>ceil(x)</code></li>
-</ul>
-
-<p>
-However, you cannot use a separated left or right version of the symbols. e.g. There is no <code>lfloor</code> function in Typst.
-If you really need them, you may define them directly using their Unicode characters as the following:
-</p>
-
-
-
-<ul>
-  <li>
-    Implementation in Typst
-    <pre><code>
-#let lfloor = $⌊$;
-#let rfloor = $⌋$;
-#let lceil = $⌈$;
-#let rceil = $⌉$;
-      </code></pre>
-  </li>
-  <li>
-    Usage example:
-    <pre><code>
-$
-y = lfloor x rceil
-$
-</code></pre>
-  </li>
-</ul>
 
 <h2 id="custom-operators">Using the <code>op</code> function to define custom operators</h2>
 <p>
@@ -156,6 +134,44 @@ $
   </li>
 </ul>
 
+<h2 id="vertical-bar-for-evaluation">A vertical bar for evaluation</h2>
+<p>
+  It's common to use a vertical bar to denote the evaluation of a function at a point. e.g.
+</p>
+<div class="render-m">f(x) \bigg\rvert_{x = x_0}</div>
+<ul>
+  <li>
+    LaTeX:
+    <pre><code>f(x) \bigg\rvert_{x = x_0}</code></pre>
+    Where <code>\bigg\rvert</code> may be replaced with <code>\bigg\vert</code>, <code>\bigg|</code> etc.
+  </li>
+  <br/>
+  <li>
+    Walkaround in Typst:
+    <pre><code>f(x) lr(| vec(delim: #none, , , x = x_0))</code></pre>
+  </li>
+</ul>
+<br/>
+<p>
+  Also it's common to use a vertical bar to denote the deference of function values at two points, especially when calculating definite integrals.
+  e.g.<sup><a href="#ref-evaluation">[3]</a></sup>
+</p>
+<div class="render-m">F(x) \bigg\rvert_{a}^{b}</div>
+
+<ul>
+  <li>
+    LaTeX:
+    <pre><code>F(x) \bigg\rvert_{a}^{b}</code></pre>
+    Where <code>\bigg\rvert</code> may be replaced with <code>\bigg\vert</code>, <code>\bigg|</code> etc.
+  </li>
+  <br/>
+  <li>
+    Walkaround in Typst:
+    <pre><code>F(x) lr(| vec(delim: #none, b, , a))</code></pre>
+  </li>
+</ul>
+
+
 <h2>References and Credits</h2>
 <p>
   The following resources were used to create this document:
@@ -172,6 +188,11 @@ $
     <a href="https://github.com/typst/typst/discussions/1732#discussioncomment-6566999" target="_blank">
       How do I insert the `LaTeX` symbol in Typst? · typst/typst · Discussion #1732
     </a>
+  </li>
+  <li id="ref-evaluation">
+    <code>\bigg\rvert</code> for evaluation:
+    <a href="https://tex.stackexchange.com/questions/552807/math-symbol-vertical-bar-for-evaluated-at-limits-are-not-apart-enough" target="_blank">
+      Math symbol: Vertical bar for ''evaluated at …'' Limits are not apart enough - TeX - LaTeX Stack Exchange
   </li>
 </ol>
 </body>

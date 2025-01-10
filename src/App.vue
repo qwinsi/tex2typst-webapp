@@ -23,45 +23,36 @@ const output = computed(() => {
     if(tex.includes('\\TeX')) {
       macros_to_define.push('#TeX');
     }
-    if(typst.includes('lfloor')) {
-      macros_to_define.push('unpaired lfloor');
-    }
-    if(typst.includes('rfloor')) {
-      macros_to_define.push('unpaired rfloor');
-    }
-    if(typst.includes('lceil')) {
-      macros_to_define.push('unpaired lceil');
-    }
-    if(typst.includes('rceil')) {
-      macros_to_define.push('unpaired rceil');
-    }
-    let msg = '';
+    let messages = [];
     if(macros_to_define.length > 0) {
       const map = new Map([
         ['scr', 'mathscr'],
         ['#LaTeX', 'latex-and-tex'],
         ['#TeX', 'latex-and-tex'],
-        ['unpaired lfloor', 'floor-and-ceil'],
-        ['unpaired rfloor', 'floor-and-ceil'],
-        ['unpaired lceil', 'floor-and-ceil'],
-        ['unpaired rceil', 'floor-and-ceil'],
       ]);
-      if(macros_to_define.length === 1) {
-        const macro = macros_to_define[0];
+      for(const macro of macros_to_define) {
         const a_link = `<a href="impl-in-typst.html#${map.get(macro)}" target="_blank">${macro}</a>`;
-        msg = `&#x24D8; Define ${a_link} yourself as it's not supported in Typst. Click the link to see the definition code.`
-      } else {
-        const a_links = macros_to_define.map(macro => {
-          return `<a href="impl-in-typst.html#${map.get(macro)}" target="_blank">${macro}</a>`;
-        });
-        msg = `&#x24D8; Define ${a_links.join(', ')} yourself as they're not supported in Typst. Click the link for the definition code.`
+        const msg = `&#x24D8; Define ${a_link} yourself as it's not supported in Typst.`;
+        messages.push(msg);
       }
+    }
+
+    // show suggestion when the user try to write vertical bar for evaluation like "F(x) \bigg\rvert_a^b x"
+    if(/\\bigg\s*(\\rvert|\\vert|\|)\s*_/.test(tex)) {
+      const a_link = `<a href="impl-in-typst.html#vertical-bar-for-evaluation" target="_blank">vertical bar for evaluation</a>`;
+      messages.push(`&#x24D8; Did you mean ${a_link}?`);
+    }
+    let final_msg = '';
+    if(messages.length > 0) {
+      messages.push('Click the link for the details.');
+      final_msg = messages.join('<br />');
     }
     return {
       typst: typst,
-      message: msg,
+      message: final_msg,
     }
   } catch (e) {
+    console.error(e);
     return {
       typst: '',
       message: '&#x24D8; [ERROR: Invalid LaTeX code]',
@@ -140,7 +131,7 @@ onMounted(() => {
 <template>
   <div class="bg-app text-app-blue min-h-screen flex flex-col">
     <nav class="theme-app flex justify-between text-white">
-      <h1 class="flex items-center h-16 ml-4">
+      <h1 class="flex items-center h-16 ml-4 select-none">
         <span class="text-4xl">tex2typst</span>
       </h1>
       <div class="flex">
