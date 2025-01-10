@@ -158,12 +158,18 @@ onMounted(() => {
     <main class="flex-1 flex flex-col justify-between m-4 ml-6 mr-6 border border-gray-700 rounded-lg">
       <div class="flex justify-between p-2 border-b border-gray-700">
         <div class="flex-1 flex justify-between">
-          <span class="text-app-blue p-2">LaTeX code</span>
+          <span class="text-app-blue p-2">LaTeX</span>
           <div>
             <button class="text-app-light-black p-2 mr-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
-              v-on:click="inputTex = getRandomFormula()">Random</button>
+              v-on:click="inputTex = getRandomFormula()">
+              <span class="hide-on-mobile">Random</span>
+              <span class="hide-on-desktop">R</span>
+            </button>
             <button class="text-app-light-black p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
-              v-on:click="inputTex = ''">Clear</button>
+              v-on:click="inputTex = ''">
+              <span class="hide-on-mobile">Clear</span>
+              <span class="hide-on-desktop">C</span>
+            </button>
           </div>
         </div>
 
@@ -172,7 +178,7 @@ onMounted(() => {
         </button>
 
         <div class="flex-1 flex-1 flex justify-between relative">
-          <span class="text-app-blue p-2">Typst code</span>
+          <span class="text-app-blue p-2">Typst</span>
             <button class="text-app-light-black p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
                     v-on:click="sendToClipboard">Copy</button>
             <CopiedToast ref="copiedToast" id="copiedToast" msg="Copied!" />
@@ -262,6 +268,12 @@ onMounted(() => {
 
 @media (max-width: 500px) {
   .hide-on-mobile {
+    display: none;
+  }
+}
+
+@media (min-width: 501px) {
+  .hide-on-desktop {
     display: none;
   }
 }
