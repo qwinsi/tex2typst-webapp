@@ -62,10 +62,10 @@ document.addEventListener("DOMContentLoaded", function() {
   <li>LaTeX: <code>\mathscr</code></li>
   <li>Implementation in Typst <sup><a href="#ref-mathscr">[1]</a></sup>
   <pre><code>
-#let scr(a) = text(
-    font: "STIX Two Math",
-    stylistic-set: 01,
-)[#math.cal(a)]</code></pre>
+#let scr(it) = text(
+  features: ("ss01",),
+  box($cal(it)$),
+)</code></pre>
   </li>
   <li>
     Usage example:
@@ -179,8 +179,8 @@ $
 <ol>
   <li id="ref-mathscr">
     <code>\mathscr</code>:
-    <a href="https://qiita.com/Yarakashi_Kikohshi/items/b7beaa0fba62a527df2b" target="_blank">
-      Typst の数式で Stylistic set したい話 #Typst - Qiita
+    <a href="https://typst.app/docs/reference/math/variants#functions-cal" target="_blank">
+      Variants Functions – Typst Documentation
     </a>
   </li>
   <li id="ref-latex">
