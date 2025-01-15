@@ -15,7 +15,7 @@
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
     <script>
-      if (!navigator.serviceWorker.controller) {
+      if ('serviceWorker' in navigator) {
           navigator.serviceWorker.register("/tex2typst-webapp/sw.js");
       }
      </script>
