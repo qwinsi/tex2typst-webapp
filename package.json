@@ -1,6 +1,6 @@
 {
   "name": "tex2typst-webapp",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "type": "module",
   "scripts": {
     "dev": "vite dev",
@@ -17,7 +17,7 @@
     "@qwinsi/utilities-js": "^0.1.2",
     "@qwinsi/vue-components": "^0.0.2",
     "katex": "^0.16.11",
-    "tex2typst": "^0.2.13",
+    "tex2typst": "^0.2.15",
     "vue": "^3.4.29"
   },
   "devDependencies": {
