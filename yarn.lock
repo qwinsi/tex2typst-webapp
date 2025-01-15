@@ -282,6 +282,11 @@
   resolved "https://registry.yarnpkg.com/@qwinsi/clipboard-js/-/clipboard-js-0.1.0.tgz#3a6cd10c3b0df6273912411158bd61d1c6e3029e"
   integrity sha512-eu/Q+FUcDw/sbQp6xofpg8uYVxylIrC0AI8Ifl9rLPDNqr05ihHx/wlEkLZKvi1UN+e9FF5T83o38msF5diatQ==
 
+"@qwinsi/utilities-js@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@qwinsi/utilities-js/-/utilities-js-0.1.0.tgz#a649391f71397b5b563fb4ac5685e0abaecef250"
+  integrity sha512-jVYR/T4sCODiWO7UDtuCkypXYXrE559Oe0PBQ9ZTR7Oga1L09Yhlo5WS3THKtaQxWVEfBKZ94CW+zf6G5C8ZXw==
+
 "@qwinsi/vue-components@^0.0.2":
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/@qwinsi/vue-components/-/vue-components-0.0.2.tgz#a429a50ff04a8d2ce60569fd3252acd04245381c"
