@@ -15,4 +15,8 @@ const precacheResources = [
 
 const prefixedResources = precacheResources.map((resource) => SUBDIRECTORY + resource);
 
-setup(prefixedResources);
+const appVersion = process.env.npm_package_version;
+if(!appVersion) {
+    throw new Error("npm_package_version is undefined");
+}
+setup(appVersion, prefixedResources);
