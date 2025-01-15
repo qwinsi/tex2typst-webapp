@@ -108,7 +108,8 @@ function handleSettingsClick() {
 }
 
 const settings = ref({
-  optionShowPreview: true,
+  showPreview: true,
+  rememberDirection: true,
 });
 
 function handleNewSettings(data) {
@@ -125,7 +126,12 @@ function handleFlipDirection() {
 
 onBeforeMount(() => {
   const settingsStr = localStorage.getItem('settings');
-  settings.value = settingsStr ? JSON.parse(settingsStr) : { optionShowPreview: true };
+  if(settingsStr) {
+    settings.value = JSON.parse(settingsStr);
+  }
+  if(settings.value.rememberDirection && localStorage.getItem('lastDirection')) {
+    directionToTypst.value = localStorage.getItem('lastDirection') !== 'false';
+  }
 });
 
 onMounted(() => {
@@ -140,6 +146,10 @@ onMounted(() => {
       btn.addEventListener('touchstart', function() {}, { passive: false });
     });
   }
+
+  window.addEventListener('beforeunload', function() {
+    localStorage.setItem('lastDirection', directionToTypst.value.toString());
+  });
 });
 
 </script>
@@ -221,7 +231,7 @@ onMounted(() => {
 
     <!-- items-center (i.e. style="align-items:center") is for vertical centering -->
     <div class="flex items-center text-center text-app-light-black pb-4 min-h-28">
-      <div class="flex-1" v-if="settings.optionShowPreview" v-html="renderedFormulaHtml"></div>
+      <div class="flex-1" v-if="settings.showPreview" v-html="renderedFormulaHtml"></div>
     </div>
 
     <footer class="theme-app text-center p-4">

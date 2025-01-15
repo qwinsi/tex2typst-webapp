@@ -7,7 +7,7 @@ export default {
   props: {
     initial: {
       type: Object,
-      default: () => ({ optionShowPreview: true })
+      default: () => ({ showPreview: true, rememberDirection: true })
     }
   },
   methods: {
@@ -15,9 +15,10 @@ export default {
       this.$el.showModal();
     },
     close() {
-      const optionShowPreview = this.$refs.toggleSwitch.checked;
+      const showPreview = this.$refs.switchShowPreview.checked;
+      const rememberDirection = this.$refs.switchRememberDirection.checked;
       this.$el.close();
-      this.$emit('newSettings', { optionShowPreview });
+      this.$emit('newSettings', { showPreview, rememberDirection });
     },
   },
   computed: {
@@ -39,9 +40,15 @@ export default {
     <h2>Settings</h2>
     <button class="text-xl" v-on:click="close()">✕</button>
   </div>
-  <div class="flex justify-between items-center p-4">
-    <span>Show Preview</span>
-    <ToggleSwitch ref="toggleSwitch" :initial="initial.optionShowPreview" />
+  <div class="flex flex-col p-4">
+    <div class="flex-1 flex justify-between mb-4">
+      <span>Show Preview</span>
+      <ToggleSwitch ref="switchShowPreview" :initial="initial.showPreview" />
+    </div>
+    <div class="flex-1 flex justify-between mb-4">
+      <span>Remember Direction</span>
+      <ToggleSwitch ref="switchRememberDirection" :initial="initial.rememberDirection" />
+    </div>
   </div>
   <br>
   <br>
