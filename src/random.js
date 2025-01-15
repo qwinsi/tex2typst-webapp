@@ -59,25 +59,25 @@ d_2 &= d_1 - \sigma\sqrt{t}
 ];
 
 const EXAMPLE_FORMULAS_TYPST = [
-    'e eq.def lim_(n arrow.r infinity)(1 + frac(1, n))^n',
-    'product_p frac(1, 1 - p^(-s)) = sum_(n = 1)^infinity frac(1, n^s)',
+    'e eq.def lim_(n arrow.r infinity)(1 + 1/n)^n',
+    'product_p 1/(1 - p^(-s)) = sum_(n = 1)^infinity 1/n^s',
     'a^(p - 1) equiv 1 mod p',
-    String.raw`nabla times bold(H) & = bold(J) + frac(diff bold(D), diff t) \
-nabla times bold(E) & = - frac(diff bold(B), diff t) \
+    String.raw`nabla times bold(H) & = bold(J) + (diff bold(D))/(diff t) \
+nabla times bold(E) & = - (diff bold(B))/(diff t) \
 nabla dot.op bold(B) & = 0 \
 nabla dot.op bold(D) & = rho`,
     'upright(C H_3 C H_2 B r) + upright(O H)^- arrow.r.long upright(C H_3 C H_2 O H) + upright(B r)^-',
     String.raw`yen 2000 > \$ 3000`,
-    'sum_(k = 1)^n frac(1, k) = ln n + gamma + O(frac(1, n))',
+    'sum_(k = 1)^n 1/k = ln n + gamma + O(1/n)',
     'e^(i x) = cos x + i sin x',
     'integral.triple_Omega op("div")(arrow(F)) dif V = integral.surf_(diff Omega) arrow(F) dot.op dif arrow(S)',
     'integral.double_Sigma op("curl")(arrow(F)) dot.op dif arrow(S) = integral.cont_(diff Sigma) arrow(F) times dif arrow(l)',
-    'pi(x) tilde.op frac(x, log x)',
-    'i_D = mu_n C_"ox" frac(W, L) [(v_"GS" - V_t) v_"DS" - frac(1, 2) v_"DS"^2 ]',
+    'pi(x) tilde.op x/(log x)',
+    'i_D = mu_n C_"ox" W/L [(v_"GS" - V_t) v_"DS" - 1/2 v_"DS"^2 ]',
     String.raw`C & = N(d_1) S_t - N(d_2) K e^(-r t) \
-d_1 & = frac(ln frac(S_t, K) +(r + frac(sigma^2, 2)) t, sigma sqrt(t)) \
+d_1 & = frac(ln frac(S_t, K) +(r + sigma^2/2) t, sigma sqrt(t)) \
 d_2 & = d_1 - sigma sqrt(t)`,
-    'f(z_0) = frac(1, 2 pi upright(i)) integral.cont_C frac(f(z), z - z_0) dif z',
+    'f(z_0) = 1/(2 pi upright(i)) integral.cont_C f(z)/(z - z_0) dif z',
 //     String.raw`lr(|
 // mat(delim: #none, 1, 1, dots.h, 1;
 // x_1, x_2, dots.h, x_n;

@@ -165,17 +165,17 @@ onMounted(() => {
         </button>
       </div>
     </nav>
-    <div class="text-center text-app-blue p-4">
+    <div class="text-center text-app-blue p-4 m-2">
       Convert LaTeX math formula code to Typst and vice versa. All running in your browser.
     </div>
 
-    <main class="flex-1 flex flex-col justify-between m-4 ml-6 mr-6 border border-gray-700 rounded-lg">
+    <main class="flex-1 flex flex-col justify-between ml-6 mr-6 border border-gray-700 rounded-lg">
       <div class="flex justify-between p-2 border-b border-gray-700">
         <div class="flex-1 flex justify-between">
           <span class="text-app-blue p-2">{{ directionToTypst? "LaTeX": "Typst" }}</span>
           <div>
             <button class="text-app-light-black p-2 mr-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
-              v-on:click="inputStr = getRandomFormula()">
+              v-on:click="inputStr = getRandomFormula(directionToTypst)">
               <span class="hide-on-mobile">Random</span>
               <span class="hide-on-desktop">R</span>
             </button>
