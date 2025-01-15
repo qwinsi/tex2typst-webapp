@@ -277,10 +277,10 @@
   resolved "https://registry.yarnpkg.com/@pkgjs/parseargs/-/parseargs-0.11.0.tgz#a77ea742fab25775145434eb1d2328cf5013ac33"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
 
-"@qwinsi/clipboard-js@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@qwinsi/clipboard-js/-/clipboard-js-0.1.0.tgz#3a6cd10c3b0df6273912411158bd61d1c6e3029e"
-  integrity sha512-eu/Q+FUcDw/sbQp6xofpg8uYVxylIrC0AI8Ifl9rLPDNqr05ihHx/wlEkLZKvi1UN+e9FF5T83o38msF5diatQ==
+"@qwinsi/utilities-js@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@qwinsi/utilities-js/-/utilities-js-0.1.2.tgz#9939b5cd103e9aad11e5765870c6490bfb4ed64f"
+  integrity sha512-oUIm/66RF28YHwwGpKnIKsMVdy9V4cKSgKzrjbsR56BF9b41KFbEQLfMRECJ8+qmdO6GGimRopqrisoRjsA50Q==
 
 "@qwinsi/vue-components@^0.0.2":
   version "0.0.2"
@@ -2720,10 +2720,10 @@ terser@^5.15.1:
     commander "^2.20.0"
     source-map-support "~0.5.20"
 
-tex2typst@^0.2.13:
-  version "0.2.13"
-  resolved "https://registry.yarnpkg.com/tex2typst/-/tex2typst-0.2.13.tgz#7dc8f22d57aa80cebcb0df3f1872d63198a05554"
-  integrity sha512-7Q6QVj8I0TQPK6bEoLZbiwyf+ZPYttR/uZkhZW+bcFTRa1/oPIIlZ3gbni2zzw5moX+kH4/jWH+0Xx5qcTRWSw==
+tex2typst@^0.2.16:
+  version "0.2.16"
+  resolved "https://registry.yarnpkg.com/tex2typst/-/tex2typst-0.2.16.tgz#526dc7bee1c42c2cd4767e289a02eeb79aa6e12f"
+  integrity sha512-t5zRrGVRwbibJFbQmM58CAUs3eEy9olXBKgYaK/ZFXgOoees+SxJY5ya4g2ntRmUn0mHnV+0crCpVPHmBnDBbg==
 
 text-table@^0.2.0:
   version "0.2.0"

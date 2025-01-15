@@ -5,12 +5,12 @@
     "background_color": "#eeeeee",
     "display": "standalone",
     "scope": "/tex2typst-webapp/",
-    "start_url": "https://qwinsi.github.io/tex2typst-webapp/index.html",
+    "start_url": "/tex2typst-webapp/index.html",
     "description": "Covert LaTeX math formula code to Typst code!",
     "orientation": "any",
     "icons": [
         {
-            "src": "https://qwinsi.github.io/tex2typst-webapp/favicon.png",
+            "src": "/tex2typst-webapp/favicon.png",
             "sizes": "160x160"
         }
     ]

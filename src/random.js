@@ -19,9 +19,9 @@ export const EXAMPLE_FORMULAS = [
 \nabla \times \boldsymbol{H} &= \boldsymbol{J} + \frac{\partial \boldsymbol{D}}{\partial t} \\
 \nabla \times \boldsymbol{E} &= -\frac{\partial \boldsymbol{B}}{\partial t} \\
 \nabla \cdot \boldsymbol{B} &= 0 \\
-\nabla \cdot \boldsymbol{D}  &= \rho
+\nabla \cdot \boldsymbol{D} &= \rho
 \end{aligned}`,
-    // chemical equation example： bromoethane to ethanol
+    // chemical equation example: bromoethane to ethanol
     String.raw`\mathrm{CH_3CH_2Br} + \mathrm{OH}^- \longrightarrow \mathrm{CH_3CH_2OH} + \mathrm{Br}^-`,
     // Chen's inequality
     String.raw`\yen 2000 > \$ 3000`,
@@ -41,7 +41,7 @@ export const EXAMPLE_FORMULAS = [
     String.raw`\begin{aligned}
 C &= N(d_1) S_t - N(d_2) K e^{-rt} \\
 d_1 &= \frac{\ln \frac{S_t}{K} + (r + \frac{\sigma^2}{2}) t}{\sigma \sqrt{t}} \\
-d_2 &= d_1-\sigma\sqrt{t}
+d_2 &= d_1 - \sigma\sqrt{t}
 \end{aligned}`,
     // Cauchy's integral formula
     String.raw`f(z_0) = \frac{1}{2\pi \mathrm{i}} \oint_{C} \frac{f(z)}{z-z_0}\, \mathrm{d} z`,
