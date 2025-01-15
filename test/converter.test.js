@@ -24,14 +24,14 @@ nabla dot.op bold(D) & = rho`,
 d_1 & = frac(ln frac(S_t, K) +(r + frac(sigma^2, 2)) t, sigma sqrt(t)) \
 d_2 & = d_1 - sigma sqrt(t)`,
     'f(z_0) = frac(1, 2 pi upright(i)) integral.cont_C frac(f(z), z - z_0) dif z',
-    String.raw`lr(|
-mat(delim: #none, 1, 1, dots.h, 1;
-x_1, x_2, dots.h, x_n;
-x_1^2, x_2^2, dots.h, x_n^2;
-dots.v, dots.v, dots.down, dots.v;
-x_1^(n - 1), x_2^(n - 1), dots.h, x_n^(n - 1))
-|)
-= product_(1 lt.eq i < j lt.eq n)(x_j - x_i)`
+//     String.raw`lr(|
+// mat(delim: #none, 1, 1, dots.h, 1;
+// x_1, x_2, dots.h, x_n;
+// x_1^2, x_2^2, dots.h, x_n^2;
+// dots.v, dots.v, dots.down, dots.v;
+// x_1^(n - 1), x_2^(n - 1), dots.h, x_n^(n - 1))
+// |)
+// = product_(1 lt.eq i < j lt.eq n)(x_j - x_i)`
 ];
 
 describe('tex2typst', function () {

@@ -166,9 +166,7 @@ onMounted(() => {
       </div>
     </nav>
     <div class="text-center text-app-blue p-4">
-      Convert LaTeX math formula code to Typst code!
-      <br />
-      This tool runs locally in your browser. Nothing is uploaded.
+      Convert LaTeX math formula code to Typst and vice versa. All running in your browser.
     </div>
 
     <main class="flex-1 flex flex-col justify-between m-4 ml-6 mr-6 border border-gray-700 rounded-lg">
