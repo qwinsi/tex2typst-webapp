@@ -2720,10 +2720,10 @@ terser@^5.15.1:
     commander "^2.20.0"
     source-map-support "~0.5.20"
 
-tex2typst@^0.3.0-alpha:
-  version "0.3.0-alpha"
-  resolved "https://registry.yarnpkg.com/tex2typst/-/tex2typst-0.3.0-alpha.tgz#ff04b4925b27a800258f7222570946ae8f7626cc"
-  integrity sha512-tls604fYYmcgd6Zn1TxzTCCiWsfNQ2qLbLz2CzaH8vhwo/9DC7lwGFDH+s8lIEpTdGVZRd66t5iQ9Y/XPjrn/w==
+tex2typst@^0.3.0-beta-1:
+  version "0.3.0-beta-1"
+  resolved "https://registry.yarnpkg.com/tex2typst/-/tex2typst-0.3.0-beta-1.tgz#5ad6344848c3c035b5497514a0a6d82fdf3fc554"
+  integrity sha512-yzDthCLrs6CS5PmMAVon8jrD3edsToeXyn2juegJwr8stW0bICQalCGipc+h28ckvRWhZG++YyT4FFNmCaCWqA==
 
 text-table@^0.2.0:
   version "0.2.0"
