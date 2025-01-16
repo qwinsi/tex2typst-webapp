@@ -64,7 +64,7 @@ const output = computed(() => {
     console.error(e);
     return {
       target: '',
-      message: `&#x24D8; [ERROR: Invalid ${directionToTypst? 'LaTeX': 'Typst'} code]`,
+      message: `&#x24D8; [ERROR: Invalid ${directionToTypst.value? 'LaTeX': 'Typst'} code]`,
     }
   }
 })
