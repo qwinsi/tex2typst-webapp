@@ -127,7 +127,7 @@ function handleFlipDirection() {
 onBeforeMount(() => {
   const settingsStr = localStorage.getItem('settings');
   if(settingsStr) {
-    settings.value = JSON.parse(settingsStr);
+    settings.value = Object.assign(settings.value, JSON.parse(settingsStr));
   }
   if(settings.value.rememberDirection && localStorage.getItem('lastDirection')) {
     directionToTypst.value = localStorage.getItem('lastDirection') !== 'false';
