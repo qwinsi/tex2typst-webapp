@@ -46,16 +46,16 @@ d_2 &= d_1 - \sigma\sqrt{t}
     // Cauchy's integral formula
     String.raw`f(z_0) = \frac{1}{2\pi \mathrm{i}} \oint_{C} \frac{f(z)}{z-z_0}\, \mathrm{d} z`,
     // determinant of a Vandermonde matrix
-//     String.raw`\left|
-// \begin{matrix}
-// 1 & 1 & \dots & 1 \\
-// x_1 & x_2 & \dots & x_n \\
-// x_1^2 & x_2^2 & \dots & x_n^2 \\
-// \vdots & \vdots & \ddots & \vdots \\
-// x_1^{n-1} & x_2^{n-1} & \dots & x_n^{n-1}
-// \end{matrix}
-// \right|
-// = \prod_{1 \leq i < j \leq n} (x_j - x_i)`
+    String.raw`\left|
+\begin{matrix}
+1 & 1 & \dots & 1 \\
+x_1 & x_2 & \dots & x_n \\
+x_1^2 & x_2^2 & \dots & x_n^2 \\
+\vdots & \vdots & \ddots & \vdots \\
+x_1^{n-1} & x_2^{n-1} & \dots & x_n^{n-1}
+\end{matrix}
+\right|
+= \prod_{1 \leq i < j \leq n} (x_j - x_i)`
 ];
 
 const EXAMPLE_FORMULAS_TYPST = [
@@ -78,14 +78,12 @@ nabla dot.op bold(D) & = rho`,
 d_1 & = frac(ln frac(S_t, K) +(r + sigma^2/2) t, sigma sqrt(t)) \
 d_2 & = d_1 - sigma sqrt(t)`,
     'f(z_0) = 1/(2 pi upright(i)) integral.cont_C f(z)/(z - z_0) dif z',
-//     String.raw`lr(|
-// mat(delim: #none, 1, 1, dots.h, 1;
-// x_1, x_2, dots.h, x_n;
-// x_1^2, x_2^2, dots.h, x_n^2;
-// dots.v, dots.v, dots.down, dots.v;
-// x_1^(n - 1), x_2^(n - 1), dots.h, x_n^(n - 1))
-// |)
-// = product_(1 lt.eq i < j lt.eq n)(x_j - x_i)`
+    String.raw`mat(delim: "|", 1, 1, dots.h, 1;
+x_1, x_2, dots.h, x_n;
+x_1^2, x_2^2, dots.h, x_n^2;
+dots.v, dots.v, dots.down, dots.v;
+x_1^(n - 1), x_2^(n - 1), dots.h, x_n^(n - 1))
+= product_(1 <= i < j <= n)(x_j - x_i)`
 ];
 
 let last_number = null;

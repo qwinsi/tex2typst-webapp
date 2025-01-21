@@ -45,5 +45,9 @@ export function convertTex2Typst(input) {
 }
 
 export function convertTypst2Tex(input) {
+    input = input.replaceAll("<=", " lt.eq ");
+    input = input.replaceAll(">=", " gt.eq ");
+    input = input.replaceAll("->", " to ");
+
     return typst2tex(input);
 }

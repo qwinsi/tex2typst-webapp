@@ -72,7 +72,7 @@ const output = computed(() => {
 const renderedFormulaHtml = computed(() => {
   const latex = directionToTypst.value ? inputStr.value : output.value.target;
   if (latex === '') {
-    return '<div><span style="opacity: 0.6;">Math formula will be rendered here.</span></div>'
+    return '<div><span style="opacity: 0.6;">LaTeX math formula will be rendered here.</span></div>'
   } else {
     const options = {
       macros: customTexMacros,
