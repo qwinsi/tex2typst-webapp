@@ -1,6 +1,6 @@
 # tex2typst-webapp
 
-Translate LaTeX or TeX math markup to typst in your browser.
+Translate between LaTeX / TeX math markup and Typst in your browser.
 
 Demo screenshot:
 
@@ -10,7 +10,7 @@ This project is a Web UI wrapper. The core algorithm is implemented in [qwinsi/t
 
 ## Trying Online
 
-A static web App is deployed on [Github page](https://qwinsi.github.io/tex2typst-webapp/).
+A static web App is hosted on the [Github page](https://qwinsi.github.io/tex2typst-webapp/).
 
 ## Development
 
@@ -28,3 +28,7 @@ npm run dev
 ```sh
 npm run build
 ```
+
+## Open-source License
+
+GPL v3. See [LICENSE](./LICENSE) for details.
