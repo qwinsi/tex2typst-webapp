@@ -7,7 +7,11 @@ export default {
   props: {
     initial: {
       type: Object,
-      default: () => ({ showPreview: true, rememberDirection: true })
+      default: () => ({ 
+        showPreview: true,
+        displayStyle: true,
+        rememberDirection: true
+      })
     }
   },
   methods: {
@@ -16,9 +20,10 @@ export default {
     },
     close() {
       const showPreview = this.$refs.switchShowPreview.checked;
+      const displayStyle = this.$refs.switchDisplayStyle.checked;
       const rememberDirection = this.$refs.switchRememberDirection.checked;
       this.$el.close();
-      this.$emit('newSettings', { showPreview, rememberDirection });
+      this.$emit('newSettings', { showPreview, displayStyle, rememberDirection });
     },
   },
   data() {
@@ -40,21 +45,29 @@ export default {
     <h2>Settings</h2>
     <button class="text-xl" v-on:click="close()">✕</button>
   </div>
-  <div class="flex flex-col p-4">
-    <div class="flex-1 flex justify-between mb-4">
-      <span>Show Preview</span>
-      <ToggleSwitch ref="switchShowPreview" :initial="initial.showPreview" />
-    </div>
-    <div class="flex-1 flex justify-between mb-4">
-      <span>Remember Direction</span>
-      <ToggleSwitch ref="switchRememberDirection" :initial="initial.rememberDirection" />
-    </div>
+  <div class="flex flex-col pl-4 pr-4">
+    <fieldset class="flex-1 flex flex-col border border-gray-300 p-4 mb-2">
+      <legend>Previewer</legend>
+      <div class="flex-1 flex justify-between mb-4">
+        <label>Show Preview</label>
+        <ToggleSwitch ref="switchShowPreview" :initial="initial.showPreview" />
+      </div>
+      <div class="flex-1 flex justify-between">
+        <label>
+          Display Style
+          <span title="Display style is used to render mathematical expressions in a more readable way. &#10;For example, subscripts and superscripts of \sum or \prod are rendered above and below the base symbol.">&#x24D8;</span>
+        </label>
+        <ToggleSwitch ref="switchDisplayStyle" :initial="initial.displayStyle" />
+      </div>
+    </fieldset>
+    <fieldset class="flex-1 flex flex-col border border-gray-300 p-4 mb-2">
+      <legend>Translator</legend>
+      <div class="flex-1 flex justify-between mb-4">
+        <label>Remember Direction</label>
+        <ToggleSwitch ref="switchRememberDirection" :initial="initial.rememberDirection" />
+      </div>
+    </fieldset>
   </div>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
   <div class="text-center text-gray-500">
     tex2typst Web App version {{ appVersion }}
   </div>

@@ -69,21 +69,6 @@ const output = computed(() => {
   }
 })
 
-const renderedFormulaHtml = computed(() => {
-  const latex = directionToTypst.value ? inputStr.value : output.value.target;
-  if (latex === '') {
-    return '<div><span style="opacity: 0.6;">LaTeX math formula will be rendered here.</span></div>'
-  } else {
-    const options = {
-      macros: customTexMacros,
-      displayMode: true,
-      throwOnError: false,
-      errorColor: '#bc6f17'
-    }
-    return katex.renderToString(latex, options)
-  }
-})
-
 
 const copiedToast = ref(null);
 
@@ -109,8 +94,26 @@ function handleSettingsClick() {
 
 const settings = ref({
   showPreview: true,
+  displayStyle: true,
   rememberDirection: true,
 });
+
+const renderedFormulaHtml = computed(() => {
+  const latex = directionToTypst.value ? inputStr.value : output.value.target;
+  if (latex === '') {
+    return '<div><span style="opacity: 0.6;">LaTeX math formula will be rendered here.</span></div>'
+  } else {
+    const options = {
+      macros: customTexMacros,
+      displayMode: settings.value.displayStyle,
+      throwOnError: false,
+      errorColor: '#bc6f17'
+    }
+    return katex.renderToString(latex, options)
+  }
+})
+
+
 
 function handleNewSettings(data) {
   settings.value = data;
