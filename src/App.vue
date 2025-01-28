@@ -9,12 +9,19 @@ import { getRandomFormula } from './random'
 
 const directionToTypst = ref(true);
 
+const settings = ref({
+  showPreview: true,
+  displayStyle: true,
+  rememberDirection: true,
+});
+
+
 const inputStr = ref('');
 const output = computed(() => {
   try {
     const tex = inputStr.value;
     if(directionToTypst.value) {
-      const typst = convertTex2Typst(tex);
+      const typst = convertTex2Typst(tex, { fracToSlash: settings.value.texFracToTypstSlash });
       const macros_to_define = [];
       if(tex.includes('\\mathscr')) {
         macros_to_define.push('scr');
@@ -92,11 +99,6 @@ function handleSettingsClick() {
   settingsDialog.value.open();
 }
 
-const settings = ref({
-  showPreview: true,
-  displayStyle: true,
-  rememberDirection: true,
-});
 
 const renderedFormulaHtml = computed(() => {
   const latex = directionToTypst.value ? inputStr.value : output.value.target;

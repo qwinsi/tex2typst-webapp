@@ -31,13 +31,14 @@ export const customTexMacros = {
 };
 
 // @param input: string of TeX math formula code. 
-export function convertTex2Typst(input) {
-    const options = {
+export function convertTex2Typst(input, options = {}) {
+    const opt = {
         nonStrict: true,
         preferTypstIntrinsic: true,
         customTexMacros: customTexMacros,
     };
-    let res = tex2typst(input, options);
+    Object.assign(opt, options);
+    let res = tex2typst(input, opt);
     res = res.replaceAll("upright(d)", "dif"); // \mathrm{d} -> dif
     res = res.replaceAll(" thin dif", " dif");
     res = res.replaceAll('op("d")', "dif"); // \operatorname("d") -> dif

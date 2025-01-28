@@ -10,7 +10,8 @@ export default {
       default: () => ({ 
         showPreview: true,
         displayStyle: true,
-        rememberDirection: true
+        rememberDirection: true,
+        texFracToTypstSlash: true,
       })
     }
   },
@@ -22,8 +23,9 @@ export default {
       const showPreview = this.$refs.switchShowPreview.checked;
       const displayStyle = this.$refs.switchDisplayStyle.checked;
       const rememberDirection = this.$refs.switchRememberDirection.checked;
+      const texFracToTypstSlash = this.$refs.switchTexFracToTypstSlash.checked;
       this.$el.close();
-      this.$emit('newSettings', { showPreview, displayStyle, rememberDirection });
+      this.$emit('newSettings', { showPreview, displayStyle, rememberDirection, texFracToTypstSlash });
     },
   },
   data() {
@@ -65,6 +67,13 @@ export default {
       <div class="flex-1 flex justify-between mb-4">
         <label>Remember Direction</label>
         <ToggleSwitch ref="switchRememberDirection" :initial="initial.rememberDirection" />
+      </div>
+      <div class="flex-1 flex justify-between">
+        <label>
+          <code>\frac</code> to slash
+          <span title=" On: LaTeX \frac{a}{b} to Typst a/b&#10;Off: LaTeX \frac{a}{b} to Typst frac(a,b)">&#x24D8;</span>
+        </label>
+        <ToggleSwitch ref="switchTexFracToTypstSlash" :initial="initial.texFracToTypstSlash" />
       </div>
     </fieldset>
   </div>
