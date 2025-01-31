@@ -93,8 +93,6 @@ async function sendToClipboard() {
 
 const settingsDialog = ref(null);
 
-const inputArea = ref(null);
-
 function handleSettingsClick() {
   settingsDialog.value.open();
 }
@@ -140,10 +138,6 @@ onBeforeMount(() => {
 });
 
 onMounted(() => {
-  if (inputArea.value) {
-    inputArea.value.focus();
-  }
-
   // Enable ":active" pseudo-class on mobile safari. https://stackoverflow.com/q/3885018/
   if(/iPad|iPhone|iPod/.test(window.navigator.userAgent)) {
     const buttons = document.querySelectorAll('button');
@@ -218,8 +212,8 @@ onMounted(() => {
       <div class="flex-1 flex md:flex-row flex-col">
         <!-- input area -->
         <div class="flex-1 flex flex-col border border-gray-700 min-h-[200px]">
-          <textarea ref="inputArea" class="flex-1 text-app-light-black p-4" v-model="inputStr"
-            spellcheck="false"></textarea>
+          <textarea class="flex-1 text-app-light-black p-4" v-model="inputStr"
+            spellcheck="false" autofocus></textarea>
         </div>
 
         <!-- output area -->
