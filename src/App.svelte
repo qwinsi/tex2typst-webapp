@@ -166,34 +166,34 @@ onMount(() => {
       </h1>
       <div class="flex">
         <a class="flex items-center font-medium p-2 mr-2 hover:bg-gray-900" href="cheat-sheet.html" target="_blank">
-          <svg class="inline w-9 h-9" data-inline-src="./assets/notebook-icon.svg" alt="Cheat sheet icon" />
+          <img class="inline w-9 h-9" src="./icons/notebook-icon.svg" alt="Cheat sheet icon" />
           <span class="text-lg ml-2 mr-4 hide-on-mobile">Cheat Sheet</span>
         </a>
         <a class="flex items-center font-medium p-2 mr-2 hover:bg-gray-900" href="https://github.com/qwinsi/tex2typst-webapp" target="_blank">
-          <svg class="inline w-9 h-9" data-inline-src="./assets/github-mark-white.svg" alt="Github logo"/>
+          <img class="inline w-9 h-9" src="./icons/github-mark-white.svg" alt="Github logo"/>
           <span class="text-lg ml-2 mr-4 hide-on-mobile">Open-source</span>
         </a>
         <button class="flex items-center font-medium p-2 mr-2 hover:bg-gray-900" on:click={handleSettingsClick}>
-          <svg class="inline w-9 h-9" data-inline-src="./assets/settings-icon.svg" alt="Settings icon" />
+          <img class="inline w-9 h-9" src="./icons/settings-icon.svg" alt="Settings icon" />
           <span class="text-lg ml-2 mr-4 hide-on-mobile">Settings</span>
         </button>
       </div>
     </nav>
-    <div class="text-center text-app-blue p-4 m-2">
+    <div class="text-center text-app-light-black p-4 m-2">
       Convert LaTeX math formula code to Typst and vice versa. All running in your browser.
     </div>
 
     <main class="flex-1 flex flex-col justify-between ml-6 mr-6 border border-gray-700 rounded-lg">
       <div class="flex justify-between p-2 border-b border-gray-700">
         <div class="flex-1 flex justify-between">
-          <span class="text-app-blue p-2">{ directionToTypst? "LaTeX": "Typst" }</span>
+          <span class="text-app-light-black p-2">{ directionToTypst? "LaTeX": "Typst" }</span>
           <div>
-            <button class="text-app-light-black p-2 mr-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
+            <button class="text-app-blue p-2 mr-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
               on:click={() => {inputStr = getRandomFormula(directionToTypst);}}>
               <span class="hide-on-mobile">Random</span>
               <span class="hide-on-desktop">R</span>
             </button>
-            <button class="text-app-light-black p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
+            <button class="text-app-blue p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
               on:click={() => {inputStr = '';}}>
               <span class="hide-on-mobile">Clear</span>
               <span class="hide-on-desktop">C</span>
@@ -206,8 +206,8 @@ onMount(() => {
         </button>
 
         <div class="flex-1 flex-1 flex justify-between relative">
-          <span class="text-app-blue p-2">{ directionToTypst? "Typst": "LaTeX" }</span>
-            <button class="text-app-light-black p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
+          <span class="text-app-light-black p-2">{ directionToTypst? "Typst": "LaTeX" }</span>
+            <button class="text-app-blue p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
                     on:click={sendToClipboard}>Copy</button>
             <CopiedToast style="position: absolute; top: -55px; right: -4px;" bind:this={copiedToast} msg="Copied!" />
         </div>
