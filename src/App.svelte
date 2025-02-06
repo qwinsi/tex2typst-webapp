@@ -1,27 +1,28 @@
-<script setup>
-import { ref, computed, onBeforeMount, onMounted } from 'vue'
+<script>
+import { onMount } from 'svelte';
 import katex from 'katex'
 import { convertTex2Typst, convertTypst2Tex, customTexMacros } from './converter'
 import { copyTextToClipboard } from '@qwinsi/utilities-js/clipboard'
-import CopiedToast from '@qwinsi/vue-components/CopiedToast.vue'
-import SettingsDialog from './components/SettingsDialog.vue'
+import CopiedToast from './components/CopiedToast.svelte'
+import SettingsDialog from './components/SettingsDialog.svelte'
 import { getRandomFormula } from './random'
 
-const directionToTypst = ref(true);
+let directionToTypst = true;
 
-const settings = ref({
+let settings = {
   showPreview: true,
   displayStyle: true,
   rememberDirection: true,
-});
+};
 
 
-const inputStr = ref('');
-const output = computed(() => {
+let inputStr = '';
+
+function get_output(inputStr, settings) {
   try {
-    const tex = inputStr.value;
-    if(directionToTypst.value) {
-      const typst = convertTex2Typst(tex, { fracToSlash: settings.value.texFracToTypstSlash });
+    const tex = inputStr;
+    if(directionToTypst) {
+      const typst = convertTex2Typst(tex, { fracToSlash: settings.texFracToTypstSlash });
       const macros_to_define = [];
       if(tex.includes('\\mathscr')) {
         macros_to_define.push('scr');
@@ -71,73 +72,77 @@ const output = computed(() => {
     console.error(e);
     return {
       target: '',
-      message: `&#x24D8; [ERROR: Invalid ${directionToTypst.value? 'LaTeX': 'Typst'} code]`,
+      message: `&#x24D8; [ERROR: Invalid ${directionToTypst? 'LaTeX': 'Typst'} code]`,
     }
   }
-})
+}
 
+$: output = get_output(inputStr, settings);
 
-const copiedToast = ref(null);
+let inputArea = null;
+let copiedToast = null;
 
 async function sendToClipboard() {
-  if(inputStr.value === '') {
+  if(inputStr === '') {
     return;
   }
-  const ok = await copyTextToClipboard(output.value.target);
+  const ok = await copyTextToClipboard(output.target);
   if(ok) {
-    copiedToast.value.trigger();
+    copiedToast.trigger();
   } else {
     alert('Failed to copy to clipboard. Please report this issue.');
   }
 }
 
-const settingsDialog = ref(null);
+let settingsDialog = null;
 
 function handleSettingsClick() {
-  settingsDialog.value.open();
+  settingsDialog.open();
 }
 
 
-const renderedFormulaHtml = computed(() => {
-  const latex = directionToTypst.value ? inputStr.value : output.value.target;
+function get_rendered_html(directionToTypst, inputStr, output, settings) {
+  const latex = directionToTypst ? inputStr : output.target;
   if (latex === '') {
     return '<div><span style="opacity: 0.6;">LaTeX math formula will be rendered here.</span></div>'
   } else {
     const options = {
       macros: customTexMacros,
-      displayMode: settings.value.displayStyle,
+      displayMode: settings.displayStyle,
       throwOnError: false,
       errorColor: '#bc6f17'
     }
     return katex.renderToString(latex, options)
   }
-})
+}
+
+$: renderedFormulaHtml = get_rendered_html(directionToTypst, inputStr, output, settings);
 
 
 
 function handleNewSettings(data) {
-  settings.value = data;
-  localStorage.setItem('settings', JSON.stringify(data));
+  settings = data.detail;
+  localStorage.setItem('settings', JSON.stringify(data.detail));
 }
 
 function handleFlipDirection() {
-  const outputStr = output.value.target;
-  directionToTypst.value = !directionToTypst.value;
-  inputStr.value = outputStr;
+  const outputStr = output.target;
+  directionToTypst = !directionToTypst;
+  inputStr = outputStr;
 }
 
 
-onBeforeMount(() => {
+onMount(() => {
   const settingsStr = localStorage.getItem('settings');
   if(settingsStr) {
-    settings.value = Object.assign(settings.value, JSON.parse(settingsStr));
+    settings = Object.assign(settings, JSON.parse(settingsStr));
   }
-  if(settings.value.rememberDirection && localStorage.getItem('lastDirection')) {
-    directionToTypst.value = localStorage.getItem('lastDirection') !== 'false';
+  if(settings.rememberDirection && localStorage.getItem('lastDirection')) {
+    directionToTypst = localStorage.getItem('lastDirection') !== 'false';
   }
-});
 
-onMounted(() => {
+  inputArea.focus();
+
   // Enable ":active" pseudo-class on mobile safari. https://stackoverflow.com/q/3885018/
   if(/iPad|iPhone|iPod/.test(window.navigator.userAgent)) {
     const buttons = document.querySelectorAll('button');
@@ -147,13 +152,13 @@ onMounted(() => {
   }
 
   window.addEventListener('beforeunload', function() {
-    localStorage.setItem('lastDirection', directionToTypst.value.toString());
+    localStorage.setItem('lastDirection', directionToTypst.toString());
   });
+
 });
 
 </script>
 
-<template>
   <div class="bg-app text-app-blue min-h-screen flex flex-col">
     <nav class="theme-app flex justify-between text-white">
       <h1 class="flex items-center h-16 ml-4 select-none">
@@ -161,15 +166,15 @@ onMounted(() => {
       </h1>
       <div class="flex">
         <a class="flex items-center font-medium p-2 mr-2 hover:bg-gray-900" href="cheat-sheet.html" target="_blank">
-          <img class="inline h-9" src="./assets/notebook-icon.svg" alt="Cheat sheet icon" />
+          <svg class="inline w-9 h-9" data-inline-src="./assets/notebook-icon.svg" alt="Cheat sheet icon" />
           <span class="text-lg ml-2 mr-4 hide-on-mobile">Cheat Sheet</span>
         </a>
         <a class="flex items-center font-medium p-2 mr-2 hover:bg-gray-900" href="https://github.com/qwinsi/tex2typst-webapp" target="_blank">
-          <img class="inline h-9" src="./assets/github-mark-white.svg" alt="Github logo" />
+          <svg class="inline w-9 h-9" data-inline-src="./assets/github-mark-white.svg" alt="Github logo"/>
           <span class="text-lg ml-2 mr-4 hide-on-mobile">Open-source</span>
         </a>
-        <button class="flex items-center font-medium p-2 mr-2 hover:bg-gray-900" v-on:click="handleSettingsClick">
-          <img class="inline h-9" src="./assets/settings-icon.svg" alt="Settings icon" />
+        <button class="flex items-center font-medium p-2 mr-2 hover:bg-gray-900" on:click={handleSettingsClick}>
+          <svg class="inline w-9 h-9" data-inline-src="./assets/settings-icon.svg" alt="Settings icon" />
           <span class="text-lg ml-2 mr-4 hide-on-mobile">Settings</span>
         </button>
       </div>
@@ -181,30 +186,30 @@ onMounted(() => {
     <main class="flex-1 flex flex-col justify-between ml-6 mr-6 border border-gray-700 rounded-lg">
       <div class="flex justify-between p-2 border-b border-gray-700">
         <div class="flex-1 flex justify-between">
-          <span class="text-app-blue p-2">{{ directionToTypst? "LaTeX": "Typst" }}</span>
+          <span class="text-app-blue p-2">{ directionToTypst? "LaTeX": "Typst" }</span>
           <div>
             <button class="text-app-light-black p-2 mr-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
-              v-on:click="inputStr = getRandomFormula(directionToTypst)">
+              on:click={() => {inputStr = getRandomFormula(directionToTypst);}}>
               <span class="hide-on-mobile">Random</span>
               <span class="hide-on-desktop">R</span>
             </button>
             <button class="text-app-light-black p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
-              v-on:click="inputStr = ''">
+              on:click={() => {inputStr = '';}}>
               <span class="hide-on-mobile">Clear</span>
               <span class="hide-on-desktop">C</span>
             </button>
           </div>
         </div>
 
-        <button class="pl-1 pr-1 rounded-lg ml-3 mr-3 hover:bg-gray-300 active:bg-gray-400">
-          <img class="inline" src="./assets/swap-icon.svg" alt="Swap icon" v-on:click="handleFlipDirection" />
+        <button class="pl-1 pr-1 rounded-lg ml-3 mr-3 hover:bg-gray-300 active:bg-gray-400" on:click={handleFlipDirection}>
+          <svg class="inline" data-inline-src="assets/swap-icon.svg" alt="Swap icon" />
         </button>
 
         <div class="flex-1 flex-1 flex justify-between relative">
-          <span class="text-app-blue p-2">{{ directionToTypst? "Typst": "LaTeX" }}</span>
+          <span class="text-app-blue p-2">{ directionToTypst? "Typst": "LaTeX" }</span>
             <button class="text-app-light-black p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
-                    v-on:click="sendToClipboard">Copy</button>
-            <CopiedToast ref="copiedToast" id="copiedToast" msg="Copied!" />
+                    on:click={sendToClipboard}>Copy</button>
+            <CopiedToast style="position: absolute; top: -55px; right: -4px;" bind:this={copiedToast} msg="Copied!" />
         </div>
       </div>
 
@@ -212,16 +217,18 @@ onMounted(() => {
       <div class="flex-1 flex md:flex-row flex-col">
         <!-- input area -->
         <div class="flex-1 flex flex-col border border-gray-700 min-h-[200px]">
-          <textarea class="flex-1 text-app-light-black p-4" v-model="inputStr"
-            spellcheck="false" autofocus></textarea>
+          <textarea class="flex-1 text-app-light-black p-4" bind:value={inputStr}
+            spellcheck="false" bind:this={inputArea}></textarea>
         </div>
 
         <!-- output area -->
         <div class="flex-1 flex flex-col border border-gray-700 min-h-[200px]">
           <div class="flex-1 flex flex-col" id="typst">
-            <div class="flex-1 text-app-light-black p-4"> {{ output.target }} </div>
+            <div class="flex-1 text-app-light-black p-4"> { output.target } </div>
+            {#if output.message}
             <div class="h-20 text-sm text-app-light-black theme-warning border-t rounded border-yellow-700 p-4"
-              v-if="output.message" v-html="output.message"></div>
+              >{@html output.message}</div>
+            {/if}
           </div>
         </div>
       </div>
@@ -230,7 +237,9 @@ onMounted(() => {
 
     <!-- items-center (i.e. style="align-items:center") is for vertical centering -->
     <div class="flex items-center text-center text-app-light-black pb-4 min-h-28">
-      <div class="flex-1" v-if="settings.showPreview" v-html="renderedFormulaHtml"></div>
+      {#if settings.showPreview}
+      <div class="flex-1">{@html renderedFormulaHtml}</div>
+      {/if}
     </div>
 
     <footer class="theme-app text-center p-4">
@@ -238,8 +247,7 @@ onMounted(() => {
           target="_blank">tex2typst.js</a></p>
     </footer>
   </div>
-  <SettingsDialog ref="settingsDialog" @new-settings="handleNewSettings" :initial="settings" />
-</template>
+  <SettingsDialog bind:this={settingsDialog} on:newSettings={handleNewSettings} initial={settings} />
 
 <style>
 .bg-app {
@@ -262,32 +270,27 @@ onMounted(() => {
   color: #333333;
 }
 
-#typst a {
+
+:global(#typst) :global(a) {
   font-weight: bold;
   text-decoration: underline !important;
 }
 
-#typst a:link,
-#typst a:visited {
+:global(#typst) :global(a):link,
+:global(#typst) :global(a):visited {
   color: #0000EE !important;
 }
 
-#typst a:link:active,
-#typst a:visited:active {
+:global(#typst) :global(a):link:active,
+:global(#typst) :global(a):visited:active {
   color: #FF0000 !important;
 }
-
 
 /* https://stackoverflow.com/questions/36260013/react-display-line-breaks-from-saved-textarea */
 #typst {
   white-space: pre-line;
 }
 
-#copiedToast {
-  position: absolute;
-  top: -55px;
-  right: -4px;
-}
 
 @media (max-width: 500px) {
   .hide-on-mobile {

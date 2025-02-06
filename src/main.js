@@ -1,6 +1,8 @@
-import { ViteSSG } from 'vite-ssg/single-page'
-import App from './App.vue'
-import "./assets/main.css"
+import App from './App.svelte';
+import './assets/main.css';
 
-// `export const createApp` is required instead of the original `createApp(App).mount('#app')`
-export const createApp = ViteSSG(App);
+const app = new App({
+  target: document.getElementById('app')
+})
+
+export default app;
