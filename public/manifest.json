@@ -6,7 +6,7 @@
     "display": "standalone",
     "scope": "/tex2typst-webapp/",
     "start_url": "/tex2typst-webapp/index.html",
-    "description": "Covert LaTeX math formula code to Typst code!",
+    "description": "A Web App for conversion between LaTeX math code and Typst",
     "orientation": "any",
     "icons": [
         {
