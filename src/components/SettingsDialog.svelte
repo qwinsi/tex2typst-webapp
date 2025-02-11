@@ -48,7 +48,13 @@ function close() {
       <div class="flex-1 flex justify-between">
         <label>
           Display Style
-          <span title="Display style is used to render mathematical expressions in a more readable way. &#10;For example, subscripts and superscripts of \sum or \prod are rendered above and below the base symbol.">&#x24D8;</span>
+          <!-- 
+            Browsers redner the '\n' in <span titie="A \n B"> as a space, so we need to use '&#10;' instead.
+            But the Svelte compiler will replace '&#10;' with a space in the final output,
+            so here we use @html to prevent the compiler from making any modifications.
+            This is embarrassing.
+          -->
+          {@html `<span title="Display style is used to render mathematical expressions in a more readable way. &#10;For example, subscripts and superscripts of \\sum or \\prod are rendered above and below the base symbol.">&#x24D8;</span>`}
         </label>
         <ToggleSwitch bind:this={switchDisplayStyle} initial={initial.displayStyle} />
       </div>
@@ -62,7 +68,7 @@ function close() {
       <div class="flex-1 flex justify-between">
         <label>
           <code>\frac</code> to slash
-          <span title={" On: LaTeX \frac{a}{b} to Typst a/b&#10;Off: LaTeX \frac{a}{b} to Typst frac(a,b)"}>&#x24D8;</span>
+          {@html `<span title=" On: LaTeX \\frac{a}{b} to Typst a/b&#10;Off: LaTeX \\frac{a}{b} to Typst frac(a,b)">&#x24D8;</span>`}
         </label>
         <ToggleSwitch bind:this={switchTexFracToTypstSlash} initial={initial.texFracToTypstSlash} />
       </div>
