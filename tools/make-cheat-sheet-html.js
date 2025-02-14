@@ -4,6 +4,7 @@ import path from 'path';
 import toml from 'toml';
 import fs from 'node:fs';
 import { tex2typst, symbolMap } from 'tex2typst';
+import katex from 'katex';
 
 // TODO: https://personal.math.ubc.ca/~cautis/tools/latexmath.html
 //       https://www.cmor-faculty.rice.edu/~heinken/latex/symbols.pdf
@@ -12,17 +13,39 @@ import { tex2typst, symbolMap } from 'tex2typst';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// latex: \alpha \beta \gamma \delta \epsilon \zeta \eta \theta \iota \kappa \lambda \mu \nu \xi \omicron \pi \rho \sigma \tau \upsilon \phi \chi \psi \omega
+// typst: alpha beta gamma delta epsilon.alt zeta eta theta iota kappa lambda mu nu xi omicron pi rho sigma tau upsilon phi.alt chi psi omega
+// latex: \varepsilon \vartheta \varpi \varrho \varsigma \varphi
+// typst: epsilon theta.alt pi.alt rho.alt sigma.alt phi
 const lowercase_greek_letters = [
     'alpha', 'beta', 'gamma', 'delta', 'epsilon', 'zeta', 'eta', 'theta', 'iota', 'kappa', 'lambda', 'mu', 'nu', 'xi',
     'omicron', 'pi', 'rho', 'sigma', 'tau', 'upsilon', 'phi', 'chi', 'psi', 'omega',
     'varepsilon', 'vartheta', 'varpi', 'varrho', 'varsigma', 'varphi',
-]
+];
 
+// latex: \Gamma \Delta \Theta \Lambda \Xi \Pi \Sigma \Upsilon \Phi \Psi \Omega
+// typst: Gamma Delta Theta Lambda Xi Pi Sigma Upsilon Phi Psi Omega
 const uppercase_greek_letters = [
     'Gamma', 'Delta', 'Theta', 'Lambda', 'Xi', 'Pi', 'Sigma', 'Upsilon', 'Phi', 'Psi', 'Omega',
-]
+];
 
-const arrows = [
+
+// Integral symbols
+// latex:  \int \oint \iint \oiint \iiint \oiiint
+// typst: integral integral.cont integral.double integral.surf integral.triple integral.vol
+const integral_symbols = [
+    'int', 'oint', 'iint', 'oiint', 'iiint', 'oiiint'
+];
+
+// Font symbols
+// latex: \boldsymbol{A} \mathbb{A} \mathbf{A} \mathcal{A} \mathit{A} \mathfrak{A} \mathrm{A} \mathsf{A} \mathtt{A}
+// typst: bold(A) bb(A) upright(bold(A)) cal(A) italic(A) frak(A) upright(A) sans(A) mono(A)
+const font_symbols = [
+    'boldsymbol{A}', 'mathbb{A}', 'mathbf{A}', 'mathcal{A}', 'mathit{A}', 'mathfrak{A}', 'mathrm{A}', 'mathsf{A}', 'mathtt{A}'
+];
+
+
+const arrow_symbols = [
     'leftarrow',
     'gets',
     'rightarrow',
@@ -61,39 +84,66 @@ const arrows = [
     'leadsto',
     'leftleftarrows',
     'rightrightarrows',
-]
+];
+
+// Set and Elements
+// latex: \in \subset \subseteq \supset \supseteq \varnothing
+// typst: in subset subset.eq supset supset.eq diameter
+const set_and_elements = [
+    'in', 'subset', 'subseteq', 'supset', 'supseteq', 'varnothing'
+];
+
+// non-math symbols
+// latex: \$ \pounds \yen \copyright \S \P
+const non_math_symbols = [
+    '$', 'pounds', 'yen', 'copyright', 'S', 'P'
+];
+
+// How do you insert unescaped HTML? · Issue #6 · nebrelbug/squirrelly.js.org
+// https://github.com/nebrelbug/squirrelly.js.org/issues/6
+function render(latex, displayMode = false) {
+    const options = {
+        displayMode: displayMode,
+        output: 'html'
+    }
+    return katex.renderToString(latex, options);
+}
+
+function mapToLatexTypstPair(latexName) {
+    return {
+        latex: `\\${latexName}`,
+        typst: tex2typst(`\\${latexName}`),
+    }
+}
 
 function main() {
+    const data = {};
+    data.lowercase_greek_letters = lowercase_greek_letters.map(mapToLatexTypstPair);
+    data.uppercase_greek_letters = uppercase_greek_letters.map(mapToLatexTypstPair);
+    data.integral_symbols = integral_symbols.map(mapToLatexTypstPair);
+    data.font_symbols = font_symbols.map(mapToLatexTypstPair);
+    data.arrow_symbols = arrow_symbols.map(mapToLatexTypstPair);
+    data.set_and_elements = set_and_elements.map(mapToLatexTypstPair);
+    data.non_math_symbols = non_math_symbols.map(mapToLatexTypstPair);
+
     const cheatSheetTomlFile = path.join(__dirname, '../src/template/cheat-sheet.toml');
-    const data = toml.parse(fs.readFileSync(cheatSheetTomlFile, { encoding: 'utf-8' }));
-
-    // void data.math_commands;
-
+    const toml_obj = toml.parse(fs.readFileSync(cheatSheetTomlFile, { encoding: 'utf-8' }));
+    // void toml_obj.math_commands;
     const symbols_unsupported_by_katex = [
         'iiiint',
         'slash',
     ]
     for (const symbol of symbols_unsupported_by_katex) {
-        delete data.math_symbols[symbol];
+        delete toml_obj.math_symbols[symbol];
     }
-
-    data.lowercase_greek_letters = lowercase_greek_letters.map(letter => ({
-        latex: `\\${letter}`,
-        typst: tex2typst(`\\${letter}`),
-    }));
-
-    data.uppercase_greek_letters = uppercase_greek_letters.map(letter => ({
-        latex: `\\${letter}`,
-        typst: tex2typst(`\\${letter}`),
-    }));
-
-    data.arrow_symbols = {};
-    for(const arrow of arrows) {
-        if (!symbolMap.has(arrow)) {
-            throw new Error(`Symbol not found: ${arrow}`);
+    data.misc_symbols = Object.entries(toml_obj.math_symbols).map(([latexName, typst]) => {
+        return {
+            latex: `\\${latexName}`,
+            typst: typst,
         }
-        data.arrow_symbols[arrow] = symbolMap.get(arrow);
-    }
+    });
+
+    data.render = render;
 
 
     const cheatSheetTemplateFile = path.join(__dirname, '../src/template/cheat-sheet.tp.html');
