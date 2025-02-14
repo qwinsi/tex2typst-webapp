@@ -74,6 +74,11 @@ function close() {
       </div>
     </fieldset>
   </div>
+  <div class="flex ml-6 mb-2 text-sm">
+    <span>Problems?</span>
+    &nbsp;&nbsp;
+    <a href="https://github.com/qwinsi/tex2typst-webapp/issues/new" target="_blank">Write an issue to us!</a>
+  </div>
   <div class="text-center text-gray-500">
     tex2typst Web App version { APP_VERSION }
   </div>
@@ -84,57 +89,9 @@ function close() {
   -->
 </dialog>
 
-<style>
-/*
-dialog {
-  animation: fade-out 0.7s ease-out;
+<style scoped>
+a {
+  color: #0000EE;
+  text-decoration: underline;
 }
-
-dialog[open] {
-  animation: fade-in 0.5s ease-out;
-}
-
-dialog[open]::backdrop {
-  animation: backdrop-fade-in 0.5s ease-out forwards;
-}
-
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-    transform: scaleY(0);
-    display: none;
-  }
-
-  100% {
-    opacity: 1;
-    transform: scaleY(1);
-    display: block;
-  }
-}
-
-@keyframes fade-out {
-  0% {
-    opacity: 1;
-    transform: scaleY(1);
-    display: block;
-  }
-
-  100% {
-    opacity: 0;
-    transform: scaleY(0);
-    display: none;
-  }
-}
-
-@keyframes backdrop-fade-in {
-  0% {
-    background-color: rgb(0 0 0 / 0%);
-  }
-
-  100% {
-    background-color: rgb(0 0 0 / 25%);
-  }
-}
-*/
 </style>
