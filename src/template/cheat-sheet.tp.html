@@ -228,7 +228,7 @@ ready(function() {
     </thead>
     <tbody>
       {{@each(it.lowercase_greek_letters) => val, index}}
-      <tr><td><code>{{val.latex}}</code></td><td><span class="render-m">{{val.latex}}</span></td><td><code>{{val.typst}}</code></td></tr>
+      <tr><td><code>{{val.latex}}</code></td><td class="render-m">{{val.latex}}</td><td><code>{{val.typst}}</code></td></tr>
       {{/each}}
     </tbody>
   </table>
@@ -244,7 +244,7 @@ ready(function() {
     </thead>
     <tbody>
       {{@each(it.uppercase_greek_letters) => val, index}}
-      <tr><td><code>{{val.latex}}</code></td><td><span class="render-m">{{val.latex}}</span></td><td><code>{{val.typst}}</code></td></tr>
+      <tr><td><code>{{val.latex}}</code></td><td class="render-m">{{val.latex}}</td><td><code>{{val.typst}}</code></td></tr>
       {{/each}}
     </tbody>
   </table>
@@ -274,12 +274,12 @@ ready(function() {
       <tr><th>LaTeX</th><th>Preview</th><th>Typst</th></tr>
     </thead>
     <tbody>
-      <tr><td><code>\int</code></td><td><span class="render-m">\int</span></td><td><code>integral</code></td></tr>
-      <tr><td><code>\oint</code></td><td><span class="render-m">\oint</span></td><td><code>integral.cont</code></td></tr>
-      <tr><td><code>\iint</code></td><td><span class="render-m">\iint</span></td><td><code>integral.double</code></td></tr>
-      <tr><td><code>\oiint</code></td><td><span class="render-m">\oiint</span></td><td><code>integral.surf</code></td></tr>
-      <tr><td><code>\iiint</code></td><td><span class="render-m">\iiint</span></td><td><code>integral.triple</code></td></tr>
-      <tr><td><code>\oiiint</code></td><td><span class="render-m">\oiiint</span></td><td><code>integral.vol</code></td></tr>
+      <tr><td><code>\int</code></td><td class="render-m">\int</td><td><code>integral</code></td></tr>
+      <tr><td><code>\oint</code></td><td class="render-m">\oint</td><td><code>integral.cont</code></td></tr>
+      <tr><td><code>\iint</code></td><td class="render-m">\iint</td><td><code>integral.double</code></td></tr>
+      <tr><td><code>\oiint</code></td><td class="render-m">\oiint</td><td><code>integral.surf</code></td></tr>
+      <tr><td><code>\iiint</code></td><td class="render-m">\iiint</td><td><code>integral.triple</code></td></tr>
+      <tr><td><code>\oiiint</code></td><td class="render-m">\oiiint</td><td><code>integral.vol</code></td></tr>
     </tbody>
   </table>
 
@@ -293,15 +293,15 @@ ready(function() {
       <tr><th>LaTeX</th><th>Preview</th><th>Typst</th></tr>
     </thead>
     <tbody>
-      <tr><td><code>\boldsymbol{A}</code></td><td><span class="render-m">\boldsymbol{A}</span></td><td><code>bold(A)</code></td></tr>
-      <tr><td><code>\mathbb{A}</code></td><td><span class="render-m">\mathbb{A}</span></td><td><code>bb(A)</code></td></tr>
-      <tr><td><code>\mathbf{A}</code></td><td><span class="render-m">\mathbf{A}</span></td><td><code>upright(bold(A))</code></td></tr>
-      <tr><td><code>\mathcal{A}</code></td><td><span class="render-m">\mathcal{A}</span></td><td><code>cal(A)</code></td></tr>
-      <tr><td><code>\mathit{A}</code></td><td><span class="render-m">\mathit{A}</span></td><td><code>italic(A)</code></td></tr>
-      <tr><td><code>\mathfrak{A}</code></td><td><span class="render-m">\mathfrak{A}</span></td><td><code>frak(A)</code></td></tr>
-      <tr><td><code>\mathrm{A}</code></td><td><span class="render-m">\mathrm{A}</span></td><td><code>upright(A)</code></td></tr>
-      <tr><td><code>\mathsf{A}</code></td><td><span class="render-m">\mathsf{A}</span></td><td><code>sans(A)</code></td></tr>
-      <tr><td><code>\mathtt{A}</code></td><td><span class="render-m">\mathtt{A}</span></td><td><code>mono(A)</code></td></tr>
+      <tr><td><code>\boldsymbol{A}</code></td><td class="render-m">\boldsymbol{A}</td><td><code>bold(A)</code></td></tr>
+      <tr><td><code>\mathbb{A}</code></td><td class="render-m">\mathbb{A}</td><td><code>bb(A)</code></td></tr>
+      <tr><td><code>\mathbf{A}</code></td><td class="render-m">\mathbf{A}</td><td><code>upright(bold(A))</code></td></tr>
+      <tr><td><code>\mathcal{A}</code></td><td class="render-m">\mathcal{A}</td><td><code>cal(A)</code></td></tr>
+      <tr><td><code>\mathit{A}</code></td><td class="render-m">\mathit{A}</td><td><code>italic(A)</code></td></tr>
+      <tr><td><code>\mathfrak{A}</code></td><td class="render-m">\mathfrak{A}</td><td><code>frak(A)</code></td></tr>
+      <tr><td><code>\mathrm{A}</code></td><td class="render-m">\mathrm{A}</td><td><code>upright(A)</code></td></tr>
+      <tr><td><code>\mathsf{A}</code></td><td class="render-m">\mathsf{A}</td><td><code>sans(A)</code></td></tr>
+      <tr><td><code>\mathtt{A}</code></td><td class="render-m">\mathtt{A}</td><td><code>mono(A)</code></td></tr>
     </tbody>
   </table>
 
@@ -316,7 +316,7 @@ ready(function() {
     </thead>
     <tbody>
       {{@foreach(it.arrow_symbols) => key, val}}
-      <tr><td><code>\{{key}}</code></td><td><span class="render-m">\{{key}}</span></td><td><code>{{val}}</code></td></tr>
+      <tr><td><code>\{{key}}</code></td><td class="render-m">\{{key}}</td><td><code>{{val}}</code></td></tr>
       {{/foreach}}
     </tbody>
   </table>
@@ -331,12 +331,12 @@ ready(function() {
       <tr><th>LaTeX</th><th>Preview</th><th>Typst</th></tr>
     </thead>
     <tbody>
-      <tr><td><code>\in</code></td><td><span class="render-m">\in</span></td><td><code>in</code></td></tr>
-      <tr><td><code>\subset</code></td><td><span class="render-m">\subset</span></td><td><code>subset</code></td></tr>
-      <tr><td><code>\subseteq</code></td><td><span class="render-m">\subseteq</span></td><td><code>subset.eq</code></td></tr>
-      <tr><td><code>\supset</code></td><td><span class="render-m">\supset</span></td><td><code>supset</code></td></tr>
-      <tr><td><code>\supseteq</code></td><td><span class="render-m">\supseteq</span></td><td><code>supset.eq</code></td></tr>
-      <tr><td><code>\varnothing</code></td><td><span class="render-m">\varnothing</span></td><td><code>diameter</code></td></tr>
+      <tr><td><code>\in</code></td><td class="render-m">\in</td><td><code>in</code></td></tr>
+      <tr><td><code>\subset</code></td><td class="render-m">\subset</td><td><code>subset</code></td></tr>
+      <tr><td><code>\subseteq</code></td><td class="render-m">\subseteq</td><td><code>subset.eq</code></td></tr>
+      <tr><td><code>\supset</code></td><td class="render-m">\supset</td><td><code>supset</code></td></tr>
+      <tr><td><code>\supseteq</code></td><td class="render-m">\supseteq</td><td><code>supset.eq</code></td></tr>
+      <tr><td><code>\varnothing</code></td><td class="render-m">\varnothing</td><td><code>diameter</code></td></tr>
     </tbody>
   </table>
 
@@ -366,7 +366,7 @@ ready(function() {
     </thead>
     <tbody>
       {{@foreach(it.math_symbols) => key, val}}
-      <tr><td><code>\{{key}}</code></td><td><span class="render-m">\{{key}}</span></td><td><code>{{val}}</code></td></tr>
+      <tr><td><code>\{{key}}</code></td><td class="render-m">\{{key}}</td><td><code>{{val}}</code></td></tr>
       {{/foreach}}
     </tbody>
   </table>
