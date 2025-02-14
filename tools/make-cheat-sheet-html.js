@@ -77,15 +77,15 @@ function main() {
         delete data.math_symbols[symbol];
     }
 
-    data.lowercase_greek_letters = {};
-    for(const letter of lowercase_greek_letters) {
-        data.lowercase_greek_letters[letter] = tex2typst(`\\${letter}`);
-    }
+    data.lowercase_greek_letters = lowercase_greek_letters.map(letter => ({
+        latex: `\\${letter}`,
+        typst: tex2typst(`\\${letter}`),
+    }));
 
-    data.uppercase_greek_letters = {};
-    for(const letter of uppercase_greek_letters) {
-        data.uppercase_greek_letters[letter] = tex2typst(`\\${letter}`);
-    }
+    data.uppercase_greek_letters = uppercase_greek_letters.map(letter => ({
+        latex: `\\${letter}`,
+        typst: tex2typst(`\\${letter}`),
+    }));
 
     data.arrow_symbols = {};
     for(const arrow of arrows) {

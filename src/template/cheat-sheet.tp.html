@@ -177,6 +177,8 @@ ready(function() {
     katex.render(latexCode, renderArea, {
       displayMode: renderArea.tagName === 'DIV',
       throwOnError: false,
+      // disable mathML output (as default is 'htmlAndMathml')
+      output: 'html',
     });
   }
 });
@@ -225,9 +227,9 @@ ready(function() {
       <tr><th>LaTeX</th><th>Preview</th><th>Typst</th></tr>
     </thead>
     <tbody>
-      {{@foreach(it.lowercase_greek_letters) => key, val}}
-      <tr><td><code>\{{key}}</code></td><td><span class="render-m">\{{key}}</span></td><td><code>{{val}}</code></td></tr>
-      {{/foreach}}
+      {{@each(it.lowercase_greek_letters) => val, index}}
+      <tr><td><code>{{val.latex}}</code></td><td><span class="render-m">{{val.latex}}</span></td><td><code>{{val.typst}}</code></td></tr>
+      {{/each}}
     </tbody>
   </table>
 
@@ -241,9 +243,9 @@ ready(function() {
       <tr><th>LaTeX</th><th>Preview</th><th>Typst</th></tr>
     </thead>
     <tbody>
-      {{@foreach(it.uppercase_greek_letters) => key, val}}
-      <tr><td><code>\{{key}}</code></td><td><span class="render-m">\{{key}}</span></td><td><code>{{val}}</code></td></tr>
-      {{/foreach}}
+      {{@each(it.uppercase_greek_letters) => val, index}}
+      <tr><td><code>{{val.latex}}</code></td><td><span class="render-m">{{val.latex}}</span></td><td><code>{{val.typst}}</code></td></tr>
+      {{/each}}
     </tbody>
   </table>
 
