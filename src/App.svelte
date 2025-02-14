@@ -109,8 +109,9 @@ function get_rendered_html(directionToTypst, inputStr, output, settings) {
     const options = {
       macros: customTexMacros,
       displayMode: settings.displayStyle,
+      output: 'html', // default is 'htmlAndMathml', which adds redundant invisible MathML stuff
       throwOnError: false,
-      errorColor: '#bc6f17'
+      errorColor: '#bc6f17',
     }
     return katex.renderToString(latex, options)
   }
