@@ -177,6 +177,8 @@ ready(function() {
     katex.render(latexCode, renderArea, {
       displayMode: renderArea.tagName === 'DIV',
       throwOnError: false,
+      // disable mathML output (as default is 'htmlAndMathml')
+      output: 'html',
     });
   }
 });
