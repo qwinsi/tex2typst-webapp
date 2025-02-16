@@ -13,6 +13,7 @@ let settings = {
   showPreview: true,
   displayStyle: true,
   rememberDirection: true,
+  texFracToTypstSlash: true,
 };
 
 
