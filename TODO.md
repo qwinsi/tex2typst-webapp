@@ -1,2 +1,1 @@
 - auto-detect source language type
-- monospaced font for code blocks

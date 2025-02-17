@@ -1,6 +1,6 @@
 {
   "name": "tex2typst-webapp",
-  "version": "0.2.17",
+  "version": "0.2.18",
   "type": "module",
   "scripts": {
     "dev": "vite dev",

@@ -219,14 +219,14 @@ onMount(() => {
       <div class="flex-1 flex md:flex-row flex-col">
         <!-- input area -->
         <div class="flex-1 flex flex-col border border-gray-700 min-h-[200px]">
-          <textarea class="flex-1 text-app-light-black p-4" bind:value={inputStr}
+          <textarea class="code-block flex-1 text-app-light-black p-4" bind:value={inputStr}
             spellcheck="false" bind:this={inputArea}></textarea>
         </div>
 
         <!-- output area -->
         <div class="flex-1 flex flex-col border border-gray-700 min-h-[200px]">
           <div class="flex-1 flex flex-col" id="typst">
-            <div class="flex-1 text-app-light-black p-4"> { output.target } </div>
+            <div class="code-block flex-1 text-app-light-black p-4"> { output.target } </div>
             {#if output.message}
             <div class="h-20 text-sm text-app-light-black theme-warning border-t rounded border-yellow-700 p-4"
               >{@html output.message}</div>
@@ -288,11 +288,11 @@ onMount(() => {
   color: #FF0000 !important;
 }
 
-/* https://stackoverflow.com/questions/36260013/react-display-line-breaks-from-saved-textarea */
-#typst {
+.code-block {
+  font-family: Consolas, "Ubuntu Mono", Menlo, monospace;
+  /* https://stackoverflow.com/questions/36260013/react-display-line-breaks-from-saved-textarea */
   white-space: pre-line;
 }
-
 
 @media (max-width: 500px) {
   .hide-on-mobile {
