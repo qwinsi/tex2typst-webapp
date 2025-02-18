@@ -136,7 +136,26 @@ function main() {
     for (const symbol of symbols_unsupported_by_katex) {
         delete toml_obj.math_symbols[symbol];
     }
-    data.misc_symbols = Object.entries(toml_obj.math_symbols).map(([latexName, typst]) => {
+
+    data.misc_symbols = Object.entries(toml_obj.math_symbols).filter(([latexName, typst]) => {
+        // filter out symbols that are already included above
+        void typst;
+        const lists = [
+            lowercase_greek_letters,
+            uppercase_greek_letters,
+            integral_symbols,
+            font_symbols,
+            arrow_symbols,
+            set_and_elements,
+            non_math_symbols,
+        ];
+        for (const list of lists) {
+            if (list.includes(latexName)) {
+                return false;
+            }
+        }
+        return true;
+    }).map(([latexName, typst]) => {
         return {
             latex: `\\${latexName}`,
             typst: typst,
