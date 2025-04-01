@@ -69,8 +69,8 @@ in Typst.</p>
 <p>Implementation in Typst <a href="#fn1" class="footnote-ref"
 id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <pre><code>#let scr(it) = text(
-features: (&quot;ss01&quot;,),
-box($cal(it)$),
+  features: (&quot;ss01&quot;,),
+  box($cal(it)$),
 )</code></pre>
 <p>Usage example:</p>
 <pre><code>$
@@ -82,22 +82,22 @@ $</code></pre>
 <p>Implementation in Typst <a href="#fn2" class="footnote-ref"
 id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <pre><code>#let TeX = context {
-set text(font: &quot;New Computer Modern&quot;)
-let e = measure(&quot;E&quot;)
-let T = &quot;T&quot;
-let E = text(1em, baseline: e.height * 0.31, &quot;E&quot;)
-let X = &quot;X&quot;
-box(T + h(-0.15em) + E + h(-0.125em) + X)
+  set text(font: &quot;New Computer Modern&quot;)
+  let e = measure(&quot;E&quot;)
+  let T = &quot;T&quot;
+  let E = text(1em, baseline: e.height * 0.31, &quot;E&quot;)
+  let X = &quot;X&quot;
+  box(T + h(-0.15em) + E + h(-0.125em) + X)
 }
 
 #let LaTeX = context {
-set text(font: &quot;New Computer Modern&quot;)
-let a-size = 0.66em
-let l = measure(&quot;L&quot;)
-let a = measure(text(a-size, &quot;A&quot;))
-let L = &quot;L&quot;
-let A = box(scale(x: 105%, text(a-size, baseline: a.height - l.height, &quot;A&quot;)))
-box(L + h(-a.width * 0.67) + A + h(-a.width * 0.25) + TeX)
+  set text(font: &quot;New Computer Modern&quot;)
+  let a-size = 0.66em
+  let l = measure(&quot;L&quot;)
+  let a = measure(text(a-size, &quot;A&quot;))
+  let L = &quot;L&quot;
+  let A = box(scale(x: 105%, text(a-size, baseline: a.height - l.height, &quot;A&quot;)))
+  box(L + h(-a.width * 0.67) + A + h(-a.width * 0.25) + TeX)
 }</code></pre>
 <p>Usage example:</p>
 <pre><code>You can use #LaTeX in text environments.
@@ -154,8 +154,8 @@ evaluated.</p>
 class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>
 ):</p>
 <pre><code>#let cancelto(to, body) = {
-let max(a, b) = if a &gt; b { a } else { b };
-context {
+  let max(a, b) = if a &gt; b { a } else { b };
+  context {
     let m = measure(body)
     let (w, h) = (m.width, m.height * 2)
     let arrow = rotate(-55deg, math.stretch(sym.arrow.r, size: max(h*1.8, w*2.0)))
@@ -163,7 +163,7 @@ context {
     body
     place(dx: -w * 0.5, dy: -h * 0.1, arrow)
     place(dx: w * 0.3, dy: -h * 1.1, to)
-}
+  }
 }</code></pre>
 <h2 id="references-and-credits">References and Credits</h2>
 <p>The following resources were used to create this document:</p>
