@@ -12,8 +12,8 @@ Implementation in Typst [^1]
 
 ```
 #let scr(it) = text(
-features: ("ss01",),
-box($cal(it)$),
+  features: ("ss01",),
+  box($cal(it)$),
 )
 ```
 
@@ -33,22 +33,22 @@ Implementation in Typst [^2]
 
 ```
 #let TeX = context {
-set text(font: "New Computer Modern")
-let e = measure("E")
-let T = "T"
-let E = text(1em, baseline: e.height * 0.31, "E")
-let X = "X"
-box(T + h(-0.15em) + E + h(-0.125em) + X)
+  set text(font: "New Computer Modern")
+  let e = measure("E")
+  let T = "T"
+  let E = text(1em, baseline: e.height * 0.31, "E")
+  let X = "X"
+  box(T + h(-0.15em) + E + h(-0.125em) + X)
 }
 
 #let LaTeX = context {
-set text(font: "New Computer Modern")
-let a-size = 0.66em
-let l = measure("L")
-let a = measure(text(a-size, "A"))
-let L = "L"
-let A = box(scale(x: 105%, text(a-size, baseline: a.height - l.height, "A")))
-box(L + h(-a.width * 0.67) + A + h(-a.width * 0.25) + TeX)
+  set text(font: "New Computer Modern")
+  let a-size = 0.66em
+  let l = measure("L")
+  let a = measure(text(a-size, "A"))
+  let L = "L"
+  let A = box(scale(x: 105%, text(a-size, baseline: a.height - l.height, "A")))
+  box(L + h(-a.width * 0.67) + A + h(-a.width * 0.25) + TeX)
 }
 ```
 
@@ -118,9 +118,9 @@ Where `\bigg\rvert` may be replaced with `\bigg\vert` , `\bigg|` etc.
 
 ➣ Walkaround in Typst:
 
-  ```
-  F(x) lr(| vec(delim: #none, b, , a))
-  ```
+```
+F(x) lr(| vec(delim: #none, b, , a))
+```
 
 ## The `\cancelto` macro
 
@@ -138,8 +138,8 @@ Where `\bigg\rvert` may be replaced with `\bigg\vert` , `\bigg|` etc.
 
 ```
 #let cancelto(to, body) = {
-let max(a, b) = if a > b { a } else { b };
-context {
+  let max(a, b) = if a > b { a } else { b };
+  context {
     let m = measure(body)
     let (w, h) = (m.width, m.height * 2)
     let arrow = rotate(-55deg, math.stretch(sym.arrow.r, size: max(h*1.8, w*2.0)))
@@ -147,7 +147,7 @@ context {
     body
     place(dx: -w * 0.5, dy: -h * 0.1, arrow)
     place(dx: w * 0.3, dy: -h * 1.1, to)
-}
+  }
 }
 ```
 
