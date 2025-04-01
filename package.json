@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite dev",
     "make:sw": "bun build --entrypoints src/sw.js --outdir public --minify-whitespace --env inline",
-    "make:html": "node tools/make-cheat-sheet-html.js",
+    "make:html": "node tools/make-cheat-sheet-html.js && node tools/make-impl-in-typst-html.js",
     "build": "npm run make:sw && npm run make:html && vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",

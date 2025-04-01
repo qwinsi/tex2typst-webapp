@@ -27,19 +27,23 @@ function get_output(inputStr, settings) {
       const macros_to_define = [];
       if(tex.includes('\\mathscr')) {
         macros_to_define.push('scr');
-      } 
+      }
       if(tex.includes('\\LaTeX')) {
         macros_to_define.push('#LaTeX');
       }
       if(tex.includes('\\TeX')) {
         macros_to_define.push('#TeX');
       }
+      if(tex.includes('\\cancelto')) {
+        macros_to_define.push('cancelto');
+      }
       let messages = [];
       if(macros_to_define.length > 0) {
         const map = new Map([
-          ['scr', 'mathscr'],
-          ['#LaTeX', 'latex-and-tex'],
-          ['#TeX', 'latex-and-tex'],
+          ['scr', 'the-mathscr-macro'],
+          ['#LaTeX', 'the-latex-and-tex-macro'],
+          ['#TeX', 'the-latex-and-tex-macro'],
+          ['cancelto', 'the-cancelto-macro'],
         ]);
         for(const macro of macros_to_define) {
           const a_link = `<a href="impl-in-typst.html#${map.get(macro)}" target="_blank">${macro}</a>`;
@@ -50,7 +54,7 @@ function get_output(inputStr, settings) {
 
       // show suggestion when the user try to write vertical bar for evaluation like "F(x) \bigg\rvert_a^b x"
       if(/\\bigg\s*(\\rvert|\\vert|\|)\s*_/.test(tex)) {
-        const a_link = `<a href="impl-in-typst.html#vertical-bar-for-evaluation" target="_blank">vertical bar for evaluation</a>`;
+        const a_link = `<a href="impl-in-typst.html#a-vertical-bar-for-evaluation" target="_blank">vertical bar for evaluation</a>`;
         messages.push(`&#x24D8; Did you mean ${a_link}?`);
       }
       let final_msg = '';
