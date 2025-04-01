@@ -4,5 +4,7 @@
 node_modules/
 dist/
 public/cheat-sheet.html
+public/impl-in-typst.html
+public/cancelto-example.svg
 public/sw.js
 .vite-ssg-temp/

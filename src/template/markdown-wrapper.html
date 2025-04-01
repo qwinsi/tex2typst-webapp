@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.8.1/github-markdown-light.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" crossorigin="anonymous"></script>
+  <title>Implementing LaTeX macros unsupported by Typst</title>
+  <style>
+    /**
+     * https://github.com/sindresorhus/github-markdown-css
+     */
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+
+    @media (max-width: 767px) {
+      .markdown-body {
+        padding: 15px;
+      }
+    }
+
+    /* Center images */
+    img {
+      display: block;
+      margin: auto;
+    }
+
+    /* Hide figcaption for images. e.g. "abc" in [abc](image.png) */
+    figcaption[aria-hidden="true"] {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const renderAreas = document.querySelectorAll('span.math.display');
+  for(const renderArea of renderAreas) {
+    const latexCode = renderArea.textContent;
+    katex.render(latexCode, renderArea, {
+      displayMode: true,
+      throwOnError: false,
+    });
+  }
+});
+</script>
+
+<nav style="display: flex; justify-content: space-between; padding: 0.8em;">
+  <a href="." target="_blank">Homepage</a>
+  <a href="https://github.com/qwinsi/tex2typst-webapp" target="_blank">Source on Github</a>
+</nav>
+
+<article class="markdown-body">
+<!-- HTML_FROM_MARKDOWN -->
+</article>
+</body>
+</html>
