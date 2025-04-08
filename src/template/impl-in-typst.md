@@ -151,6 +151,14 @@ F(x) lr(| vec(delim: #none, b, , a))
 }
 ```
 
+➣ Usage example:
+
+```
+$
+cancelto(0, (diff^2 Q)/(diff r^2))
+$
+```
+
 ## References and Credits
 
 The following resources were used to create this document:
