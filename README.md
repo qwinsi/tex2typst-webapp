@@ -10,7 +10,7 @@ This project is a Web UI wrapper. The core algorithm is implemented in [qwinsi/t
 
 ## Trying Online
 
-A static web App is hosted on the [Github page](https://qwinsi.github.io/tex2typst-webapp/).
+A static web App is hosted on the [Github Pages](https://qwinsi.github.io/tex2typst-webapp/).
 
 ## Development
 
