@@ -6,16 +6,11 @@ import { copyTextToClipboard } from '@qwinsi/utilities-js/clipboard'
 import CopiedToast from './components/CopiedToast.svelte'
 import SettingsDialog from './components/SettingsDialog.svelte'
 import { getRandomFormula } from './random'
+import { DEFAULT_SETTINGS } from './default-settings';
 
 let directionToTypst = true;
 
-let settings = {
-  showPreview: true,
-  displayStyle: true,
-  rememberDirection: true,
-  texFracToTypstSlash: true,
-};
-
+let settings = Object.assign({}, DEFAULT_SETTINGS);
 
 let inputStr = '';
 
@@ -23,7 +18,11 @@ function get_output(inputStr, settings) {
   try {
     const tex = inputStr;
     if(directionToTypst) {
-      const typst = convertTex2Typst(tex, { fracToSlash: settings.texFracToTypstSlash });
+      const typst = convertTex2Typst(tex, { 
+        preferShorthands: settings.preferShorthands,
+        fracToSlash: settings.texFracToTypstSlash,
+        inftyToOo: settings.texInftyToTypstOo,
+      });
       const macros_to_define = [];
       if(tex.includes('\\mathscr')) {
         macros_to_define.push('scr');

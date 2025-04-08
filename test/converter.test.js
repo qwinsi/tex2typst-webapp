@@ -5,7 +5,7 @@ import { EXAMPLE_FORMULAS_LATEX  } from '../src/random.js';
 
 
 const TYPST_EXAMPLE_FORMULAS = [
-    'e eq.def lim_(n arrow.r infinity)(1 + 1/n)^n',
+    'e eq.def lim_(n -> infinity)(1 + 1/n)^n',
     'product_p 1/(1 - p^(-s)) = sum_(n = 1)^infinity 1/n^s',
     'a^(p - 1) equiv 1 mod p',
     String.raw`nabla times bold(H) &= bold(J) + (diff bold(D))/(diff t) \

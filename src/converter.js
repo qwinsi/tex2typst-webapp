@@ -2,7 +2,7 @@
  * This file add some patches to the original function in tex2typst library.
  * A `convertTex2Typst` function is exported as the final converter implementation.
  */
-import { tex2typst, symbolMap, typst2tex } from "tex2typst";
+import { tex2typst, typst2tex } from "tex2typst";
 
 
 // Not used actually.
@@ -46,9 +46,5 @@ export function convertTex2Typst(input, options = {}) {
 }
 
 export function convertTypst2Tex(input) {
-    input = input.replaceAll("<=", " lt.eq ");
-    input = input.replaceAll(">=", " gt.eq ");
-    input = input.replaceAll("->", " to ");
-
     return typst2tex(input);
 }

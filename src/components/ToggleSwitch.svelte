@@ -9,6 +9,10 @@ export function checked() {
   return checkbox.checked;
 }
 
+export function setChecked(value) {
+  checkbox.checked = value;
+}
+
 </script>
 
 <label class="switch">
