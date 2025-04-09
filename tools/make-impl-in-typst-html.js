@@ -1,27 +1,52 @@
-/**
- * Note: You need to have pandoc installed to run this script.
- */
 import { fileURLToPath } from 'url';
 import path from 'path';
 import fs from 'node:fs';
-import { execSync } from 'node:child_process';
 import { convert_tex_to_svg } from './tex-to-svg.cjs';
-import { parse } from 'node-html-parser';
+
+import markdownIt from "markdown-it";
+import markdownItMath from "markdown-it-math";
+import markdownItFootnote from "markdown-it-footnote";
+import markdownItAnchor from "markdown-it-anchor";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const mdIt = markdownIt()
 
-function render_math(inputHtml) {
-    const root = parse(inputHtml);
-    const math_elements = root.querySelectorAll("span.math.display");
-    for (const math_element of math_elements) {
-        const tex = math_element.textContent;
-        const svg = convert_tex_to_svg(tex);
-        math_element.replaceWith(`<figure>${svg}</figure>`);
+mdIt.use(markdownItMath, {
+    inlineRenderer: (src) => {
+        return convert_tex_to_svg(src);
+    },
+    blockRenderer: (src) => {
+        const svg = convert_tex_to_svg(src);
+        return `<figure>${svg}</figure>`;
+    },
+});
+
+mdIt.use(markdownItFootnote);
+
+/*
+By default, markdown-it-footnote the followin in the end
+
+<hr class="footnotes-sep">
+<section class="footnotes">
+  <ol> ... </ol>
+</section>
+
+We just want to keep the <ol> and remove the rest.
+*/
+mdIt.renderer.rules.footnote_block_open = () => (
+    '<ol class="footnotes-list">\n'
+);
+
+mdIt.use(markdownItAnchor, {
+    slugify: (s) => {
+        // Replace all spaces with dashes
+        s = s.replace(/\s+/g, "-");
+        // Remove all non-alphanumeric characters (except dashes) and convert to lowercase
+        return s.replace(/[^a-zA-Z0-9\-]/g, "").toLowerCase();
     }
-    return root.toString();
-}
+});
 
 function main() {
     const md_file_path = path.join(__dirname, "../src/template/impl-in-typst.md");
@@ -30,17 +55,13 @@ function main() {
 
     const md_wrapper_html = fs.readFileSync(md_wrapper_html_path, { encoding: "utf-8" });
 
-    // Run the following command to generate HTML
-    // pandoc --to html5 --no-highlight --katex impl-in-typst.md
-    const pandoc_cmd = `pandoc --to html5 --no-highlight --katex ${md_file_path}`;
-    const working_dir = path.join(__dirname, "../src/template/");
-    const pandoc_output = execSync(pandoc_cmd, { encoding: "utf-8", cwd: working_dir });
+    const md_content = fs.readFileSync(md_file_path, { encoding: "utf-8" });
+    let html_segment = mdIt.render(md_content);
 
     // wrapper HTML should contain <!-- HTML_FROM_MARKDOWN --> to which pandoc output will be inserted
-    const html = md_wrapper_html.replace("<!-- HTML_FROM_MARKDOWN -->", pandoc_output);
-    const final_html = render_math(html);
+    const html = md_wrapper_html.replace("<!-- HTML_FROM_MARKDOWN -->", html_segment);
 
-    fs.writeFileSync(dest_html_path, final_html);
+    fs.writeFileSync(dest_html_path, html);
 }
 
 main();
