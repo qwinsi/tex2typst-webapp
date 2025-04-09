@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.8.1/github-markdown-light.css" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" crossorigin="anonymous"></script>
+  <meta name="darkreader-lock">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.8.1/github-markdown.css" crossorigin="anonymous">
   <title>Implementing LaTeX macros unsupported by Typst</title>
   <style>
     /**
@@ -30,27 +29,39 @@
       display: block;
       margin: auto;
     }
+    figure > svg {
+      display: block;
+      margin: auto;
+    }
 
-    /* Hide figcaption for images. e.g. "abc" in [abc](image.png) */
+    /*
+    Hide figcaption for images. e.g. pandoc generate a <figcaption>"abc"</figcaption> from [abc](image.png) 
+    */
     figcaption[aria-hidden="true"] {
       display: none;
+    }
+
+    /* 
+     https://stackoverflow.com/questions/67187091/creating-svg-that-appears-black-in-light-mode-and-light-in-dark-mode
+    */
+    @media (prefers-color-scheme: dark) {
+        body {
+            color-scheme: dark;
+            background-color: #0d1117;
+        }
+
+        svg path {
+            fill: white;
+        }
+
+        svg rect {
+            fill: white;
+        }
     }
   </style>
 </head>
 
 <body>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  const renderAreas = document.querySelectorAll('span.math.display');
-  for(const renderArea of renderAreas) {
-    const latexCode = renderArea.textContent;
-    katex.render(latexCode, renderArea, {
-      displayMode: true,
-      throwOnError: false,
-    });
-  }
-});
-</script>
 
 <nav style="display: flex; justify-content: space-between; padding: 0.8em;">
   <a href="." target="_blank">Homepage</a>

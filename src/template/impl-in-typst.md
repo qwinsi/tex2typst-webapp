@@ -126,7 +126,9 @@ F(x) lr(| vec(delim: #none, b, , a))
 
 `\cancelto{value}{expression}` is a LaTeX command provided by the `cancel` package. It is used to place an arrow through an expression and annotate it with a value to which the expression is be evaluated.
 
-![img](cancelto-example.svg)
+$$
+\cancelto{0}{\frac{\partial^2 Q}{\partial r^2}}
+$$
 
 ➣ LaTeX:
 
