@@ -1,7 +1,7 @@
 import { setup } from "@qwinsi/utilities-js/sw";
+import { version as APP_VERSION } from "../package.json";
 
 const SUBDIRECTORY = "/tex2typst-webapp";
-import { version as APP_VERSION } from "../package.json";
 
 const precacheResources = [
     "/",
