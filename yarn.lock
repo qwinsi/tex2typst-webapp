@@ -376,10 +376,10 @@
   resolved "https://registry.yarnpkg.com/@pkgjs/parseargs/-/parseargs-0.11.0.tgz#a77ea742fab25775145434eb1d2328cf5013ac33"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
 
-"@qwinsi/utilities-js@^0.1.4":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@qwinsi/utilities-js/-/utilities-js-0.1.4.tgz#3b5e4728b75a66b7ec7aa4c58f052022cbce3d41"
-  integrity sha512-SQAnP+zHHKYA7qjpnnGSj4R+oF7HL/5iua0O//Nu/8insd1xjPMlkj3Nck6wzvdn8TdY1pLEd3AAlK3wtGHCOA==
+"@qwinsi/utilities-js@^0.1.6":
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/@qwinsi/utilities-js/-/utilities-js-0.1.6.tgz#1e10c43ef7b57a7cd535a1e98ebca54f77e10acb"
+  integrity sha512-2GdcivxpFKUv0HZpKdBIbkqYOcauJWa9a63cTNN9dWkUVUth0lS7Rln7XHWO66uklIE96+s0Bi62m96v/yMZXg==
 
 "@qwinsi/vue-components@^0.0.2":
   version "0.0.2"

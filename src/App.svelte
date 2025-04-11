@@ -166,11 +166,13 @@ onMount(() => {
 
   const channel = new BroadcastChannel('SW_MESSAGES');
   channel.addEventListener('message', event => {
-    console.log('SW_MESSAGES', event.data);
     if(event.data.title === 'APP_UPDATE') {
         const new_version = event.data.version;
         if(new_version !== APP_VERSION) {
-          const msg = `New version ${new_version} is available. Please refresh this page to get latest version.`;
+          const msg = `New version ${new_version} is available.
+To update, close all active tabs of this website and open again.
+(Simply refreshing this page won't take effect.)
+          `;
           butterup.toast({
             title: 'Update Available',
             message: msg,
@@ -182,8 +184,6 @@ onMount(() => {
         }
     }
   });
-
-
 });
 
 </script>

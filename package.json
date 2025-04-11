@@ -1,6 +1,6 @@
 {
   "name": "tex2typst-webapp",
-  "version": "0.2.21",
+  "version": "0.2.31",
   "type": "module",
   "scripts": {
     "dev": "vite dev",
@@ -14,7 +14,7 @@
     "test": "npx mocha"
   },
   "dependencies": {
-    "@qwinsi/utilities-js": "^0.1.4",
+    "@qwinsi/utilities-js": "^0.1.6",
     "@qwinsi/vue-components": "^0.0.2",
     "butteruptoasts": "^2.0.1",
     "katex": "^0.16.11",

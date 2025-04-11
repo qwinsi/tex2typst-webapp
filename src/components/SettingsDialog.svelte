@@ -87,7 +87,7 @@ function resetToDefault() {
       </div>
       <div class="flex-1 flex justify-between mb-4">
         <span>
-          <code>\frac</code> toslash
+          <code>\frac</code> to slash
           {@html `<span title=" On: LaTeX \\frac{a}{b} to Typst a/b&#10;Off: LaTeX \\frac{a}{b} to Typst frac(a,b)">&#x24D8;</span>`}
         </span>
         <ToggleSwitch bind:this={switchTexFracToTypstSlash} initial={initial.texFracToTypstSlash} />
