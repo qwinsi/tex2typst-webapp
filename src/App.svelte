@@ -7,6 +7,10 @@ import CopiedToast from './components/CopiedToast.svelte'
 import SettingsDialog from './components/SettingsDialog.svelte'
 import { getRandomFormula } from './random'
 import { DEFAULT_SETTINGS } from './default-settings';
+import { version as APP_VERSION } from '../package.json';
+import butterup from 'butteruptoasts';
+// have to do this because butteruptoasts places CSS in wrong place
+import '../node_modules/butteruptoasts/src/butterup.css';
 
 let directionToTypst = true;
 
@@ -159,6 +163,26 @@ onMount(() => {
   window.addEventListener('beforeunload', function() {
     localStorage.setItem('lastDirection', directionToTypst.toString());
   });
+
+  const channel = new BroadcastChannel('SW_MESSAGES');
+  channel.addEventListener('message', event => {
+    console.log('SW_MESSAGES', event.data);
+    if(event.data.title === 'APP_UPDATE') {
+        const new_version = event.data.version;
+        if(new_version !== APP_VERSION) {
+          const msg = `New version ${new_version} is available. Please refresh this page to get latest version.`;
+          butterup.toast({
+            title: 'Update Available',
+            message: msg,
+            location: 'top-right',
+            type: 'info',
+            icon: true,
+            dismissable: true,
+          });
+        }
+    }
+  });
+
 
 });
 

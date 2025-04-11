@@ -1,6 +1,7 @@
 import { setup } from "@qwinsi/utilities-js/sw";
 
 const SUBDIRECTORY = "/tex2typst-webapp";
+import { version as APP_VERSION } from "../package.json";
 
 const precacheResources = [
     "/",
@@ -15,8 +16,4 @@ const precacheResources = [
 
 const prefixedResources = precacheResources.map((resource) => SUBDIRECTORY + resource);
 
-const appVersion = process.env.npm_package_version;
-if(!appVersion) {
-    throw new Error("npm_package_version is undefined");
-}
-setup(appVersion, prefixedResources);
+setup(APP_VERSION, prefixedResources);

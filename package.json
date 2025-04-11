@@ -1,10 +1,10 @@
 {
   "name": "tex2typst-webapp",
-  "version": "0.2.20",
+  "version": "0.2.21",
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "make:sw": "bun build --entrypoints src/sw.js --outdir public --minify-whitespace --env inline",
+    "make:sw": "esbuild src/sw.js --bundle --outdir=public --minify-whitespace",
     "make:html": "node tools/make-cheat-sheet-html.js && node tools/make-impl-in-typst-html.js",
     "build": "npm run make:sw && npm run make:html && vite build",
     "preview": "vite preview",
@@ -14,8 +14,9 @@
     "test": "npx mocha"
   },
   "dependencies": {
-    "@qwinsi/utilities-js": "^0.1.3",
+    "@qwinsi/utilities-js": "^0.1.4",
     "@qwinsi/vue-components": "^0.0.2",
+    "butteruptoasts": "^2.0.1",
     "katex": "^0.16.11",
     "svelte": "^4.2.10",
     "tex2typst": "^0.3.2"
@@ -25,6 +26,7 @@
     "@sveltejs/vite-plugin-svelte": "3.1.1",
     "autoprefixer": "^10.4.19",
     "cross-env": "^7.0.3",
+    "esbuild": "^0.25.2",
     "eslint": "^8.57.0",
     "express": "^4.19.2",
     "gh-pages": "^6.1.1",
