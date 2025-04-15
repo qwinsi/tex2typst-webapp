@@ -381,11 +381,6 @@
   resolved "https://registry.yarnpkg.com/@qwinsi/utilities-js/-/utilities-js-0.1.6.tgz#1e10c43ef7b57a7cd535a1e98ebca54f77e10acb"
   integrity sha512-2GdcivxpFKUv0HZpKdBIbkqYOcauJWa9a63cTNN9dWkUVUth0lS7Rln7XHWO66uklIE96+s0Bi62m96v/yMZXg==
 
-"@qwinsi/vue-components@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@qwinsi/vue-components/-/vue-components-0.0.2.tgz#a429a50ff04a8d2ce60569fd3252acd04245381c"
-  integrity sha512-3S7VGc/i4BdZ3iSXR/NaBcrfKf7ttgeBVZNo0PoFQl8gKyoUwjallTWDomRTyeOx0OzZaQTgCjL4YJP7NtibNA==
-
 "@rollup/rollup-android-arm-eabi@4.21.3":
   version "4.21.3"
   resolved "https://registry.yarnpkg.com/@rollup/rollup-android-arm-eabi/-/rollup-android-arm-eabi-4.21.3.tgz#155c7d82c1b36c3ad84d9adf9b3cd520cba81a0f"

@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "@qwinsi/utilities-js": "^0.1.6",
-    "@qwinsi/vue-components": "^0.0.2",
     "butteruptoasts": "^2.0.1",
     "katex": "^0.16.11",
     "svelte": "^4.2.10",
