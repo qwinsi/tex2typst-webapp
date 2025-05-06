@@ -1,6 +1,6 @@
 {
   "name": "tex2typst-webapp",
-  "version": "0.2.34",
+  "version": "0.2.35",
   "type": "module",
   "scripts": {
     "dev": "vite dev",
@@ -18,7 +18,7 @@
     "butteruptoasts": "^2.0.1",
     "katex": "^0.16.11",
     "svelte": "^4.2.10",
-    "tex2typst": "^0.3.4"
+    "tex2typst": "^0.3.5"
   },
   "devDependencies": {
     "@svelte-put/preprocess-inline-svg": "^2.1.4",

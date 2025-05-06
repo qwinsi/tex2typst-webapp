@@ -2,6 +2,7 @@
 import { createEventDispatcher } from 'svelte';
 import ToggleSwitch from './ToggleSwitch.svelte';
 import { version as APP_VERSION } from '../../package.json';
+import { version as TEX2TYPST_VERSION } from '../../node_modules/tex2typst/package.json';
 import { DEFAULT_SETTINGS } from '../default-settings';
 
 export let initial = Object.assign({}, DEFAULT_SETTINGS);
@@ -104,13 +105,16 @@ function resetToDefault() {
   <div class="flex justify-end p-2">
     <button class="bg-gray-300 text-black px-2 py-1 rounded mr-6" on:click={resetToDefault}><span>&olarr;</span> Reset to Default</button>
   </div>
-  <div class="flex ml-6 mb-2 text-sm">
+  <div class="flex-1 flex justify-between ml-6 mr-6 text-gray-500">
+    <span>tex2typst Web App version</span> <span>{ APP_VERSION }</span>
+  </div>
+  <div class="flex-1 flex justify-between ml-6 mr-6 text-gray-500">
+    <span>tex2typst.js version</span> <span>{ TEX2TYPST_VERSION }</span>
+  </div>
+  <div class="flex ml-6 mb-2 p-2 text-sm">
     <span>Problems?</span>
     &nbsp;&nbsp;
     <a href="https://github.com/qwinsi/tex2typst-webapp/issues/new" target="_blank">Write an issue to us!</a>
-  </div>
-  <div class="text-center text-gray-500">
-    tex2typst Web App version { APP_VERSION }
   </div>
   <!--
   <div style="max-width: 90%; text-align: left; color:gray; font-size: small; margin-left: 10%;">
