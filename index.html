@@ -18,7 +18,11 @@
     <script type="module" src="/src/main.js"></script>
     <script>
       if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.register("/tex2typst-webapp/sw.js");
+          let pathName = window.location.pathname;
+          if(pathName.endsWith('index.html')) {
+              pathName = pathName.substring(0, pathName.length - 10);
+          }
+          navigator.serviceWorker.register(pathName + "sw.js");
       }
      </script>
   </body>
