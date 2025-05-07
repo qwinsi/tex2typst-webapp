@@ -315,6 +315,13 @@ To update, close all active tabs of this website and open again.
   color: #FF0000 !important;
 }
 
+/* html - How do I disable the resizable property of a textarea? - Stack Overflow
+   https://stackoverflow.com/questions/5235142/how-do-i-disable-the-resizable-property-of-a-textarea
+*/
+textarea {
+  resize: none;
+}
+
 .code-block {
   font-family: Consolas, "Ubuntu Mono", Menlo, monospace;
   /* https://stackoverflow.com/questions/36260013/react-display-line-breaks-from-saved-textarea */
