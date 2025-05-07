@@ -22,7 +22,7 @@ export const EXAMPLE_FORMULAS_LATEX = [
 \nabla \cdot \boldsymbol{D} &= \rho
 \end{aligned}`,
     // chemical equation example: bromoethane to ethanol
-    String.raw`\mathrm{CH_3CH_2Br} + \mathrm{OH}^- \longrightarrow \mathrm{CH_3CH_2OH} + \mathrm{Br}^-`,
+    String.raw`\rm{CH_3CH_2Br} + \rm{OH}^- \longrightarrow \rm{CH_3CH_2OH} + \rm{Br}^-`,
     // Chen's inequality
     String.raw`\yen 2000 > \$ 3000`,
     // harmonic series
@@ -55,7 +55,12 @@ x_1^2 & x_2^2 & \dots & x_n^2 \\
 x_1^{n-1} & x_2^{n-1} & \dots & x_n^{n-1}
 \end{matrix}
 \right|
-= \prod_{1 \leq i < j \leq n} (x_j - x_i)`
+= \prod_{1 \leq i < j \leq n} (x_j - x_i)`,
+    // ReLu function
+    String.raw`\operatorname{ReLU}(x) = \begin{cases}
+x & \text{if } x < 0 \\
+0 & \text{if } x \leq 0
+\end{cases}`,
 ];
 
 const EXAMPLE_FORMULAS_TYPST = [
@@ -83,7 +88,9 @@ x_1, x_2, dots.h, x_n;
 x_1^2, x_2^2, dots.h, x_n^2;
 dots.v, dots.v, dots.down, dots.v;
 x_1^(n - 1), x_2^(n - 1), dots.h, x_n^(n - 1))
-= product_(1 <= i < j <= n)(x_j - x_i)`
+= product_(1 <= i < j <= n)(x_j - x_i)`,
+    String.raw`op("ReLU")(x) = cases(x & "if " x < 0,
+0 & "if " x <= 0)`,
 ];
 
 let last_number = null;
