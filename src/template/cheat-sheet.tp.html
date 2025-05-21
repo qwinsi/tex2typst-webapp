@@ -67,6 +67,10 @@
       display: none;
     }
 
+    .h-table.hide-typst-shorthand tr > *:nth-child(4) {
+      display: none;
+    }
+
     .v-table.hide-latex tr:nth-child(1) {
       display: none;
     }
@@ -149,6 +153,13 @@ function toggleTypst() {
   }
 }
 
+function toggleTypstShorthand() {
+  const hTables = document.getElementsByClassName('h-table');
+  for(const table of hTables) {
+    table.classList.toggle('hide-typst-shorthand');
+  }
+}
+
 function ready(fn) {
   if (document.readyState !== 'loading') {
     fn();
@@ -190,14 +201,15 @@ ready(function() {
         <input type="checkbox" id="toggle-typst" onclick="toggleTypst()" checked>
         <label for="toggle-typst">Typst</label>
       </div>
+      <div>
+        <input type="checkbox" id="toggle-typst-shorthand" onclick="toggleTypstShorthand()" checked>
+        <label for="toggle-typst-shorthand">Typst Shorthand</label>
+      </div>
     </div>
   </aside>
 
 
 <main class="js-toc-content">
-  <p>
-    (WIP: This page is currently under construction...)
-  </p>
   <h2 id="lowercase-greek-letters">Lowercase Greek Letters</h2>
   <table class="h-table">
     <thead>
@@ -268,11 +280,16 @@ ready(function() {
   <h2 id="arrows">Arrows</h2>
   <table class="h-table">
     <thead>
-      <tr><th>LaTeX</th><th>Preview</th><th>Typst</th></tr>
+      <tr><th>LaTeX</th><th>Preview</th><th>Typst (Textual)</th><th>Typst (Shorthand)</th></tr>
     </thead>
     <tbody>
       {{@each(it.arrow_symbols) => val, index}}
-      <tr><td><code>{{val.latex}}</code></td><td>{{it.render(val.latex) | safe}}</td><td><code>{{val.typst}}</code></td></tr>
+      <tr>
+        <td><code>{{val.latex}}</code></td>
+        <td>{{it.render(val.latex) | safe}}</td>
+        <td><code>{{val.typst}}</code></td>
+        <td><code>{{val.shorthand}}</code></td>
+      </tr>
       {{/each}}
     </tbody>
   </table>
@@ -304,11 +321,16 @@ ready(function() {
   <h2 id="misecllaneous-symbols">Miscellaneous Symbols</h2>
   <table class="h-table">
     <thead>
-      <tr><th>LaTeX</th><th>Preview</th><th>Typst</th></tr>
+      <tr><th>LaTeX</th><th>Preview</th><th>Typst (Textual)</th><th>Typst (Shorthand)</th></tr>
     </thead>
     <tbody>
       {{@each(it.misc_symbols) => val, index}}
-      <tr><td><code>{{val.latex}}</code></td><td>{{it.render(val.latex) | safe}}</td><td><code>{{val.typst}}</code></td></tr>
+      <tr>
+        <td><code>{{val.latex}}</code></td>
+        <td>{{it.render(val.latex) | safe}}</td>
+        <td><code>{{val.typst}}</code></td>
+        <td><code>{{val.shorthand}}</code></td>
+      </tr>
       {{/each}}
     </tbody>
   </table>
