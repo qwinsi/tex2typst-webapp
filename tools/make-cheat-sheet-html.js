@@ -3,7 +3,7 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import toml from 'toml';
 import fs from 'node:fs';
-import { tex2typst } from 'tex2typst';
+import { tex2typst, shorthandMap } from 'tex2typst';
 import katex from 'katex';
 
 // TODO: https://personal.math.ubc.ca/~cautis/tools/latexmath.html
@@ -12,6 +12,8 @@ import katex from 'katex';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+shorthandMap.set('infinity', 'oo');
 
 // latex: \alpha \beta \gamma \delta \epsilon \zeta \eta \theta \iota \kappa \lambda \mu \nu \xi \omicron \pi \rho \sigma \tau \upsilon \phi \chi \psi \omega
 // typst: alpha beta gamma delta epsilon.alt zeta eta theta iota kappa lambda mu nu xi omicron pi rho sigma tau upsilon phi.alt chi psi omega
@@ -101,49 +103,6 @@ const non_math_symbols = [
     '$', 'pounds', 'yen', 'copyright', 'S', 'P'
 ];
 
-const shorthandMap = new Map([
-    ['arrow.l.r.double.long', '<==>'],
-    ['arrow.l.r.long', '<-->'],
-    ['arrow.r.bar', '|->'],
-    ['arrow.r.double.bar', '|=>'],
-    ['arrow.r.double.long', '==>'],
-    ['arrow.r.long', '-->'],
-    ['arrow.r.long.squiggly', '~~>'],
-    ['arrow.r.tail', '>->'],
-    ['arrow.r.twohead', '->>'],
-    ['arrow.l.double.long', '<=='],
-    ['arrow.l.long', '<--'],
-    ['arrow.l.long.squiggly', '<~~'],
-    ['arrow.l.tail', '<-<'],
-    ['arrow.l.twohead', '<<-'],
-    ['arrow.l.r', '<->'],
-    ['arrow.l.r.double', '<=>'],
-    ['colon.double.eq', '::='],
-    ['dots.h', '...'],
-    ['gt.triple', '>>>'],
-    ['lt.triple', '<<<'],
-    ['arrow.r', '->'],
-    ['arrow.r.double', '=>'],
-    ['arrow.r.squiggly', '~>'],
-    ['arrow.l', '<-'],
-    ['arrow.l.squiggly', '<~'],
-    ['bar.v.double', '||'],
-    ['bracket.l.double', '[|'],
-    ['bracket.r.double', '|]'],
-    ['colon.eq', ':='],
-    ['eq.colon', '=:'],
-    ['eq.not', '!='],
-    ['gt.double', '>>'],
-    ['gt.eq', '>='],
-    ['lt.double', '<<'],
-    ['lt.eq', '<='],
-    ['ast.op', '*'],
-    ['minus', '-'],
-    ['tilde.op', '~'],
-
-    ['infinity', 'oo'],
-    ['arrow.squiggly', '~>'],
-]);
 
 // How do you insert unescaped HTML? · Issue #6 · nebrelbug/squirrelly.js.org
 // https://github.com/nebrelbug/squirrelly.js.org/issues/6
