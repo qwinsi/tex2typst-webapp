@@ -67,6 +67,10 @@
       display: none;
     }
 
+    .h-table.hide-typst-shorthand tr > *:nth-child(4) {
+      display: none;
+    }
+
     .v-table.hide-latex tr:nth-child(1) {
       display: none;
     }
@@ -149,6 +153,13 @@ function toggleTypst() {
   }
 }
 
+function toggleTypstShorthand() {
+  const hTables = document.getElementsByClassName('h-table');
+  for(const table of hTables) {
+    table.classList.toggle('hide-typst-shorthand');
+  }
+}
+
 function ready(fn) {
   if (document.readyState !== 'loading') {
     fn();
@@ -190,14 +201,15 @@ ready(function() {
         <input type="checkbox" id="toggle-typst" onclick="toggleTypst()" checked>
         <label for="toggle-typst">Typst</label>
       </div>
+      <div>
+        <input type="checkbox" id="toggle-typst-shorthand" onclick="toggleTypstShorthand()" checked>
+        <label for="toggle-typst-shorthand">Typst Shorthand</label>
+      </div>
     </div>
   </aside>
 
 
 <main class="js-toc-content">
-  <p>
-    (WIP: This page is currently under construction...)
-  </p>
   <h2 id="lowercase-greek-letters">Lowercase Greek Letters</h2>
   <table class="h-table">
     <thead>
@@ -318,47 +330,237 @@ m525.8 178.2c0-86.4-86.8-215.4-525.7-215.4-437.9 0-524.7 129-524.7 215.4 0
   <h2 id="arrows">Arrows</h2>
   <table class="h-table">
     <thead>
-      <tr><th>LaTeX</th><th>Preview</th><th>Typst</th></tr>
+      <tr><th>LaTeX</th><th>Preview</th><th>Typst</th><th>Typst Shorthand</th></tr>
     </thead>
     <tbody>
-            <tr><td><code>\leftarrow</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">←</span></span></span></span></td><td><code>&lt;-</code></td></tr>
-            <tr><td><code>\gets</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">←</span></span></span></span></td><td><code>&lt;-</code></td></tr>
-            <tr><td><code>\rightarrow</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span></td><td><code>-&gt;</code></td></tr>
-            <tr><td><code>\to</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span></td><td><code>-&gt;</code></td></tr>
-            <tr><td><code>\leftrightarrow</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">↔</span></span></span></span></td><td><code>&lt;-&gt;</code></td></tr>
-            <tr><td><code>\Leftarrow</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">⇐</span></span></span></span></td><td><code>arrow.l.double</code></td></tr>
-            <tr><td><code>\Rightarrow</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">⇒</span></span></span></span></td><td><code>=&gt;</code></td></tr>
-            <tr><td><code>\Leftrightarrow</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">⇔</span></span></span></span></td><td><code>&lt;=&gt;</code></td></tr>
-            <tr><td><code>\mapsto</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.522em;vertical-align:-0.011em;"></span><span class="mrel">↦</span></span></span></span></td><td><code>|-&gt;</code></td></tr>
-            <tr><td><code>\hookleftarrow</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.522em;vertical-align:-0.011em;"></span><span class="mrel">↩</span></span></span></span></td><td><code>arrow.l.hook</code></td></tr>
-            <tr><td><code>\leftharpoonup</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">↼</span></span></span></span></td><td><code>harpoon.lt</code></td></tr>
-            <tr><td><code>\leftharpoondown</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">↽</span></span></span></span></td><td><code>harpoon.lb</code></td></tr>
-            <tr><td><code>\rightleftharpoons</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.682em;vertical-align:-0.011em;"></span><span class="mrel">⇌</span></span></span></span></td><td><code>harpoons.rtlb</code></td></tr>
-            <tr><td><code>\longleftarrow</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.522em;vertical-align:-0.011em;"></span><span class="mrel">⟵</span></span></span></span></td><td><code>&lt;--</code></td></tr>
-            <tr><td><code>\longrightarrow</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.522em;vertical-align:-0.011em;"></span><span class="mrel">⟶</span></span></span></span></td><td><code>--&gt;</code></td></tr>
-            <tr><td><code>\longleftrightarrow</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.522em;vertical-align:-0.011em;"></span><span class="mrel">⟷</span></span></span></span></td><td><code>&lt;--&gt;</code></td></tr>
-            <tr><td><code>\Longleftarrow</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.549em;vertical-align:-0.024em;"></span><span class="mrel">⟸</span></span></span></span></td><td><code>&lt;==</code></td></tr>
-            <tr><td><code>\Longrightarrow</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.549em;vertical-align:-0.024em;"></span><span class="mrel">⟹</span></span></span></span></td><td><code>==&gt;</code></td></tr>
-            <tr><td><code>\Longleftrightarrow</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.549em;vertical-align:-0.024em;"></span><span class="mrel">⟺</span></span></span></span></td><td><code>&lt;==&gt;</code></td></tr>
-            <tr><td><code>\longmapsto</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.522em;vertical-align:-0.011em;"></span><span class="mrel">⟼</span></span></span></span></td><td><code>arrow.r.long.bar</code></td></tr>
-            <tr><td><code>\hookrightarrow</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.522em;vertical-align:-0.011em;"></span><span class="mrel">↪</span></span></span></span></td><td><code>arrow.r.hook</code></td></tr>
-            <tr><td><code>\rightharpoonup</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">⇀</span></span></span></span></td><td><code>harpoon.rt</code></td></tr>
-            <tr><td><code>\rightharpoondown</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">⇁</span></span></span></span></td><td><code>harpoon.rb</code></td></tr>
-            <tr><td><code>\iff</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.549em;vertical-align:-0.024em;"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">⟺</span><span class="mspace" style="margin-right:0.2778em;"></span></span></span></span></td><td><code>&lt;==&gt;</code></td></tr>
-            <tr><td><code>\implies</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.549em;vertical-align:-0.024em;"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">⟹</span><span class="mspace" style="margin-right:0.2778em;"></span></span></span></span></td><td><code>==&gt;</code></td></tr>
-            <tr><td><code>\uparrow</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mrel">↑</span></span></span></span></td><td><code>arrow.t</code></td></tr>
-            <tr><td><code>\downarrow</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mrel">↓</span></span></span></span></td><td><code>arrow.b</code></td></tr>
-            <tr><td><code>\updownarrow</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mrel">↕</span></span></span></span></td><td><code>arrow.t.b</code></td></tr>
-            <tr><td><code>\Uparrow</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mrel">⇑</span></span></span></span></td><td><code>arrow.t.double</code></td></tr>
-            <tr><td><code>\Downarrow</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mrel">⇓</span></span></span></span></td><td><code>arrow.b.double</code></td></tr>
-            <tr><td><code>\Updownarrow</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mrel">⇕</span></span></span></span></td><td><code>arrow.t.b.double</code></td></tr>
-            <tr><td><code>\nearrow</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mrel">↗</span></span></span></span></td><td><code>arrow.tr</code></td></tr>
-            <tr><td><code>\searrow</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mrel">↘</span></span></span></span></td><td><code>arrow.br</code></td></tr>
-            <tr><td><code>\swarrow</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mrel">↙</span></span></span></span></td><td><code>arrow.bl</code></td></tr>
-            <tr><td><code>\nwarrow</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mrel">↖</span></span></span></span></td><td><code>arrow.tl</code></td></tr>
-            <tr><td><code>\leadsto</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3779em;"></span><span class="mrel amsrm">⇝</span></span></span></span></td><td><code>arrow.squiggly</code></td></tr>
-            <tr><td><code>\leftleftarrows</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8558em;vertical-align:-0.1808em;"></span><span class="mrel amsrm">⇇</span></span></span></span></td><td><code>arrows.ll</code></td></tr>
-            <tr><td><code>\rightrightarrows</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8558em;vertical-align:-0.1808em;"></span><span class="mrel amsrm">⇉</span></span></span></span></td><td><code>arrows.rr</code></td></tr>
+            <tr>
+        <td><code>\leftarrow</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">←</span></span></span></span></td>
+        <td><code>arrow.l</code></td>
+        <td><code>&lt;-</code></td>
+      </tr>
+            <tr>
+        <td><code>\gets</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">←</span></span></span></span></td>
+        <td><code>arrow.l</code></td>
+        <td><code>&lt;-</code></td>
+      </tr>
+            <tr>
+        <td><code>\rightarrow</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span></td>
+        <td><code>arrow.r</code></td>
+        <td><code>-&gt;</code></td>
+      </tr>
+            <tr>
+        <td><code>\to</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span></td>
+        <td><code>arrow.r</code></td>
+        <td><code>-&gt;</code></td>
+      </tr>
+            <tr>
+        <td><code>\leftrightarrow</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">↔</span></span></span></span></td>
+        <td><code>arrow.l.r</code></td>
+        <td><code>&lt;-&gt;</code></td>
+      </tr>
+            <tr>
+        <td><code>\Leftarrow</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">⇐</span></span></span></span></td>
+        <td><code>arrow.l.double</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\Rightarrow</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">⇒</span></span></span></span></td>
+        <td><code>arrow.r.double</code></td>
+        <td><code>=&gt;</code></td>
+      </tr>
+            <tr>
+        <td><code>\Leftrightarrow</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">⇔</span></span></span></span></td>
+        <td><code>arrow.l.r.double</code></td>
+        <td><code>&lt;=&gt;</code></td>
+      </tr>
+            <tr>
+        <td><code>\mapsto</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.522em;vertical-align:-0.011em;"></span><span class="mrel">↦</span></span></span></span></td>
+        <td><code>arrow.r.bar</code></td>
+        <td><code>|-&gt;</code></td>
+      </tr>
+            <tr>
+        <td><code>\hookleftarrow</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.522em;vertical-align:-0.011em;"></span><span class="mrel">↩</span></span></span></span></td>
+        <td><code>arrow.l.hook</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\leftharpoonup</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">↼</span></span></span></span></td>
+        <td><code>harpoon.lt</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\leftharpoondown</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">↽</span></span></span></span></td>
+        <td><code>harpoon.lb</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\rightleftharpoons</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.682em;vertical-align:-0.011em;"></span><span class="mrel">⇌</span></span></span></span></td>
+        <td><code>harpoons.rtlb</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\longleftarrow</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.522em;vertical-align:-0.011em;"></span><span class="mrel">⟵</span></span></span></span></td>
+        <td><code>arrow.l.long</code></td>
+        <td><code>&lt;--</code></td>
+      </tr>
+            <tr>
+        <td><code>\longrightarrow</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.522em;vertical-align:-0.011em;"></span><span class="mrel">⟶</span></span></span></span></td>
+        <td><code>arrow.r.long</code></td>
+        <td><code>--&gt;</code></td>
+      </tr>
+            <tr>
+        <td><code>\longleftrightarrow</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.522em;vertical-align:-0.011em;"></span><span class="mrel">⟷</span></span></span></span></td>
+        <td><code>arrow.l.r.long</code></td>
+        <td><code>&lt;--&gt;</code></td>
+      </tr>
+            <tr>
+        <td><code>\Longleftarrow</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.549em;vertical-align:-0.024em;"></span><span class="mrel">⟸</span></span></span></span></td>
+        <td><code>arrow.l.double.long</code></td>
+        <td><code>&lt;==</code></td>
+      </tr>
+            <tr>
+        <td><code>\Longrightarrow</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.549em;vertical-align:-0.024em;"></span><span class="mrel">⟹</span></span></span></span></td>
+        <td><code>arrow.r.double.long</code></td>
+        <td><code>==&gt;</code></td>
+      </tr>
+            <tr>
+        <td><code>\Longleftrightarrow</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.549em;vertical-align:-0.024em;"></span><span class="mrel">⟺</span></span></span></span></td>
+        <td><code>arrow.l.r.double.long</code></td>
+        <td><code>&lt;==&gt;</code></td>
+      </tr>
+            <tr>
+        <td><code>\longmapsto</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.522em;vertical-align:-0.011em;"></span><span class="mrel">⟼</span></span></span></span></td>
+        <td><code>arrow.r.long.bar</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\hookrightarrow</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.522em;vertical-align:-0.011em;"></span><span class="mrel">↪</span></span></span></span></td>
+        <td><code>arrow.r.hook</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\rightharpoonup</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">⇀</span></span></span></span></td>
+        <td><code>harpoon.rt</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\rightharpoondown</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">⇁</span></span></span></span></td>
+        <td><code>harpoon.rb</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\iff</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.549em;vertical-align:-0.024em;"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">⟺</span><span class="mspace" style="margin-right:0.2778em;"></span></span></span></span></td>
+        <td><code>arrow.l.r.double.long</code></td>
+        <td><code>&lt;==&gt;</code></td>
+      </tr>
+            <tr>
+        <td><code>\implies</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.549em;vertical-align:-0.024em;"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">⟹</span><span class="mspace" style="margin-right:0.2778em;"></span></span></span></span></td>
+        <td><code>arrow.r.double.long</code></td>
+        <td><code>==&gt;</code></td>
+      </tr>
+            <tr>
+        <td><code>\uparrow</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mrel">↑</span></span></span></span></td>
+        <td><code>arrow.t</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\downarrow</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mrel">↓</span></span></span></span></td>
+        <td><code>arrow.b</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\updownarrow</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mrel">↕</span></span></span></span></td>
+        <td><code>arrow.t.b</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\Uparrow</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mrel">⇑</span></span></span></span></td>
+        <td><code>arrow.t.double</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\Downarrow</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mrel">⇓</span></span></span></span></td>
+        <td><code>arrow.b.double</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\Updownarrow</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mrel">⇕</span></span></span></span></td>
+        <td><code>arrow.t.b.double</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\nearrow</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mrel">↗</span></span></span></span></td>
+        <td><code>arrow.tr</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\searrow</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mrel">↘</span></span></span></span></td>
+        <td><code>arrow.br</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\swarrow</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mrel">↙</span></span></span></span></td>
+        <td><code>arrow.bl</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\nwarrow</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mrel">↖</span></span></span></span></td>
+        <td><code>arrow.tl</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\leadsto</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3779em;"></span><span class="mrel amsrm">⇝</span></span></span></span></td>
+        <td><code>arrow.squiggly</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\leftleftarrows</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8558em;vertical-align:-0.1808em;"></span><span class="mrel amsrm">⇇</span></span></span></span></td>
+        <td><code>arrows.ll</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\rightrightarrows</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8558em;vertical-align:-0.1808em;"></span><span class="mrel amsrm">⇉</span></span></span></span></td>
+        <td><code>arrows.rr</code></td>
+        <td><code></code></td>
+      </tr>
           </tbody>
   </table>
 
@@ -395,146 +597,831 @@ m525.8 178.2c0-86.4-86.8-215.4-525.7-215.4-437.9 0-524.7 129-524.7 215.4 0
   <h2 id="misecllaneous-symbols">Miscellaneous Symbols</h2>
   <table class="h-table">
     <thead>
-      <tr><th>LaTeX</th><th>Preview</th><th>Typst</th></tr>
+      <tr><th>LaTeX</th><th>Preview</th><th>Typst</th><th>Typst Shorthand</th></tr>
     </thead>
     <tbody>
-            <tr><td><code>\Cap</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5499em;"></span><span class="mord amsrm">⋒</span></span></span></span></td><td><code>sect.double</code></td></tr>
-            <tr><td><code>\Cup</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5499em;"></span><span class="mord amsrm">⋓</span></span></span></span></td><td><code>union.double</code></td></tr>
-            <tr><td><code>\Join</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.51em;vertical-align:-0.005em;"></span><span class="mrel">⋈</span></span></span></span></td><td><code>join</code></td></tr>
-            <tr><td><code>\aleph</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">ℵ</span></span></span></span></td><td><code>alef</code></td></tr>
-            <tr><td><code>\angle</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6922em;"></span><span class="mord">∠</span></span></span></span></td><td><code>angle</code></td></tr>
-            <tr><td><code>\approx</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4831em;"></span><span class="mrel">≈</span></span></span></span></td><td><code>approx</code></td></tr>
-            <tr><td><code>\approxeq</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6633em;vertical-align:-0.0817em;"></span><span class="mrel amsrm">≊</span></span></span></span></td><td><code>approx.eq</code></td></tr>
-            <tr><td><code>\ast</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4653em;"></span><span class="mord">∗</span></span></span></span></td><td><code>ast</code></td></tr>
-            <tr><td><code>\bigcap</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">⋂</span></span></span></span></td><td><code>sect.big</code></td></tr>
-            <tr><td><code>\bigcirc</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">◯</span></span></span></span></td><td><code>circle.big</code></td></tr>
-            <tr><td><code>\bigcup</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">⋃</span></span></span></span></td><td><code>union.big</code></td></tr>
-            <tr><td><code>\bigodot</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">⨀</span></span></span></span></td><td><code>dot.circle.big</code></td></tr>
-            <tr><td><code>\bigoplus</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">⨁</span></span></span></span></td><td><code>xor.big</code></td></tr>
-            <tr><td><code>\bigotimes</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">⨂</span></span></span></span></td><td><code>times.circle.big</code></td></tr>
-            <tr><td><code>\bigsqcup</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">⨆</span></span></span></span></td><td><code>union.sq.big</code></td></tr>
-            <tr><td><code>\bigtriangledown</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">▽</span></span></span></span></td><td><code>triangle.b</code></td></tr>
-            <tr><td><code>\bigtriangleup</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">△</span></span></span></span></td><td><code>triangle.t</code></td></tr>
-            <tr><td><code>\biguplus</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">⨄</span></span></span></span></td><td><code>union.plus.big</code></td></tr>
-            <tr><td><code>\bigvee</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">⋁</span></span></span></span></td><td><code>or.big</code></td></tr>
-            <tr><td><code>\bigwedge</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">⋀</span></span></span></span></td><td><code>and.big</code></td></tr>
-            <tr><td><code>\bullet</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4445em;"></span><span class="mord">∙</span></span></span></span></td><td><code>bullet</code></td></tr>
-            <tr><td><code>\cap</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5556em;"></span><span class="mord">∩</span></span></span></span></td><td><code>sect</code></td></tr>
-            <tr><td><code>\cdot</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4445em;"></span><span class="mord">⋅</span></span></span></span></td><td><code>dot.op</code></td></tr>
-            <tr><td><code>\cdots</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.313em;"></span><span class="minner">⋯</span></span></span></span></td><td><code>dots.c</code></td></tr>
-            <tr><td><code>\checkmark</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6922em;"></span><span class="mord amsrm">✓</span></span></span></span></td><td><code>checkmark</code></td></tr>
-            <tr><td><code>\circ</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4445em;"></span><span class="mord">∘</span></span></span></span></td><td><code>circle.small</code></td></tr>
-            <tr><td><code>\colon</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mspace nobreak"></span><span class="mspace" style="margin-right:0.1111em;"></span><span class="mpunct"></span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mrel">:</span></span><span class="mspace" style="margin-right:0.3333em;"></span></span></span></span></td><td><code>colon</code></td></tr>
-            <tr><td><code>\cong</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.589em;"></span><span class="mrel">≅</span></span></span></span></td><td><code>tilde.equiv</code></td></tr>
-            <tr><td><code>\coprod</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">∐</span></span></span></span></td><td><code>product.co</code></td></tr>
-            <tr><td><code>\cup</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5556em;"></span><span class="mord">∪</span></span></span></span></td><td><code>union</code></td></tr>
-            <tr><td><code>\curlyvee</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5499em;"></span><span class="mord amsrm">⋎</span></span></span></span></td><td><code>or.curly</code></td></tr>
-            <tr><td><code>\curlywedge</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5499em;"></span><span class="mord amsrm">⋏</span></span></span></span></td><td><code>and.curly</code></td></tr>
-            <tr><td><code>\dagger</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">†</span></span></span></span></td><td><code>dagger</code></td></tr>
-            <tr><td><code>\dashv</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mrel">⊣</span></span></span></span></td><td><code>tack.l</code></td></tr>
-            <tr><td><code>\ddagger</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">‡</span></span></span></span></td><td><code>dagger.double</code></td></tr>
-            <tr><td><code>\ddots</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.823em;"></span><span class="minner">⋱</span></span></span></span></td><td><code>dots.down</code></td></tr>
-            <tr><td><code>\diamond</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4445em;"></span><span class="mord">⋄</span></span></span></span></td><td><code>diamond</code></td></tr>
-            <tr><td><code>\div</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">÷</span></span></span></span></td><td><code>div</code></td></tr>
-            <tr><td><code>\divideontimes</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6633em;vertical-align:-0.0817em;"></span><span class="mord amsrm">⋇</span></span></span></span></td><td><code>times.div</code></td></tr>
-            <tr><td><code>\dotplus</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7742em;vertical-align:-0.082em;"></span><span class="mord amsrm">∔</span></span></span></span></td><td><code>plus.dot</code></td></tr>
-            <tr><td><code>\ell</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">ℓ</span></span></span></span></td><td><code>ell</code></td></tr>
-            <tr><td><code>\emptyset</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">∅</span></span></span></span></td><td><code>nothing</code></td></tr>
-            <tr><td><code>\equiv</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4637em;"></span><span class="mrel">≡</span></span></span></span></td><td><code>equiv</code></td></tr>
-            <tr><td><code>\exists</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">∃</span></span></span></span></td><td><code>exists</code></td></tr>
-            <tr><td><code>\forall</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">∀</span></span></span></span></td><td><code>forall</code></td></tr>
-            <tr><td><code>\ge</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≥</span></span></span></span></td><td><code>gt.eq</code></td></tr>
-            <tr><td><code>\geq</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≥</span></span></span></span></td><td><code>gt.eq</code></td></tr>
-            <tr><td><code>\geqslant</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7733em;vertical-align:-0.1367em;"></span><span class="mrel amsrm">⩾</span></span></span></span></td><td><code>gt.eq.slant</code></td></tr>
-            <tr><td><code>\gg</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">≫</span></span></span></span></td><td><code>gt.double</code></td></tr>
-            <tr><td><code>\hbar</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord">ℏ</span></span></span></span></td><td><code>planck.reduce</code></td></tr>
-            <tr><td><code>\imath</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal"></span></span></span></span></td><td><code>dotless.i</code></td></tr>
-            <tr><td><code>\infty</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord">∞</span></span></span></span></td><td><code>infinity</code></td></tr>
-            <tr><td><code>\intercal</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord amsrm">⊺</span></span></span></span></td><td><code>top</code></td></tr>
-            <tr><td><code>\jmath</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal"></span></span></span></span></td><td><code>dotless.j</code></td></tr>
-            <tr><td><code>\land</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5556em;"></span><span class="mord">∧</span></span></span></span></td><td><code>and</code></td></tr>
-            <tr><td><code>\langle</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⟨</span></span></span></span></td><td><code>angle.l</code></td></tr>
-            <tr><td><code>\lbrace</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span></span></span></span></td><td><code>brace.l</code></td></tr>
-            <tr><td><code>\lbrack</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span></span></span></span></td><td><code>bracket.l</code></td></tr>
-            <tr><td><code>\ldots</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.123em;"></span><span class="minner">…</span></span></span></span></td><td><code>dots.l</code></td></tr>
-            <tr><td><code>\le</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≤</span></span></span></span></td><td><code>lt.eq</code></td></tr>
-            <tr><td><code>\leftthreetimes</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6922em;"></span><span class="mord amsrm">⋋</span></span></span></span></td><td><code>times.three.l</code></td></tr>
-            <tr><td><code>\leq</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≤</span></span></span></span></td><td><code>lt.eq</code></td></tr>
-            <tr><td><code>\leqslant</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7733em;vertical-align:-0.1367em;"></span><span class="mrel amsrm">⩽</span></span></span></span></td><td><code>lt.eq.slant</code></td></tr>
-            <tr><td><code>\lhd</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.585em;vertical-align:-0.0352em;"></span><span class="mord amsrm">⊲</span></span></span></span></td><td><code>triangle.l</code></td></tr>
-            <tr><td><code>\ll</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">≪</span></span></span></span></td><td><code>lt.double</code></td></tr>
-            <tr><td><code>\ltimes</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6633em;vertical-align:-0.0817em;"></span><span class="mord amsrm">⋉</span></span></span></span></td><td><code>times.l</code></td></tr>
-            <tr><td><code>\measuredangle</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6922em;"></span><span class="mord amsrm">∡</span></span></span></span></td><td><code>angle.arc</code></td></tr>
-            <tr><td><code>\mid</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mrel">∣</span></span></span></span></td><td><code>divides</code></td></tr>
-            <tr><td><code>\models</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.999em;vertical-align:-0.249em;"></span><span class="mrel">⊨</span></span></span></span></td><td><code>models</code></td></tr>
-            <tr><td><code>\mp</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">∓</span></span></span></span></td><td><code>minus.plus</code></td></tr>
-            <tr><td><code>\nRightarrow</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel amsrm">⇏</span></span></span></span></td><td><code>arrow.double.not</code></td></tr>
-            <tr><td><code>\nabla</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">∇</span></span></span></span></td><td><code>nabla</code></td></tr>
-            <tr><td><code>\ncong</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0966em;vertical-align:-0.3027em;"></span><span class="mrel amsrm">≆</span></span></span></span></td><td><code>tilde.nequiv</code></td></tr>
-            <tr><td><code>\ne</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mrel"><span class="mrel"><span class="mord vbox"><span class="thinbox"><span class="rlap"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="inner"><span class="mord"><span class="mrel"></span></span></span><span class="fix"></span></span></span></span></span><span class="mrel">=</span></span></span></span></span></td><td><code>eq.not</code></td></tr>
-            <tr><td><code>\neg</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord">¬</span></span></span></span></td><td><code>not</code></td></tr>
-            <tr><td><code>\neq</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mrel"><span class="mrel"><span class="mord vbox"><span class="thinbox"><span class="rlap"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="inner"><span class="mord"><span class="mrel"></span></span></span><span class="fix"></span></span></span></span></span><span class="mrel">=</span></span></span></span></span></td><td><code>eq.not</code></td></tr>
-            <tr><td><code>\nexists</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord amsrm">∄</span></span></span></span></td><td><code>exists.not</code></td></tr>
-            <tr><td><code>\ngeq</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0966em;vertical-align:-0.3027em;"></span><span class="mrel amsrm">≱</span></span></span></span></td><td><code>gt.eq.not</code></td></tr>
-            <tr><td><code>\ni</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">∋</span></span></span></span></td><td><code>in.rev</code></td></tr>
-            <tr><td><code>\nleftarrow</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel amsrm">↚</span></span></span></span></td><td><code>arrow.l.not</code></td></tr>
-            <tr><td><code>\nleq</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0966em;vertical-align:-0.3027em;"></span><span class="mrel amsrm">≰</span></span></span></span></td><td><code>lt.eq.not</code></td></tr>
-            <tr><td><code>\nparallel</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9925em;vertical-align:-0.2514em;"></span><span class="mrel amsrm">∦</span></span></span></span></td><td><code>parallel.not</code></td></tr>
-            <tr><td><code>\nmid</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9925em;vertical-align:-0.2514em;"></span><span class="mrel amsrm">∤</span></span></span></span></td><td><code>divides.not</code></td></tr>
-            <tr><td><code>\notin</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mrel"><span class="mord"><span class="mrel">∈</span></span><span class="mord vbox"><span class="thinbox"><span class="llap"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="inner"><span class="mord"><span class="mord">/</span><span class="mspace" style="margin-right:0.0556em;"></span></span></span><span class="fix"></span></span></span></span></span></span></span></span></td><td><code>in.not</code></td></tr>
-            <tr><td><code>\nrightarrow</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel amsrm">↛</span></span></span></span></td><td><code>arrow.not</code></td></tr>
-            <tr><td><code>\nsim</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel amsrm">≁</span></span></span></span></td><td><code>tilde.not</code></td></tr>
-            <tr><td><code>\nsubseteq</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0966em;vertical-align:-0.3027em;"></span><span class="mrel amsrm">⊈</span></span></span></span></td><td><code>subset.eq.not</code></td></tr>
-            <tr><td><code>\ntriangleleft</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9115em;vertical-align:-0.2058em;"></span><span class="mrel amsrm">⋪</span></span></span></span></td><td><code>lt.tri.not</code></td></tr>
-            <tr><td><code>\ntriangleright</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9115em;vertical-align:-0.2058em;"></span><span class="mrel amsrm">⋫</span></span></span></span></td><td><code>gt.tri.not</code></td></tr>
-            <tr><td><code>\odot</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">⊙</span></span></span></span></td><td><code>dot.circle</code></td></tr>
-            <tr><td><code>\ominus</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">⊖</span></span></span></span></td><td><code>minus.circle</code></td></tr>
-            <tr><td><code>\oplus</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">⊕</span></span></span></span></td><td><code>xor</code></td></tr>
-            <tr><td><code>\otimes</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">⊗</span></span></span></span></td><td><code>times.circle</code></td></tr>
-            <tr><td><code>\parallel</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mrel">∥</span></span></span></span></td><td><code>parallel</code></td></tr>
-            <tr><td><code>\partial</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord" style="margin-right:0.05556em;">∂</span></span></span></span></td><td><code>diff</code></td></tr>
-            <tr><td><code>\perp</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mrel">⊥</span></span></span></span></td><td><code>perp</code></td></tr>
-            <tr><td><code>\pm</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">±</span></span></span></span></td><td><code>plus.minus</code></td></tr>
-            <tr><td><code>\prec</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">≺</span></span></span></span></td><td><code>prec</code></td></tr>
-            <tr><td><code>\preceq</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">⪯</span></span></span></span></td><td><code>prec.eq</code></td></tr>
-            <tr><td><code>\prime</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5556em;"></span><span class="mord">′</span></span></span></span></td><td><code>prime</code></td></tr>
-            <tr><td><code>\prod</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">∏</span></span></span></span></td><td><code>product</code></td></tr>
-            <tr><td><code>\propto</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mrel">∝</span></span></span></span></td><td><code>prop</code></td></tr>
-            <tr><td><code>\rangle</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mclose">⟩</span></span></span></span></td><td><code>angle.r</code></td></tr>
-            <tr><td><code>\rbrace</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mclose">}</span></span></span></span></td><td><code>brace.r</code></td></tr>
-            <tr><td><code>\rbrack</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mclose">]</span></span></span></span></td><td><code>bracket.r</code></td></tr>
-            <tr><td><code>\rhd</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.585em;vertical-align:-0.0352em;"></span><span class="mord amsrm">⊳</span></span></span></span></td><td><code>triangle</code></td></tr>
-            <tr><td><code>\rightthreetimes</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6922em;"></span><span class="mord amsrm">⋌</span></span></span></span></td><td><code>times.three.r</code></td></tr>
-            <tr><td><code>\rtimes</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6633em;vertical-align:-0.0817em;"></span><span class="mord amsrm">⋊</span></span></span></span></td><td><code>times.r</code></td></tr>
-            <tr><td><code>\setminus</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∖</span></span></span></span></td><td><code>without</code></td></tr>
-            <tr><td><code>\sim</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">∼</span></span></span></span></td><td><code>tilde</code></td></tr>
-            <tr><td><code>\simeq</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4637em;"></span><span class="mrel">≃</span></span></span></span></td><td><code>tilde.eq</code></td></tr>
-            <tr><td><code>\smallsetminus</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6633em;vertical-align:-0.0817em;"></span><span class="mord amsrm">∖</span></span></span></span></td><td><code>without</code></td></tr>
-            <tr><td><code>\spadesuit</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8241em;vertical-align:-0.1296em;"></span><span class="mord">♠</span></span></span></span></td><td><code>suit.spade</code></td></tr>
-            <tr><td><code>\sqcap</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5556em;"></span><span class="mord">⊓</span></span></span></span></td><td><code>sect.sq</code></td></tr>
-            <tr><td><code>\sqcup</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5556em;"></span><span class="mord">⊔</span></span></span></span></td><td><code>union.sq</code></td></tr>
-            <tr><td><code>\sqsubseteq</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">⊑</span></span></span></span></td><td><code>subset.eq.sq</code></td></tr>
-            <tr><td><code>\sqsupseteq</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">⊒</span></span></span></span></td><td><code>supset.eq.sq</code></td></tr>
-            <tr><td><code>\star</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4653em;"></span><span class="mord">⋆</span></span></span></span></td><td><code>star</code></td></tr>
-            <tr><td><code>\subsetneq</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel amsrm">⊊</span></span></span></span></td><td><code>subset.neq</code></td></tr>
-            <tr><td><code>\succ</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">≻</span></span></span></span></td><td><code>succ</code></td></tr>
-            <tr><td><code>\succeq</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">⪰</span></span></span></span></td><td><code>succ.eq</code></td></tr>
-            <tr><td><code>\sum</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span></span></span></span></td><td><code>sum</code></td></tr>
-            <tr><td><code>\supsetneq</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel amsrm">⊋</span></span></span></span></td><td><code>supset.neq</code></td></tr>
-            <tr><td><code>\times</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">×</span></span></span></span></td><td><code>times</code></td></tr>
-            <tr><td><code>\top</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">⊤</span></span></span></span></td><td><code>top</code></td></tr>
-            <tr><td><code>\triangle</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">△</span></span></span></span></td><td><code>triangle.t</code></td></tr>
-            <tr><td><code>\triangledown</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5499em;"></span><span class="mord amsrm">▽</span></span></span></span></td><td><code>triangle.b.small</code></td></tr>
-            <tr><td><code>\triangleleft</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4653em;"></span><span class="mord">◃</span></span></span></span></td><td><code>triangle.l.small</code></td></tr>
-            <tr><td><code>\triangleright</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4653em;"></span><span class="mord">▹</span></span></span></span></td><td><code>triangle.r.small</code></td></tr>
-            <tr><td><code>\twoheadrightarrow</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5359em;vertical-align:-0.0135em;"></span><span class="mrel amsrm">↠</span></span></span></span></td><td><code>arrow.r.twohead</code></td></tr>
-            <tr><td><code>\upharpoonright</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8867em;vertical-align:-0.1944em;"></span><span class="mrel amsrm">↾</span></span></span></span></td><td><code>harpoon.tr</code></td></tr>
-            <tr><td><code>\uplus</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5556em;"></span><span class="mord">⊎</span></span></span></span></td><td><code>union.plus</code></td></tr>
-            <tr><td><code>\vdash</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mrel">⊢</span></span></span></span></td><td><code>tack.r</code></td></tr>
-            <tr><td><code>\vdots</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.03em;"></span><span class="mord"><span class="mord">⋮</span><span class="mord rule" style="border-right-width:0em;border-top-width:1.5em;bottom:0em;"></span></span></span></span></span></td><td><code>dots.v</code></td></tr>
-            <tr><td><code>\vee</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5556em;"></span><span class="mord">∨</span></span></span></span></td><td><code>or</code></td></tr>
-            <tr><td><code>\wedge</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5556em;"></span><span class="mord">∧</span></span></span></span></td><td><code>and</code></td></tr>
-            <tr><td><code>\wr</code></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">≀</span></span></span></span></td><td><code>wreath</code></td></tr>
+            <tr>
+        <td><code>\Cap</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5499em;"></span><span class="mord amsrm">⋒</span></span></span></span></td>
+        <td><code>sect.double</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\Cup</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5499em;"></span><span class="mord amsrm">⋓</span></span></span></span></td>
+        <td><code>union.double</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\Join</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.51em;vertical-align:-0.005em;"></span><span class="mrel">⋈</span></span></span></span></td>
+        <td><code>join</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\aleph</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">ℵ</span></span></span></span></td>
+        <td><code>alef</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\angle</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6922em;"></span><span class="mord">∠</span></span></span></span></td>
+        <td><code>angle</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\approx</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4831em;"></span><span class="mrel">≈</span></span></span></span></td>
+        <td><code>approx</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\approxeq</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6633em;vertical-align:-0.0817em;"></span><span class="mrel amsrm">≊</span></span></span></span></td>
+        <td><code>approx.eq</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\ast</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4653em;"></span><span class="mord">∗</span></span></span></span></td>
+        <td><code>ast</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\bigcap</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">⋂</span></span></span></span></td>
+        <td><code>sect.big</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\bigcirc</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">◯</span></span></span></span></td>
+        <td><code>circle.big</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\bigcup</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">⋃</span></span></span></span></td>
+        <td><code>union.big</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\bigodot</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">⨀</span></span></span></span></td>
+        <td><code>dot.circle.big</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\bigoplus</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">⨁</span></span></span></span></td>
+        <td><code>xor.big</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\bigotimes</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">⨂</span></span></span></span></td>
+        <td><code>times.circle.big</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\bigsqcup</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">⨆</span></span></span></span></td>
+        <td><code>union.sq.big</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\bigtriangledown</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">▽</span></span></span></span></td>
+        <td><code>triangle.b</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\bigtriangleup</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">△</span></span></span></span></td>
+        <td><code>triangle.t</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\biguplus</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">⨄</span></span></span></span></td>
+        <td><code>union.plus.big</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\bigvee</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">⋁</span></span></span></span></td>
+        <td><code>or.big</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\bigwedge</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">⋀</span></span></span></span></td>
+        <td><code>and.big</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\bullet</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4445em;"></span><span class="mord">∙</span></span></span></span></td>
+        <td><code>bullet</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\cap</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5556em;"></span><span class="mord">∩</span></span></span></span></td>
+        <td><code>sect</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\cdot</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4445em;"></span><span class="mord">⋅</span></span></span></span></td>
+        <td><code>dot.op</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\cdots</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.313em;"></span><span class="minner">⋯</span></span></span></span></td>
+        <td><code>dots.c</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\checkmark</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6922em;"></span><span class="mord amsrm">✓</span></span></span></span></td>
+        <td><code>checkmark</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\circ</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4445em;"></span><span class="mord">∘</span></span></span></span></td>
+        <td><code>circle.small</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\colon</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mspace nobreak"></span><span class="mspace" style="margin-right:0.1111em;"></span><span class="mpunct"></span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mrel">:</span></span><span class="mspace" style="margin-right:0.3333em;"></span></span></span></span></td>
+        <td><code>colon</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\cong</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.589em;"></span><span class="mrel">≅</span></span></span></span></td>
+        <td><code>tilde.equiv</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\coprod</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">∐</span></span></span></span></td>
+        <td><code>product.co</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\cup</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5556em;"></span><span class="mord">∪</span></span></span></span></td>
+        <td><code>union</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\curlyvee</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5499em;"></span><span class="mord amsrm">⋎</span></span></span></span></td>
+        <td><code>or.curly</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\curlywedge</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5499em;"></span><span class="mord amsrm">⋏</span></span></span></span></td>
+        <td><code>and.curly</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\dagger</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">†</span></span></span></span></td>
+        <td><code>dagger</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\dashv</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mrel">⊣</span></span></span></span></td>
+        <td><code>tack.l</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\ddagger</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">‡</span></span></span></span></td>
+        <td><code>dagger.double</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\ddots</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.823em;"></span><span class="minner">⋱</span></span></span></span></td>
+        <td><code>dots.down</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\diamond</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4445em;"></span><span class="mord">⋄</span></span></span></span></td>
+        <td><code>diamond</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\div</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">÷</span></span></span></span></td>
+        <td><code>div</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\divideontimes</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6633em;vertical-align:-0.0817em;"></span><span class="mord amsrm">⋇</span></span></span></span></td>
+        <td><code>times.div</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\dotplus</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7742em;vertical-align:-0.082em;"></span><span class="mord amsrm">∔</span></span></span></span></td>
+        <td><code>plus.dot</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\ell</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">ℓ</span></span></span></span></td>
+        <td><code>ell</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\emptyset</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">∅</span></span></span></span></td>
+        <td><code>nothing</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\equiv</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4637em;"></span><span class="mrel">≡</span></span></span></span></td>
+        <td><code>equiv</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\exists</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">∃</span></span></span></span></td>
+        <td><code>exists</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\forall</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">∀</span></span></span></span></td>
+        <td><code>forall</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\ge</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≥</span></span></span></span></td>
+        <td><code>gt.eq</code></td>
+        <td><code>&gt;=</code></td>
+      </tr>
+            <tr>
+        <td><code>\geq</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≥</span></span></span></span></td>
+        <td><code>gt.eq</code></td>
+        <td><code>&gt;=</code></td>
+      </tr>
+            <tr>
+        <td><code>\geqslant</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7733em;vertical-align:-0.1367em;"></span><span class="mrel amsrm">⩾</span></span></span></span></td>
+        <td><code>gt.eq.slant</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\gg</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">≫</span></span></span></span></td>
+        <td><code>gt.double</code></td>
+        <td><code>&gt;&gt;</code></td>
+      </tr>
+            <tr>
+        <td><code>\hbar</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord">ℏ</span></span></span></span></td>
+        <td><code>planck.reduce</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\imath</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal"></span></span></span></span></td>
+        <td><code>dotless.i</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\infty</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord">∞</span></span></span></span></td>
+        <td><code>infinity</code></td>
+        <td><code>oo</code></td>
+      </tr>
+            <tr>
+        <td><code>\intercal</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord amsrm">⊺</span></span></span></span></td>
+        <td><code>top</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\jmath</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal"></span></span></span></span></td>
+        <td><code>dotless.j</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\land</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5556em;"></span><span class="mord">∧</span></span></span></span></td>
+        <td><code>and</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\langle</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⟨</span></span></span></span></td>
+        <td><code>angle.l</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\lbrace</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span></span></span></span></td>
+        <td><code>brace.l</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\lbrack</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span></span></span></span></td>
+        <td><code>bracket.l</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\ldots</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.123em;"></span><span class="minner">…</span></span></span></span></td>
+        <td><code>dots.l</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\le</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≤</span></span></span></span></td>
+        <td><code>lt.eq</code></td>
+        <td><code>&lt;=</code></td>
+      </tr>
+            <tr>
+        <td><code>\leftthreetimes</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6922em;"></span><span class="mord amsrm">⋋</span></span></span></span></td>
+        <td><code>times.three.l</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\leq</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≤</span></span></span></span></td>
+        <td><code>lt.eq</code></td>
+        <td><code>&lt;=</code></td>
+      </tr>
+            <tr>
+        <td><code>\leqslant</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7733em;vertical-align:-0.1367em;"></span><span class="mrel amsrm">⩽</span></span></span></span></td>
+        <td><code>lt.eq.slant</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\lhd</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.585em;vertical-align:-0.0352em;"></span><span class="mord amsrm">⊲</span></span></span></span></td>
+        <td><code>triangle.l</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\ll</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">≪</span></span></span></span></td>
+        <td><code>lt.double</code></td>
+        <td><code>&lt;&lt;</code></td>
+      </tr>
+            <tr>
+        <td><code>\ltimes</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6633em;vertical-align:-0.0817em;"></span><span class="mord amsrm">⋉</span></span></span></span></td>
+        <td><code>times.l</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\measuredangle</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6922em;"></span><span class="mord amsrm">∡</span></span></span></span></td>
+        <td><code>angle.arc</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\mid</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mrel">∣</span></span></span></span></td>
+        <td><code>divides</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\models</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.999em;vertical-align:-0.249em;"></span><span class="mrel">⊨</span></span></span></span></td>
+        <td><code>models</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\mp</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">∓</span></span></span></span></td>
+        <td><code>minus.plus</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\nRightarrow</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel amsrm">⇏</span></span></span></span></td>
+        <td><code>arrow.double.not</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\nabla</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">∇</span></span></span></span></td>
+        <td><code>nabla</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\ncong</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0966em;vertical-align:-0.3027em;"></span><span class="mrel amsrm">≆</span></span></span></span></td>
+        <td><code>tilde.nequiv</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\ne</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mrel"><span class="mrel"><span class="mord vbox"><span class="thinbox"><span class="rlap"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="inner"><span class="mord"><span class="mrel"></span></span></span><span class="fix"></span></span></span></span></span><span class="mrel">=</span></span></span></span></span></td>
+        <td><code>eq.not</code></td>
+        <td><code>!=</code></td>
+      </tr>
+            <tr>
+        <td><code>\neg</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord">¬</span></span></span></span></td>
+        <td><code>not</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\neq</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mrel"><span class="mrel"><span class="mord vbox"><span class="thinbox"><span class="rlap"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="inner"><span class="mord"><span class="mrel"></span></span></span><span class="fix"></span></span></span></span></span><span class="mrel">=</span></span></span></span></span></td>
+        <td><code>eq.not</code></td>
+        <td><code>!=</code></td>
+      </tr>
+            <tr>
+        <td><code>\nexists</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord amsrm">∄</span></span></span></span></td>
+        <td><code>exists.not</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\ngeq</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0966em;vertical-align:-0.3027em;"></span><span class="mrel amsrm">≱</span></span></span></span></td>
+        <td><code>gt.eq.not</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\ni</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">∋</span></span></span></span></td>
+        <td><code>in.rev</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\nleftarrow</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel amsrm">↚</span></span></span></span></td>
+        <td><code>arrow.l.not</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\nleq</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0966em;vertical-align:-0.3027em;"></span><span class="mrel amsrm">≰</span></span></span></span></td>
+        <td><code>lt.eq.not</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\nparallel</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9925em;vertical-align:-0.2514em;"></span><span class="mrel amsrm">∦</span></span></span></span></td>
+        <td><code>parallel.not</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\nmid</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9925em;vertical-align:-0.2514em;"></span><span class="mrel amsrm">∤</span></span></span></span></td>
+        <td><code>divides.not</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\notin</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mrel"><span class="mord"><span class="mrel">∈</span></span><span class="mord vbox"><span class="thinbox"><span class="llap"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="inner"><span class="mord"><span class="mord">/</span><span class="mspace" style="margin-right:0.0556em;"></span></span></span><span class="fix"></span></span></span></span></span></span></span></span></td>
+        <td><code>in.not</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\nrightarrow</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel amsrm">↛</span></span></span></span></td>
+        <td><code>arrow.not</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\nsim</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel amsrm">≁</span></span></span></span></td>
+        <td><code>tilde.not</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\nsubseteq</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0966em;vertical-align:-0.3027em;"></span><span class="mrel amsrm">⊈</span></span></span></span></td>
+        <td><code>subset.eq.not</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\ntriangleleft</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9115em;vertical-align:-0.2058em;"></span><span class="mrel amsrm">⋪</span></span></span></span></td>
+        <td><code>lt.tri.not</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\ntriangleright</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9115em;vertical-align:-0.2058em;"></span><span class="mrel amsrm">⋫</span></span></span></span></td>
+        <td><code>gt.tri.not</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\odot</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">⊙</span></span></span></span></td>
+        <td><code>dot.circle</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\ominus</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">⊖</span></span></span></span></td>
+        <td><code>minus.circle</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\oplus</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">⊕</span></span></span></span></td>
+        <td><code>xor</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\otimes</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">⊗</span></span></span></span></td>
+        <td><code>times.circle</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\parallel</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mrel">∥</span></span></span></span></td>
+        <td><code>parallel</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\partial</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord" style="margin-right:0.05556em;">∂</span></span></span></span></td>
+        <td><code>diff</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\perp</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mrel">⊥</span></span></span></span></td>
+        <td><code>perp</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\pm</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">±</span></span></span></span></td>
+        <td><code>plus.minus</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\prec</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">≺</span></span></span></span></td>
+        <td><code>prec</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\preceq</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">⪯</span></span></span></span></td>
+        <td><code>prec.eq</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\prime</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5556em;"></span><span class="mord">′</span></span></span></span></td>
+        <td><code>prime</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\prod</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">∏</span></span></span></span></td>
+        <td><code>product</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\propto</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mrel">∝</span></span></span></span></td>
+        <td><code>prop</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\rangle</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mclose">⟩</span></span></span></span></td>
+        <td><code>angle.r</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\rbrace</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mclose">}</span></span></span></span></td>
+        <td><code>brace.r</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\rbrack</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mclose">]</span></span></span></span></td>
+        <td><code>bracket.r</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\rhd</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.585em;vertical-align:-0.0352em;"></span><span class="mord amsrm">⊳</span></span></span></span></td>
+        <td><code>triangle</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\rightthreetimes</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6922em;"></span><span class="mord amsrm">⋌</span></span></span></span></td>
+        <td><code>times.three.r</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\rtimes</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6633em;vertical-align:-0.0817em;"></span><span class="mord amsrm">⋊</span></span></span></span></td>
+        <td><code>times.r</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\setminus</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∖</span></span></span></span></td>
+        <td><code>without</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\sim</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">∼</span></span></span></span></td>
+        <td><code>tilde</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\simeq</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4637em;"></span><span class="mrel">≃</span></span></span></span></td>
+        <td><code>tilde.eq</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\smallsetminus</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6633em;vertical-align:-0.0817em;"></span><span class="mord amsrm">∖</span></span></span></span></td>
+        <td><code>without</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\spadesuit</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8241em;vertical-align:-0.1296em;"></span><span class="mord">♠</span></span></span></span></td>
+        <td><code>suit.spade</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\sqcap</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5556em;"></span><span class="mord">⊓</span></span></span></span></td>
+        <td><code>sect.sq</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\sqcup</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5556em;"></span><span class="mord">⊔</span></span></span></span></td>
+        <td><code>union.sq</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\sqsubseteq</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">⊑</span></span></span></span></td>
+        <td><code>subset.eq.sq</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\sqsupseteq</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">⊒</span></span></span></span></td>
+        <td><code>supset.eq.sq</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\star</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4653em;"></span><span class="mord">⋆</span></span></span></span></td>
+        <td><code>star</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\subsetneq</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel amsrm">⊊</span></span></span></span></td>
+        <td><code>subset.neq</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\succ</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">≻</span></span></span></span></td>
+        <td><code>succ</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\succeq</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">⪰</span></span></span></span></td>
+        <td><code>succ.eq</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\sum</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span></span></span></span></td>
+        <td><code>sum</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\supsetneq</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel amsrm">⊋</span></span></span></span></td>
+        <td><code>supset.neq</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\times</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">×</span></span></span></span></td>
+        <td><code>times</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\top</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">⊤</span></span></span></span></td>
+        <td><code>top</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\triangle</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">△</span></span></span></span></td>
+        <td><code>triangle.t</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\triangledown</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5499em;"></span><span class="mord amsrm">▽</span></span></span></span></td>
+        <td><code>triangle.b.small</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\triangleleft</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4653em;"></span><span class="mord">◃</span></span></span></span></td>
+        <td><code>triangle.l.small</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\triangleright</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4653em;"></span><span class="mord">▹</span></span></span></span></td>
+        <td><code>triangle.r.small</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\twoheadrightarrow</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5359em;vertical-align:-0.0135em;"></span><span class="mrel amsrm">↠</span></span></span></span></td>
+        <td><code>arrow.r.twohead</code></td>
+        <td><code>-&gt;&gt;</code></td>
+      </tr>
+            <tr>
+        <td><code>\upharpoonright</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8867em;vertical-align:-0.1944em;"></span><span class="mrel amsrm">↾</span></span></span></span></td>
+        <td><code>harpoon.tr</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\uplus</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5556em;"></span><span class="mord">⊎</span></span></span></span></td>
+        <td><code>union.plus</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\vdash</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mrel">⊢</span></span></span></span></td>
+        <td><code>tack.r</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\vdots</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.03em;"></span><span class="mord"><span class="mord">⋮</span><span class="mord rule" style="border-right-width:0em;border-top-width:1.5em;bottom:0em;"></span></span></span></span></span></td>
+        <td><code>dots.v</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\vee</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5556em;"></span><span class="mord">∨</span></span></span></span></td>
+        <td><code>or</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\wedge</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5556em;"></span><span class="mord">∧</span></span></span></span></td>
+        <td><code>and</code></td>
+        <td><code></code></td>
+      </tr>
+            <tr>
+        <td><code>\wr</code></td>
+        <td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">≀</span></span></span></span></td>
+        <td><code>wreath</code></td>
+        <td><code></code></td>
+      </tr>
           </tbody>
   </table>
 
