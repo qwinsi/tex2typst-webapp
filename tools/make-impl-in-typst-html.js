@@ -26,7 +26,7 @@ mdIt.use(markdownItMath, {
 mdIt.use(markdownItFootnote);
 
 /*
-By default, markdown-it-footnote the followin in the end
+By default, markdown-it-footnote the following in the end
 
 <hr class="footnotes-sep">
 <section class="footnotes">
@@ -58,7 +58,7 @@ function main() {
     const md_content = fs.readFileSync(md_file_path, { encoding: "utf-8" });
     let html_segment = mdIt.render(md_content);
 
-    // wrapper HTML should contain <!-- HTML_FROM_MARKDOWN --> to which pandoc output will be inserted
+    // wrapper HTML should contain <!-- HTML_FROM_MARKDOWN --> to which html output will be inserted
     const html = md_wrapper_html.replace("<!-- HTML_FROM_MARKDOWN -->", html_segment);
 
     fs.writeFileSync(dest_html_path, html);
