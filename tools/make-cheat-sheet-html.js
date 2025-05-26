@@ -6,9 +6,11 @@ import fs from 'node:fs';
 import { tex2typst, shorthandMap } from 'tex2typst';
 import katex from 'katex';
 
-// TODO: https://personal.math.ubc.ca/~cautis/tools/latexmath.html
-//       https://www.cmor-faculty.rice.edu/~heinken/latex/symbols.pdf
-//       https://typst.app/docs/reference/symbols/sym/
+// TODO:
+// () https://tug.ctan.org/info/undergradmath/undergradmath.pdf
+// () https://personal.math.ubc.ca/~cautis/tools/latexmath.html
+// () https://www.cmor-faculty.rice.edu/~heinken/latex/symbols.pdf
+// () https://typst.app/docs/reference/symbols/sym/
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

@@ -22,6 +22,11 @@
       margin-top: 2em;
     }
 
+    h3 {
+      margin: 1.5em;
+      margin-top: 1em;
+    }
+
     p {
       margin-left: 2em;
     }
@@ -172,7 +177,7 @@ ready(function() {
   tocbot.init({
     tocSelector: '.js-toc',
     contentSelector: '.js-toc-content',
-    headingSelector: 'h2, h3',
+    headingSelector: 'h2',
     hasInnerContainers: true,
   });
 });
@@ -183,7 +188,7 @@ ready(function() {
     <a href="https://github.com/qwinsi/tex2typst-webapp" target="_blank">Source on Github</a>
   </nav>
 
-  <h1>LaTeX-to-typst Cheat Sheet</h1>
+  <h1>LaTeX-to-Typst Cheat Sheet</h1>
 
   <div style="display: flex;">
   <aside>
@@ -210,7 +215,8 @@ ready(function() {
 
 
 <main class="js-toc-content">
-  <h2 id="lowercase-greek-letters">Lowercase Greek Letters</h2>
+  <h2 id="greek-letters">Greek Letters</h2>
+  <h3 id="lowercase-greek-letters">Lowercase Greek Letters</h2>
   <table class="h-table">
     <thead>
       <tr><th>LaTeX</th><th>Preview</th><th>Typst</th></tr>
@@ -222,7 +228,7 @@ ready(function() {
     </tbody>
   </table>
 
-  <h2 id="uppercase-greek-letters">Uppercase Greek Letters</h2>
+  <h3 id="uppercase-greek-letters">Uppercase Greek Letters</h2>
   <table class="h-table">
     <thead>
       <tr><th>LaTeX</th><th>Preview</th><th>Typst</th></tr>
@@ -233,7 +239,6 @@ ready(function() {
       {{/each}}
     </tbody>
   </table>
-
 
   <h2 id="integral">Integral</h2>
   <table class="v-table">
