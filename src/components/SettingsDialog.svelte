@@ -123,7 +123,7 @@ function resetToDefault() {
   -->
 </dialog>
 
-<style scoped>
+<style>
 a {
   color: #0000EE;
   text-decoration: underline;
