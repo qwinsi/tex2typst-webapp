@@ -7,6 +7,7 @@ import { tex2typst, shorthandMap } from 'tex2typst';
 import katex from 'katex';
 
 // TODO:
+// () https://github.com/siefkenj/latex-parser/blob/master/table-generation/data/katex-support-table.md
 // () https://tug.ctan.org/info/undergradmath/undergradmath.pdf
 // () https://personal.math.ubc.ca/~cautis/tools/latexmath.html
 // () https://www.cmor-faculty.rice.edu/~heinken/latex/symbols.pdf
