@@ -56,9 +56,9 @@ x_1^{n-1} & x_2^{n-1} & \dots & x_n^{n-1}
 \end{matrix}
 \right|
 = \prod_{1 \leq i < j \leq n} (x_j - x_i)`,
-    // ReLu function
+    // ReLU function
     String.raw`\operatorname{ReLU}(x) = \begin{cases}
-x & \text{if } x < 0 \\
+x & \text{if } x > 0 \\
 0 & \text{if } x \leq 0
 \end{cases}`,
 ];
@@ -89,7 +89,7 @@ x_1^2, x_2^2, dots.h, x_n^2;
 dots.v, dots.v, dots.down, dots.v;
 x_1^(n - 1), x_2^(n - 1), dots.h, x_n^(n - 1))
 = product_(1 <= i < j <= n)(x_j - x_i)`,
-    String.raw`op("ReLU")(x) = cases(x & "if " x < 0,
+    String.raw`op("ReLU")(x) = cases(x & "if " x > 0,
 0 & "if " x <= 0)`,
 ];
 
