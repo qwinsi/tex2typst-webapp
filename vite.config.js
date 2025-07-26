@@ -5,7 +5,7 @@ import { svelte } from '@sveltejs/vite-plugin-svelte'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/tex2typst-webapp/',
+  base: './',
   plugins: [
     svelte(),
   ],

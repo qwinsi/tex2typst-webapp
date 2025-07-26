@@ -18,11 +18,7 @@
     <script type="module" src="/src/main.js"></script>
     <script>
       if ('serviceWorker' in navigator) {
-          let pathName = window.location.pathname;
-          if(pathName.endsWith('index.html')) {
-              pathName = pathName.substring(0, pathName.length - 10);
-          }
-          navigator.serviceWorker.register(pathName + "sw.js");
+          navigator.serviceWorker.register("./sw.js");
       }
      </script>
   </body>
