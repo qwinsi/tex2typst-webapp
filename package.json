@@ -25,7 +25,6 @@
     "@svelte-put/preprocess-inline-svg": "^2.1.4",
     "@sveltejs/vite-plugin-svelte": "3.1.1",
     "autoprefixer": "^10.4.19",
-    "cross-env": "^7.0.3",
     "esbuild": "^0.25.2",
     "eslint": "^8.57.0",
     "gh-pages": "^6.1.1",
