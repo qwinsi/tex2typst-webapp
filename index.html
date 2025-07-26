@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="manifest" href="/tex2typst-webapp/manifest.json">
-    <link rel="icon" href="/tex2typst-webapp/favicon.png">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="icon" href="./favicon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" crossorigin="anonymous">
     <title>tex2typst Web App - Conversion between LaTeX math code and Typst</title>
-    <script type="module" crossorigin src="/tex2typst-webapp/main.js"></script>
-    <link rel="stylesheet" crossorigin href="/tex2typst-webapp/main.css">
+    <script type="module" crossorigin src="./main.js"></script>
+    <link rel="stylesheet" crossorigin href="./main.css">
   </head>
   <body>
     <noscript>
@@ -19,11 +19,7 @@
     <div id="app"></div>
     <script>
       if ('serviceWorker' in navigator) {
-          let pathName = window.location.pathname;
-          if(pathName.endsWith('index.html')) {
-              pathName = pathName.substring(0, pathName.length - 10);
-          }
-          navigator.serviceWorker.register(pathName + "sw.js");
+          navigator.serviceWorker.register("./sw.js");
       }
      </script>
   </body>
