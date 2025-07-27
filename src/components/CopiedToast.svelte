@@ -1,6 +1,6 @@
 <!-- Code from https://stackoverflow.com/questions/71608124/ -->
 <script>
-let { msg = "Copied", style } = $props();;
+let { msg = "Copied", style } = $props();
 let visible = $state(false);
 
 
