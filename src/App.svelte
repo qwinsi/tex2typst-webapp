@@ -9,20 +9,21 @@ import { getRandomFormula } from './random'
 import { DEFAULT_SETTINGS } from './default-settings';
 import { version as APP_VERSION } from '../package.json';
 import butterup from 'butteruptoasts';
+import SwapIcon from './assets/SwapIcon.svelte';
 // have to do this because butteruptoasts places CSS in wrong place
 import '../node_modules/butteruptoasts/src/butterup.css';
 
-let directionToTypst = true;
+let directionToTypst = $state(true);
 
-let settings = Object.assign({}, DEFAULT_SETTINGS);
+let settings = $state(DEFAULT_SETTINGS);
 
-let inputStr = '';
+let inputStr = $state('');
 
 function get_output(inputStr, settings) {
   try {
     const tex = inputStr;
     if(directionToTypst) {
-      const typst = convertTex2Typst(tex, { 
+      const typst = convertTex2Typst(tex, {
         preferShorthands: settings.preferShorthands,
         fracToSlash: settings.texFracToTypstSlash,
         inftyToOo: settings.texInftyToTypstOo,
@@ -85,7 +86,7 @@ function get_output(inputStr, settings) {
   }
 }
 
-$: output = get_output(inputStr, settings);
+const output = $derived(get_output(inputStr, settings));
 
 let inputArea = null;
 let copiedToast = null;
@@ -125,13 +126,13 @@ function get_rendered_html(directionToTypst, inputStr, output, settings) {
   }
 }
 
-$: renderedFormulaHtml = get_rendered_html(directionToTypst, inputStr, output, settings);
+const renderedFormulaHtml = $derived(get_rendered_html(directionToTypst, inputStr, output, settings));
 
 
 
 function handleNewSettings(data) {
-  settings = data.detail;
-  localStorage.setItem('settings', JSON.stringify(data.detail));
+  settings = data;
+  localStorage.setItem('settings', JSON.stringify(data));
 }
 
 function handleFlipDirection() {
@@ -202,7 +203,7 @@ To use new version, close all tabs of this website then open again.
           <img class="inline w-9 h-9" src="./icons/github-mark-white.svg" alt="Github logo"/>
           <span class="text-lg ml-2 mr-4 hide-on-mobile">Open-source</span>
         </a>
-        <button class="flex items-center font-medium p-2 mr-2 hover:bg-gray-900" on:click={handleSettingsClick}>
+        <button class="flex items-center font-medium p-2 mr-2 hover:bg-gray-900" onclick={handleSettingsClick}>
           <img class="inline w-9 h-9" src="./icons/settings-icon.svg" alt="Settings icon" />
           <span class="text-lg ml-2 mr-4 hide-on-mobile">Settings</span>
         </button>
@@ -218,26 +219,26 @@ To use new version, close all tabs of this website then open again.
           <span class="text-app-light-black p-2">{ directionToTypst? "LaTeX": "Typst" }</span>
           <div>
             <button class="text-app-blue p-2 mr-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
-              on:click={() => {inputStr = getRandomFormula(directionToTypst);}}>
+              onclick={() => {inputStr = getRandomFormula(directionToTypst);}}>
               <span class="hide-on-mobile">Random</span>
               <span class="hide-on-desktop">R</span>
             </button>
             <button class="text-app-blue p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
-              on:click={() => {inputStr = '';}}>
+              onclick={() => {inputStr = '';}}>
               <span class="hide-on-mobile">Clear</span>
               <span class="hide-on-desktop">C</span>
             </button>
           </div>
         </div>
 
-        <button class="pl-1 pr-1 rounded-lg ml-3 mr-3 hover:bg-gray-300 active:bg-gray-400" on:click={handleFlipDirection}>
-          <svg class="inline" data-inline-src="assets/swap-icon.svg" alt="Swap icon" />
+        <button class="pl-1 pr-1 rounded-lg ml-3 mr-3 hover:bg-gray-300 active:bg-gray-400" onclick={handleFlipDirection}>
+          <SwapIcon />
         </button>
 
         <div class="flex-1 flex-1 flex justify-between relative">
           <span class="text-app-light-black p-2">{ directionToTypst? "Typst": "LaTeX" }</span>
             <button class="text-app-blue p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
-                    on:click={sendToClipboard}>Copy</button>
+                    onclick={sendToClipboard}>Copy</button>
             <CopiedToast style="position: absolute; top: -55px; right: -4px;" bind:this={copiedToast} msg="Copied!" />
         </div>
       </div>
@@ -276,7 +277,7 @@ To use new version, close all tabs of this website then open again.
           target="_blank">tex2typst.js</a></p>
     </footer>
   </div>
-  <SettingsDialog bind:this={settingsDialog} on:newSettings={handleNewSettings} initial={settings} />
+  <SettingsDialog bind:this={settingsDialog} newSettingsHandler={handleNewSettings} initial={settings} />
 
 <style>
 .bg-app {

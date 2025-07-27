@@ -1,11 +1,15 @@
 <script>
-import { createEventDispatcher } from 'svelte';
 import ToggleSwitch from './ToggleSwitch.svelte';
 import { version as APP_VERSION } from '../../package.json';
 import { version as TEX2TYPST_VERSION } from '../../node_modules/tex2typst/package.json';
 import { DEFAULT_SETTINGS } from '../default-settings';
 
-export let initial = Object.assign({}, DEFAULT_SETTINGS);
+
+let {
+  initial = DEFAULT_SETTINGS,
+  newSettingsHandler
+} = $props();
+
 
 let switchShowPreview = null;
 let switchDisplayStyle = null;
@@ -16,7 +20,6 @@ let switchtexInftyToTypstOo = null;
 
 let selfRef = null;
 
-const dispatch = createEventDispatcher();
 
 export function open() {
   selfRef.showModal();
@@ -30,7 +33,7 @@ function close() {
   const texFracToTypstSlash = switchTexFracToTypstSlash.checked();
   const texInftyToTypstOo = switchtexInftyToTypstOo.checked();
   selfRef.close();
-  dispatch('newSettings', { 
+  newSettingsHandler({
     showPreview, displayStyle, rememberDirection,
     preferShorthands,
     texFracToTypstSlash, texInftyToTypstOo
@@ -50,7 +53,7 @@ function resetToDefault() {
 <dialog bind:this={selfRef} class="min-h-80 min-w-80 bg-white rounded-lg shadow-lg">
   <div class="flex justify-between items-center p-4">
     <h2>Settings</h2>
-    <button class="text-xl" on:click={close}>✕</button>
+    <button class="text-xl" onclick={close}>✕</button>
   </div>
   <div class="flex flex-col pl-4 pr-4">
     <fieldset class="flex-1 flex flex-col border border-gray-300 p-4 mb-2">
@@ -62,7 +65,7 @@ function resetToDefault() {
       <div class="flex-1 flex justify-between">
         <span>
           Display Style
-          <!-- 
+          <!--
             Browsers redner the '\n' in <span titie="A \n B"> as a space, so we need to use '&#10;' instead.
             But the Svelte compiler will replace '&#10;' with a space in the final output,
             so here we use @html to prevent the compiler from making any modifications.
@@ -103,7 +106,7 @@ function resetToDefault() {
     </fieldset>
   </div>
   <div class="flex justify-end p-2">
-    <button class="bg-gray-300 text-black px-2 py-1 rounded mr-6" on:click={resetToDefault}><span>&olarr;</span> Reset to Default</button>
+    <button class="bg-gray-300 text-black px-2 py-1 rounded mr-6" onclick={resetToDefault}><span>&olarr;</span> Reset to Default</button>
   </div>
   <div class="flex-1 flex justify-between ml-6 mr-6 text-gray-500">
     <span>tex2typst Web App version</span> <span>{ APP_VERSION }</span>

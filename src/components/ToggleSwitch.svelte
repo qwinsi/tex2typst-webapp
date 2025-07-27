@@ -1,7 +1,7 @@
 <!-- Code from https://www.w3schools.com/howto/howto_css_switch.asp -->
 
 <script>
-export let initial = false;
+let { initial = false} = $props();
 
 let checkbox = null;
 
@@ -28,7 +28,7 @@ export function setChecked(value) {
   height: 34px;
 }
 
-.switch input { 
+.switch input {
   opacity: 0;
   width: 0;
   height: 0;

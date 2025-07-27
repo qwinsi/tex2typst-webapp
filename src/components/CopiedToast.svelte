@@ -1,8 +1,7 @@
 <!-- Code from https://stackoverflow.com/questions/71608124/ -->
 <script>
-export let msg = "Copied!";
-export let style = "";
-let visible = false;
+let { msg = "Copied", style } = $props();;
+let visible = $state(false);
 
 
 const LIFETIME = 1300; // milliseconds
@@ -17,9 +16,9 @@ export function trigger() {
 }
 
 </script>
-    
+
 <div style={style} class={visible? 'snackbar show': 'snackbar hide'}>{ msg }</div>
-    
+
 <style>
 .snackbar {
     color: #fff;
