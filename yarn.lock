@@ -2301,10 +2301,10 @@ tailwindcss@^3.4.4:
     resolve "^1.22.2"
     sucrase "^3.32.0"
 
-tex2typst@^0.3.9:
-  version "0.3.9"
-  resolved "https://registry.yarnpkg.com/tex2typst/-/tex2typst-0.3.9.tgz#62661443be8949cac4d294c6c6208b05f8f14517"
-  integrity sha512-UZJS2C1ZGtfBsfBKSyDTmuzyGm8nswRmMJ25ZsejWJItlKkZSmJUZkFLen5TEDOL4LSX7LHyb2DVLTzuUWkS0A==
+tex2typst@^0.3.10:
+  version "0.3.10"
+  resolved "https://registry.yarnpkg.com/tex2typst/-/tex2typst-0.3.10.tgz#4db0efe6e50f637c07e7d0fcaa1aab1684093f1a"
+  integrity sha512-7D4JINxCDu64okcuQhm5mzOk7Lq80Q1AX4VyYnFMccnBq6IQehFJNUF2djpqr1OLqaXJbZZ2Hja2r7D1v6APbQ==
 
 text-table@^0.2.0:
   version "0.2.0"

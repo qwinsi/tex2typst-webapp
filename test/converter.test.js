@@ -4,7 +4,7 @@ import { tex2typst } from 'tex2typst';
 import { EXAMPLE_FORMULAS_LATEX  } from '../src/random.js';
 
 
-const TYPST_EXAMPLE_FORMULAS = [
+const EXPECTED_TYPST_FORMULAS = [
     'e eq.def lim_(n -> infinity)(1 + 1/n)^n',
     'product_p 1/(1 - p^(-s)) = sum_(n = 1)^infinity 1/n^s',
     'a^(p - 1) equiv 1 mod p',
@@ -61,7 +61,7 @@ describe('tex2typst', function () {
         for (let i = 0; i < EXAMPLE_FORMULAS_LATEX.length; i++) {
             const formula = EXAMPLE_FORMULAS_LATEX[i];
             const res = convertTex2Typst(formula);
-            assert.strictEqual(res, TYPST_EXAMPLE_FORMULAS[i]);
+            assert.strictEqual(res, EXPECTED_TYPST_FORMULAS[i]);
         }
     });
 });
