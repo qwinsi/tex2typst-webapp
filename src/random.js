@@ -61,6 +61,8 @@ x_1^{n-1} & x_2^{n-1} & \dots & x_n^{n-1}
 x & \text{if } x > 0 \\
 0 & \text{if } x \leq 0
 \end{cases}`,
+    // attention mechanism
+    String.raw`\operatorname{Attention}(Q, K, V) = \operatorname{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right) V`,
 ];
 
 const EXAMPLE_FORMULAS_TYPST = [
@@ -91,6 +93,7 @@ x_1^(n - 1), x_2^(n - 1), dots.h, x_n^(n - 1))
 = product_(1 <= i < j <= n)(x_j - x_i)`,
     String.raw`op("ReLU")(x) = cases(x & "if " x > 0,
 0 & "if " x <= 0)`,
+    'op("Attention")(Q, K, V) = op("softmax")((Q K^T)/sqrt(d_k)) V',
 ];
 
 let last_number = null;

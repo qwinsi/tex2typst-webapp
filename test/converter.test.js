@@ -31,7 +31,8 @@ x_1^2, x_2^2, dots.h, x_n^2;
 dots.v, dots.v, dots.down, dots.v;
 x_1^(n - 1), x_2^(n - 1), dots.h, x_n^(n - 1))
 |)
-= product_(1 lt.eq i < j lt.eq n)(x_j - x_i)`
+= product_(1 lt.eq i < j lt.eq n)(x_j - x_i)`,
+    'op("Attention")(Q, K, V) = op("softmax")((Q K^T)/sqrt(d_k)) V',
 ];
 
 describe('tex2typst', function () {
