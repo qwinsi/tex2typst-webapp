@@ -91,16 +91,13 @@ const output = $derived(get_output(inputStr, settings));
 let inputArea = null;
 let copiedToast = null;
 
-async function sendToClipboard() {
+function sendToClipboard() {
   if(inputStr === '') {
     return;
   }
-  const ok = await copyTextToClipboard(output.target);
-  if(ok) {
+  copyTextToClipboard(output.target).then(() => {
     copiedToast.trigger();
-  } else {
-    alert('Failed to copy to clipboard. Please report this issue.');
-  }
+  });
 }
 
 let settingsDialog = null;

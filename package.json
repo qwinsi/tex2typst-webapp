@@ -14,7 +14,7 @@
     "test": "npx mocha"
   },
   "dependencies": {
-    "@qwinsi/utilities-js": "^0.1.6",
+    "@qwinsi/utilities-js": "^0.1.11",
     "butteruptoasts": "^2.0.1",
     "katex": "^0.16.11",
     "svelte": "^5.35.5",
