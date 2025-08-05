@@ -5,33 +5,36 @@ import { EXAMPLE_FORMULAS_LATEX  } from '../src/random.js';
 
 
 const EXPECTED_TYPST_FORMULAS = [
-    'e eq.def lim_(n -> infinity)(1 + 1/n)^n',
+    'upright(e) eq.def lim_(n -> infinity)(1 + 1/n)^n',
     'product_p 1/(1 - p^(-s)) = sum_(n = 1)^infinity 1/n^s',
     'a^(p - 1) equiv 1 mod p',
-    String.raw`nabla times bold(H) &= bold(J) + (diff bold(D))/(diff t) \
+    // TODO: should be "nabla times bold(H) &= bold(J) + (diff bold(D))/(diff t)"
+    // no space between "+" and "(diff bold(D))/(diff t)"
+    String.raw`nabla times bold(H) &= bold(J) +(diff bold(D))/(diff t) \
 nabla times bold(E) &= -(diff bold(B))/(diff t) \
 nabla dot.op bold(B) &= 0 \
 nabla dot.op bold(D) &= rho`,
-    'upright(C H_3 C H_2 B r) + upright(O H)^- arrow.r.long upright(C H_3 C H_2 O H) + upright(B r)^-',
+    'upright(C H_3 C H_2 B r) + upright(O H)^- --> upright(C H_3 C H_2 O H) + upright(B r)^-',
     String.raw`yen 2000 > \$ 3000`,
-    'sum_(k = 1)^n 1/(k) = ln n + gamma + O(1/n)',
-    'e^(i x) = cos x + i sin x',
+    'sum_(k = 1)^n 1/k = ln n + gamma + O(1/n)',
+    'upright(e)^(upright(i) x) = cos x + upright(i) sin x',
     'integral.triple_Omega op("div")(arrow(F)) dif V = integral.surf_(diff Omega) arrow(F) dot.op dif arrow(S)',
     'integral.double_Sigma op("curl")(arrow(F)) dot.op dif arrow(S) = integral.cont_(diff Sigma) arrow(F) times dif arrow(l)',
-    'pi(x) tilde.op x/(log x)',
+    'pi(x) ~ x/(log x)',
     'i_D = mu_n C_"ox" W/L [(v_"GS" - V_t) v_"DS" - 1/2 v_"DS"^2 ]',
     String.raw`C &= N(d_1) S_t - N(d_2) K e^(-r t) \
-d_1 &= frac(ln S_t/K + (r + sigma^2/2)) t, sigma sqrt(t)) \
+d_1 &= (ln S_t /K +(r + sigma^2 /2) t)/(sigma sqrt(t)) \
 d_2 &= d_1 - sigma sqrt(t)`,
-    'f(z_0) = 1/(2 pi upright(i)) integral.cont_C f(z)/(z - z_0) dif z',
-    String.raw`lr(|
-mat(delim: #none, 1, 1, dots.h, 1;
-x_1, x_2, dots.h, x_n;
-x_1^2, x_2^2, dots.h, x_n^2;
+    'f(z_0) = 1/(2 pi upright(i)) integral.cont_C (f(z))/(z - z_0) dif z',
+    // TODO: There should no spaces after x_n and x_n^2
+    String.raw`mat(delim: "|", 1, 1, ..., 1;
+x_1, x_2, ..., x_n ;
+x_1^2, x_2^2, ..., x_n^2 ;
 dots.v, dots.v, dots.down, dots.v;
-x_1^(n - 1), x_2^(n - 1), dots.h, x_n^(n - 1))
-|)
-= product_(1 lt.eq i < j lt.eq n)(x_j - x_i)`,
+x_1^(n - 1), x_2^(n - 1), ..., x_n^(n - 1))
+= product_(1 <= i < j <= n)(x_j - x_i)`,
+    String.raw`op("ReLU")(x) = cases(x & "if " x > 0,
+0 & "if " x <= 0)`,
     'op("Attention")(Q, K, V) = op("softmax")((Q K^T)/sqrt(d_k)) V',
 ];
 

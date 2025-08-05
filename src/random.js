@@ -9,7 +9,7 @@ function getRandomInt(max) {
 
 export const EXAMPLE_FORMULAS_LATEX = [
     // base of natural logarithm
-    String.raw`e \overset{\text{def}}{=} \lim_{{n \to \infty}} \left(1 + \frac{1}{n}\right)^n`,
+    String.raw`\mathrm{e} \overset{\text{def}}{=} \lim_{{n \to \infty}} \left(1 + \frac{1}{n}\right)^n`,
     // Euler's product formula
     String.raw`\prod_{p} \frac{1}{1-p^{-s}} = \sum_{n=1}^{\infty} \frac{1}{n^s}`,
     // Fermat's little theorem
@@ -28,7 +28,7 @@ export const EXAMPLE_FORMULAS_LATEX = [
     // harmonic series
     String.raw`\sum_{k=1}^n \frac{1}{k} = \ln n + \gamma + O\left(\frac{1}{n}\right)`,
     // Euler's complex exponential formula
-    String.raw`e^{ix} = \cos x + i \sin x`,
+    String.raw`\mathrm{e}^{\mathrm{i} x} = \cos x + \mathrm{i} \sin x`,
     // Gauss's divergence theorem
     String.raw`\iiint_{\Omega} \operatorname{div}(\vec{F}) \mathrm{d}V = \oiint_{\partial \Omega} \vec{F} \cdot \mathrm{d}\vec{S}`,
     // Stokes' theorem
@@ -46,15 +46,13 @@ d_2 &= d_1 - \sigma\sqrt{t}
     // Cauchy's integral formula
     String.raw`f(z_0) = \frac{1}{2\pi \mathrm{i}} \oint_{C} \frac{f(z)}{z-z_0}\, \mathrm{d} z`,
     // determinant of a Vandermonde matrix
-    String.raw`\left|
-\begin{matrix}
+    String.raw`\begin{vmatrix}
 1 & 1 & \dots & 1 \\
 x_1 & x_2 & \dots & x_n \\
 x_1^2 & x_2^2 & \dots & x_n^2 \\
 \vdots & \vdots & \ddots & \vdots \\
 x_1^{n-1} & x_2^{n-1} & \dots & x_n^{n-1}
-\end{matrix}
-\right|
+\end{vmatrix}
 = \prod_{1 \leq i < j \leq n} (x_j - x_i)`,
     // ReLU function
     String.raw`\operatorname{ReLU}(x) = \begin{cases}
