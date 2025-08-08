@@ -1,6 +1,6 @@
 {
   "name": "tex2typst-webapp",
-  "version": "0.2.48",
+  "version": "0.2.49",
   "type": "module",
   "scripts": {
     "dev": "vite dev",
@@ -18,7 +18,7 @@
     "butteruptoasts": "^2.0.1",
     "katex": "^0.16.11",
     "svelte": "^5.35.5",
-    "tex2typst": "^0.3.11"
+    "tex2typst": "^0.3.12"
   },
   "devDependencies": {
     "@qwinsi/mdc": "^0.0.7",
