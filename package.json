@@ -15,22 +15,21 @@
   },
   "dependencies": {
     "@qwinsi/utilities-js": "^0.1.11",
+    "@tailwindcss/vite": "^4.1.11",
     "butteruptoasts": "^2.0.1",
     "katex": "^0.16.11",
     "svelte": "^5.35.5",
+    "tailwindcss": "^4.1.11",
     "tex2typst": "^0.3.12"
   },
   "devDependencies": {
-    "@qwinsi/mdc": "^0.0.7",
+    "@qwinsi/mdc": "^0.1.5",
     "@sveltejs/vite-plugin-svelte": "^5.0.0",
-    "autoprefixer": "^10.4.19",
     "esbuild": "^0.25.2",
     "eslint": "^8.57.0",
     "gh-pages": "^6.1.1",
     "mocha": "^10.6.0",
-    "postcss": "^8.4.39",
     "squirrelly": "^9.1.0",
-    "tailwindcss": "^3.4.4",
     "toml": "^3.0.0",
     "vite": "^6.0.0"
   }

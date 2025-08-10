@@ -2,12 +2,14 @@ import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
+import tailwindcss from '@tailwindcss/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   base: './',
   plugins: [
     svelte(),
+    tailwindcss(),
   ],
   resolve: {
     alias: {
@@ -22,7 +24,7 @@ export default defineConfig({
       },
       output: {
         entryFileNames: 'main.js',
-        assetFileNames: 'main.css',
+        assetFileNames: 'style.css',
         format: 'es',
       },
     }

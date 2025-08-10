@@ -7,7 +7,7 @@ const precacheResources = [
     "/",
     "/index.html",
     "/main.js",
-    "/main.css",
+    "/style.css",
     "/icons/github-mark-white.svg",
     "/icons/notebook-icon.svg",
     "/icons/settings-icon.svg",
