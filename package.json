@@ -1,12 +1,14 @@
 {
   "name": "tex2typst-webapp",
-  "version": "0.2.49",
+  "version": "0.2.50",
   "type": "module",
   "scripts": {
-    "dev": "vite dev",
+    "make:katex": "cp node_modules/katex/dist/katex.min.css public/ && cp -r node_modules/katex/dist/fonts public/",
     "make:sw": "esbuild src/sw.js --bundle --outdir=public --minify-whitespace",
     "make:html": "node tools/make-cheat-sheet-html.js && node tools/make-impl-in-typst-html.js",
-    "build": "npm run make:sw && npm run make:html && vite build",
+    "make": "npm run make:katex && npm run make:sw && npm run make:html",
+    "dev": "vite dev",
+    "build": "npm run make && vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "predeploy": "npm run build",

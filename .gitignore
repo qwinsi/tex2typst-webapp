@@ -6,4 +6,7 @@ dist/
 public/cheat-sheet.html
 public/impl-in-typst.html
 public/sw.js
+public/katex.min.css
+public/fonts/
+
 .vite-ssg-temp/

@@ -18,8 +18,7 @@ A static web App is hosted on the [Github Pages](https://qwinsi.github.io/tex2ty
 
 ```sh
 yarn install # or npm install
-npm run make:sw
-npm run make:html
+npm run make
 npm run dev
 ```
 
