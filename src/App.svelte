@@ -110,7 +110,7 @@ function handleSettingsClick() {
 function get_rendered_html(directionToTypst, inputStr, output, settings) {
   const latex = directionToTypst ? inputStr : output.target;
   if (latex === '') {
-    return '<div><span style="opacity: 0.6;">LaTeX math formula will be rendered here.</span></div>'
+    return '<div><span style="opacity: 0.6;">LaTeX math code will be rendered here.</span></div>'
   } else {
     const options = {
       macros: customTexMacros,
@@ -207,7 +207,7 @@ To use new version, close all tabs of this website then open again.
       </div>
     </nav>
     <div class="text-center text-app-light-black p-4 m-2">
-      Convert LaTeX math formula code to Typst and vice versa. All running in your browser.
+      Convert math code of LaTeX to Typst and vice versa. All runs in your browser.
     </div>
 
     <main class="flex-1 flex flex-col justify-between ml-6 mr-6 border border-gray-700 rounded-lg">
@@ -270,8 +270,7 @@ To use new version, close all tabs of this website then open again.
     </div>
 
     <footer class="theme-app text-center p-4">
-      <p class="text-white">Powered by <a href="https://github.com/qwinsi/tex2typst"
-          target="_blank">tex2typst.js</a></p>
+      <p class="text-white italic">Dedicated to Typst hobbyists with creative hearts</p>
     </footer>
   </div>
   <SettingsDialog bind:this={settingsDialog} newSettingsHandler={handleNewSettings} initial={settings} />
