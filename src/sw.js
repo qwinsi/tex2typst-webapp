@@ -16,7 +16,7 @@ const precacheResources = [
     "/impl-in-typst.html",
     "/cheat-sheet.html",
 
-    "katex.min.css",
+    "/katex.min.css",
     "/fonts/KaTeX_AMS-Regular.ttf",
     "/fonts/KaTeX_AMS-Regular.woff",
     "/fonts/KaTeX_AMS-Regular.woff2",
