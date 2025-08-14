@@ -127,6 +127,10 @@ function resetToDefault() {
 </dialog>
 
 <style>
+dialog {
+  margin: auto; /* <dialog> is centered by default. But Tailwind's CSS reset (margin: 0) breaks this default feature. */
+}
+
 a {
   color: #0000EE;
   text-decoration: underline;
