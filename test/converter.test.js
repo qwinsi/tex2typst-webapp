@@ -6,7 +6,7 @@ import { EXAMPLE_FORMULAS_LATEX  } from '../src/random.js';
 
 const EXPECTED_TYPST_FORMULAS = [
     'upright(e) eq.def lim_(n -> infinity)(1 + 1/n)^n',
-    'product_p 1/(1 - p^(-s)) = sum_(n = 1)^infinity 1/n^s',
+    'product_p 1/(1 - p^(-s)) = sum_(n = 1)^infinity 1/(n^s)',
     'a^(p - 1) equiv 1 mod p',
     // TODO: should be "nabla times bold(H) &= bold(J) + (diff bold(D))/(diff t)"
     // no space between "+" and "(diff bold(D))/(diff t)"
@@ -23,7 +23,7 @@ nabla dot.op bold(D) &= rho`,
     'pi(x) ~ x/(log x)',
     'i_D = mu_n C_"ox" W/L [(v_"GS" - V_t) v_"DS" - 1/2 v_"DS"^2 ]',
     String.raw`C &= N(d_1) S_t - N(d_2) K e^(-r t) \
-d_1 &= (ln S_t /K +(r + sigma^2 /2) t)/(sigma sqrt(t)) \
+d_1 &= (ln S_t /K +(r + (sigma^2)/2) t)/(sigma sqrt(t)) \
 d_2 &= d_1 - sigma sqrt(t)`,
     'f(z_0) = 1/(2 pi upright(i)) integral.cont_C (f(z))/(z - z_0) dif z',
     // TODO: There should no spaces after x_n and x_n^2
@@ -41,7 +41,7 @@ x_1^(n - 1), x_2^(n - 1), ..., x_n^(n - 1))
 describe('tex2typst', function () {
     it('convert case', function() {
         const input = "\\zeta(s) = \\sum_{n=1}^{\\infty}\\frac{1}{n^s}";
-        const expectedOutput = "zeta(s) = sum_(n = 1)^infinity 1/n^s";
+        const expectedOutput = "zeta(s) = sum_(n = 1)^infinity 1/(n^s)";
         assert.strictEqual(convertTex2Typst(input), expectedOutput);
     })
 

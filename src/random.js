@@ -65,7 +65,7 @@ x & \text{if } x > 0 \\
 
 const EXAMPLE_FORMULAS_TYPST = [
     'e eq.def lim_(n arrow.r infinity)(1 + 1/n)^n',
-    'product_p 1/(1 - p^(-s)) = sum_(n = 1)^infinity 1/n^s',
+    'product_p 1/(1 - p^(-s)) = sum_(n = 1)^infinity 1/(n^s)',
     'a^(p - 1) equiv 1 mod p',
     String.raw`nabla times bold(H) & = bold(J) + (diff bold(D))/(diff t) \
 nabla times bold(E) & = - (diff bold(B))/(diff t) \

@@ -2167,10 +2167,10 @@ tex2typst@^0.3.14:
   resolved "https://registry.yarnpkg.com/tex2typst/-/tex2typst-0.3.14.tgz#ce542470f51d99db3ea71b1bae3cbf143f1366bd"
   integrity sha512-44Cdj3ekzbyHGsFiOOynQKqc0IzxGzF6JElPkuAIKi7D0neNz81XEpLCUfT4uxQ3pha7KD9xDS4IGY6/uXl/gQ==
 
-tex2typst@^0.3.16:
-  version "0.3.16"
-  resolved "https://registry.yarnpkg.com/tex2typst/-/tex2typst-0.3.16.tgz#47d9d9fcd202612d567433af3f574ce33b9e86dc"
-  integrity sha512-wl5WA59k94xlU3AMzPOoJXM9n44ybxvSANmWQt8R0pZruUdcB1gKkvGnatCBK9+pGoZpgMtQhuxHLFUmmUluZw==
+tex2typst@^0.3.17:
+  version "0.3.17"
+  resolved "https://registry.yarnpkg.com/tex2typst/-/tex2typst-0.3.17.tgz#cdf2a262183d8851f1c108c6e617da39c7bd0360"
+  integrity sha512-L+k9y9BaSOAuwdpdM1BnDkqK0ndmpNFbd6K2xS8XSQuCZRZepQcK0COqcfmugXqQVgJ4Oo0HVUyH9iK0aDYx5w==
 
 text-table@^0.2.0:
   version "0.2.0"
