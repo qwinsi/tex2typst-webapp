@@ -19,7 +19,7 @@
     "@qwinsi/utilities-js": "^0.1.11",
     "@tailwindcss/vite": "^4.1.11",
     "butteruptoasts": "^2.0.1",
-    "katex": "^0.16.11",
+    "katex": "^0.16.21",
     "svelte": "^5.35.5",
     "tailwindcss": "^4.1.11",
     "tex2typst": "^0.3.17"
