@@ -30,7 +30,7 @@ export const customTexMacros = {
     "\\Pr": "\\operatorname{Pr}",
 };
 
-// @param input: string of TeX math formula code. 
+// @param input: string of TeX math formula code.
 export function convertTex2Typst(input, options = {}) {
     const opt = {
         nonStrict: true,
@@ -39,7 +39,6 @@ export function convertTex2Typst(input, options = {}) {
     };
     Object.assign(opt, options);
     let res = tex2typst(input, opt);
-    res = res.replaceAll("upright(d)", "dif"); // \mathrm{d} -> dif
     res = res.replaceAll(" thin dif", " dif");
     res = res.replaceAll('op("d")', "dif"); // \operatorname("d") -> dif
     return res;
