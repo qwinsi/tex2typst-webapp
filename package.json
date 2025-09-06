@@ -1,6 +1,6 @@
 {
   "name": "tex2typst-webapp",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "type": "module",
   "scripts": {
     "make:katex": "cp node_modules/katex/dist/katex.min.css public/ && cp -r node_modules/katex/dist/fonts public/",
@@ -22,7 +22,7 @@
     "katex": "^0.16.21",
     "svelte": "^5.35.5",
     "tailwindcss": "^4.1.11",
-    "tex2typst": "^0.3.20"
+    "tex2typst": "^0.3.21"
   },
   "devDependencies": {
     "@qwinsi/mdc": "^0.1.5",
