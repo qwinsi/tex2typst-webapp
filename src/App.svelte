@@ -215,7 +215,7 @@ To use new version, close all tabs of this website then open again.
         <div class="flex-1 flex justify-between">
           <span class="text-app-light-black p-2">{ directionToTypst? "LaTeX": "Typst" }</span>
           <div>
-            <button class="text-app-blue p-2 mr-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
+            <button class="text-app-blue mr-2 p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
               onclick={() => {inputStr = getRandomFormula(directionToTypst);}}>
               <span class="hide-on-mobile">Random</span>
               <span class="hide-on-desktop">R</span>
