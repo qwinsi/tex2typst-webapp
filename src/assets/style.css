@@ -1,2 +1,7 @@
 /* Include Tailwind. Code from https://tailwindcss.com/docs/installation/using-vite */
 @import "tailwindcss";
+
+/* Tailwind CSS clears the default cursor for buttons. This makes them back. */
+button {
+  cursor: pointer;
+}
