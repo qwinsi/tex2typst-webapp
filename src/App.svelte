@@ -110,7 +110,7 @@ function handleSettingsClick() {
 function get_rendered_html(directionToTypst, inputStr, output, settings) {
   const latex = directionToTypst ? inputStr : output.target;
   if (latex === '') {
-    return '<div><span style="opacity: 0.6;">LaTeX math code will be rendered here.</span></div>'
+    return null;
   } else {
     const options = {
       macros: customTexMacros,
@@ -186,116 +186,193 @@ To use new version, close all tabs of this website then open again.
 
 </script>
 
-  <div class="flex flex-col bg-app text-app-blue min-h-screen">
-    <nav class="flex justify-between text-white theme-app">
-      <h1 class="flex items-center h-16 ml-4 select-none text-4xl">
-        tex2typst
-      </h1>
-      <div class="flex">
-        <a class="flex items-center font-medium p-2 mr-2 hover:bg-gray-900" href="cheat-sheet.html" target="_blank">
-          <img class="inline w-9 h-9" src="./icons/notebook-icon.svg" alt="Cheat sheet icon" />
-          <span class="text-lg ml-2 mr-4 hide-on-mobile">Cheat Sheet</span>
-        </a>
-        <a class="flex items-center font-medium p-2 mr-2 hover:bg-gray-900" href="https://github.com/qwinsi/tex2typst-webapp" target="_blank">
-          <img class="inline w-9 h-9" src="./icons/github-mark-white.svg" alt="Github logo"/>
-          <span class="text-lg ml-2 mr-4 hide-on-mobile">Open-source</span>
-        </a>
-        <button class="flex items-center font-medium p-2 mr-2 hover:bg-gray-900" onclick={handleSettingsClick}>
-          <img class="inline w-9 h-9" src="./icons/settings-icon.svg" alt="Settings icon" />
-          <span class="text-lg ml-2 mr-4 hide-on-mobile">Settings</span>
-        </button>
-      </div>
-    </nav>
-    <div class="text-center text-app-light-black p-4 m-2">
-      Convert math code of LaTeX to Typst and vice versa. All runs in your browser.
-    </div>
-
-    <main class="flex-1 flex flex-col justify-between ml-6 mr-6 border border-gray-700 rounded-lg">
-      <div class="flex justify-between p-2 border-b border-gray-700">
-        <div class="flex-1 flex justify-between">
-          <span class="text-app-light-black p-2">{ directionToTypst? "LaTeX": "Typst" }</span>
-          <div>
-            <button class="text-app-blue mr-2 p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
-              onclick={() => {inputStr = getRandomFormula(directionToTypst);}}>
-              <span class="hide-on-mobile">Random</span>
-              <span class="hide-on-desktop">R</span>
-            </button>
-            <button class="text-app-blue p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
-              onclick={() => {inputStr = '';}}>
-              <span class="hide-on-mobile">Clear</span>
-              <span class="hide-on-desktop">C</span>
-            </button>
-          </div>
-        </div>
-
-        <button class="pl-1 pr-1 rounded-lg ml-3 mr-3 hover:bg-gray-300 active:bg-gray-400" onclick={handleFlipDirection}>
-          <SwapIcon />
-        </button>
-
-        <div class="flex-1 flex justify-between relative">
-          <span class="text-app-light-black p-2">{ directionToTypst? "Typst": "LaTeX" }</span>
-            <button class="text-app-blue p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
-                    onclick={sendToClipboard}>Copy</button>
-            <CopiedToast style="position: absolute; top: -55px; right: -4px;" bind:this={copiedToast} msg="Copied!" />
-        </div>
-      </div>
-
-      <!-- flex-row for desktop, flex-col for mobile -->
-      <div class="flex-1 flex md:flex-row flex-col">
-        <!-- input area -->
-        <div class="flex-1 flex flex-col border border-gray-700 min-h-[200px]">
-          <textarea class="flex-1 code-block text-app-light-black p-4" bind:value={inputStr}
-            spellcheck="false" bind:this={inputArea}></textarea>
-        </div>
-
-        <!-- output area -->
-        <div class="flex-1 flex flex-col border border-gray-700 min-h-[200px]">
-          <div class="flex-1 flex flex-col" id="typst">
-            <div class="flex-1 code-block text-app-light-black p-4"> { output.target } </div>
-            {#if output.message}
-            <div class="h-20 text-sm text-app-light-black theme-warning border-t rounded border-yellow-700 p-4"
-              >{@html output.message}</div>
-            {/if}
-          </div>
-        </div>
-      </div>
-
-    </main>
-
-    <!-- items-center (i.e. style="align-items:center") is for vertical centering -->
-    <div class="flex items-center text-center text-app-light-black pb-4 min-h-28">
-      {#if settings.showPreview}
-      <div class="flex-1">{@html renderedFormulaHtml}</div>
-      {/if}
-    </div>
-
-    <footer class="theme-app text-center p-4">
-      <p class="text-white italic">Dedicated to Typst hobbyists with creative hearts</p>
-    </footer>
+<nav class="flex justify-between">
+  <h1 class="flex items-center ml-4 title">
+    tex2typst
+  </h1>
+  <div class="flex">
+    <a class="flex items-center mr-2 nav-btn" href="cheat-sheet.html" target="_blank">
+      <img class="inline w-9 h-9" src="./icons/notebook-icon.svg" alt="Cheat sheet icon" />
+      <span class="text-lg ml-2 mr-4 hide-on-mobile">Cheat Sheet</span>
+    </a>
+    <a class="flex items-center mr-2 nav-btn" href="https://github.com/qwinsi/tex2typst-webapp" target="_blank">
+      <img class="inline w-9 h-9" src="./icons/github-mark-white.svg" alt="Github logo"/>
+      <span class="text-lg ml-2 mr-4 hide-on-mobile">Open-source</span>
+    </a>
+    <button class="flex items-center mr-2 nav-btn" onclick={handleSettingsClick}>
+      <img class="inline w-9 h-9" src="./icons/settings-icon.svg" alt="Settings icon" />
+      <span class="text-lg ml-2 mr-4 hide-on-mobile">Settings</span>
+    </button>
   </div>
-  <SettingsDialog bind:this={settingsDialog} newSettingsHandler={handleNewSettings} initial={settings} />
+</nav>
+
+<div class="text-center app-text p-4 m-2">
+  Convert math code of LaTeX to Typst and vice versa. All runs in your browser.
+</div>
+
+<main class="flex-1 flex flex-col justify-between ml-6 mr-6">
+  <div class="flex justify-between p-2 border-b border-gray-700">
+    <div class="flex-1 flex justify-between">
+      <span class="app-text p-2">{ directionToTypst? "LaTeX": "Typst" }</span>
+      <div>
+        <button class="mr-2 op-btn" onclick={() => {inputStr = getRandomFormula(directionToTypst);}}>
+          <span class="hide-on-mobile">Random</span>
+          <span class="hide-on-desktop">R</span>
+        </button>
+        <button class="op-btn" onclick={() => {inputStr = '';}}>
+          <span class="hide-on-mobile">Clear</span>
+          <span class="hide-on-desktop">C</span>
+        </button>
+      </div>
+    </div>
+
+    <button class="pl-1 pr-1 ml-3 mr-3 op-btn" onclick={handleFlipDirection}>
+      <SwapIcon />
+    </button>
+
+    <div class="flex-1 flex justify-between relative">
+      <span class="app-text p-2">{ directionToTypst? "Typst": "LaTeX" }</span>
+        <button class="op-btn"
+                onclick={sendToClipboard}>Copy</button>
+        <CopiedToast style="position: absolute; top: -55px; right: -4px;" bind:this={copiedToast} msg="Copied!" />
+    </div>
+  </div>
+
+  <!-- flex-row for desktop, flex-col for mobile -->
+  <div class="flex-1 flex md:flex-row flex-col">
+    <!-- input area -->
+    <div class="flex-1 flex flex-col input-output-area">
+      <textarea class="flex-1 code-block app-text p-4" bind:value={inputStr}
+        spellcheck="false" bind:this={inputArea}></textarea>
+    </div>
+
+    <!-- output area -->
+    <div class="flex-1 flex flex-col input-output-area">
+      <div class="flex-1 flex flex-col" id="typst">
+        <div class="flex-1 code-block p-4"> { output.target } </div>
+        {#if output.message}
+        <div class="h-20 app-text warning p-4"
+          >{@html output.message}</div>
+        {/if}
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- items-center (i.e. style="align-items:center") is for vertical centering -->
+<div class="flex items-center pb-4 min-h-28">
+{#if settings.showPreview}
+  {#if renderedFormulaHtml !== null}
+    <div class="flex-1">{@html renderedFormulaHtml}</div>
+  {:else}
+    <div class="flex-1 text-center app-text">
+      <span style="opacity: 0.6;">LaTeX math code will be rendered here.</span>
+    </div>
+  {/if}
+{/if}
+</div>
+
+<footer class="p-4">
+Dedicated to Typst hobbyists with creative hearts
+</footer>
+<SettingsDialog bind:this={settingsDialog} newSettingsHandler={handleNewSettings} initial={settings} />
 
 <style>
-.bg-app {
-  background-color: #eeeeee;
+@import "tailwindcss";
+
+:root {
+  --color-app-text: #333333;
+  --color-app-theme: #1F2937;
+  --color-app-bg: #eeeeee;
 }
 
-.theme-app {
-  background-color: #1F2937;
+:global(#app) {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  background-color: var(--color-app-bg);
 }
 
-.theme-warning {
-  background-color: #fdf8e4;
+.title {
+  height: --spacing(16); /* h-16 */
+
+  /* text-4xl */
+  font-size: var(--text-4xl);
+  line-height: var(--text-4xl--line-height);
+
+  color: white;
+
+  user-select: none;
 }
 
-.text-app-blue {
+.nav-btn {
+  padding: --spacing(2); /* p-2 */
+
+  font-weight: var(--font-weight-medium);
+
+  color: white;
+
+  &:hover {
+    background-color: var(--color-gray-900);
+  }
+}
+
+.op-btn {
+  padding: --spacing(2); /* p-2 */
+
+  border-radius: var(--radius-lg); /* rounded-lg */
+
   color: #0D70B0;
+
+  &:hover {
+    background-color: var(--color-gray-300);
+  }
+
+  &:active {
+    background-color: var(--color-gray-400);
+  }
 }
 
-.text-app-light-black {
-  color: #333333;
+
+main {
+  border: 1px solid var(--color-gray-700);
+  border-radius: var(--radius-lg); /* rounded-lg */
 }
 
+
+nav, footer {
+  background-color: var(--color-app-theme);
+}
+
+footer {
+  text-align: center;
+
+  font-style: italic;
+  color: white;
+}
+
+.warning {
+  border-top: 1px solid var(--color-yellow-700);
+  border-radius: var(--radius-sm);
+
+  background-color: #fdf8e4;
+
+  /* text-sm */
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+}
+
+.app-text {
+  color: var(--color-app-text);
+}
+
+.input-output-area {
+  min-height: 200px;
+
+  border: 1px solid var(--color-gray-700);
+}
 
 :global(#typst) :global(a) {
   font-weight: bold;
@@ -320,6 +397,8 @@ textarea {
 }
 
 .code-block {
+  color: var(--color-app-text);
+
   font-family: Consolas, "Ubuntu Mono", Menlo, monospace;
   /* https://stackoverflow.com/questions/36260013/react-display-line-breaks-from-saved-textarea */
   white-space: pre-line;
