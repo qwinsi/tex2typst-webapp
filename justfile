@@ -2,7 +2,10 @@ upgrade-tex2typst:
     yarn remove tex2typst
     yarn add tex2typst
     npm run test
-    npm run deploy
     git add -A
-    git commit -m "bump tex2typst"
+    git commit -m "bump tex2typst" # `npm version patch` requires git working directory to be clean
+    npm version patch # bump version in package.json && git add && git commit && git tag
+    npm run deploy
     git push origin
+    git push origin --tags
+
