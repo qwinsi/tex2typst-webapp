@@ -22,7 +22,7 @@
     "katex": "^0.16.21",
     "svelte": "^5.35.5",
     "tailwindcss": "^4.1.11",
-    "tex2typst": "^0.3.21"
+    "tex2typst": "^0.3.22"
   },
   "devDependencies": {
     "@qwinsi/mdc": "^0.1.5",
