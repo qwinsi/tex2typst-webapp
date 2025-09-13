@@ -1,1 +1,2 @@
 - auto-detect source language type
+- remember last input
