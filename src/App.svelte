@@ -79,9 +79,16 @@ function get_output(inputStr, settings) {
     }
   } catch (e) {
     console.error(e);
+    let message =  `&#x24D8; [ERROR] `;
+    if(e.name && e.name !== "Error") {
+      message += `${e.name}: `;
+    }
+    if(e.message) {
+      message += e.message;
+    }
     return {
       target: '',
-      message: `&#x24D8; [ERROR: Invalid ${directionToTypst? 'LaTeX': 'Typst'} code]`,
+      message: message,
     }
   }
 }
@@ -264,7 +271,7 @@ To use new version, close all tabs of this website then open again.
 <div class="flex items-center pb-4 min-h-28">
 {#if settings.showPreview}
   {#if renderedFormulaHtml !== null}
-    <div class="flex-1">{@html renderedFormulaHtml}</div>
+    <div class="flex-1  text-center">{@html renderedFormulaHtml}</div>
   {:else}
     <div class="flex-1 text-center app-text">
       <span style="opacity: 0.6;">LaTeX math code will be rendered here.</span>
