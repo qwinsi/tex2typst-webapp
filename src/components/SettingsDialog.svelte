@@ -2,11 +2,10 @@
 import ToggleSwitch from './ToggleSwitch.svelte';
 import { version as APP_VERSION } from '../../package.json';
 import { version as TEX2TYPST_VERSION } from '../../node_modules/tex2typst/package.json';
-import { DEFAULT_SETTINGS } from '../default-settings';
 
 
 let {
-  initial = DEFAULT_SETTINGS,
+  initial,
   newSettingsHandler
 } = $props();
 

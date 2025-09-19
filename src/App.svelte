@@ -6,23 +6,25 @@ import { copyTextToClipboard } from '@qwinsi/utilities-js/clipboard'
 import CopiedToast from './components/CopiedToast.svelte'
 import SettingsDialog from './components/SettingsDialog.svelte'
 import { getRandomFormula } from './random'
-import { DEFAULT_SETTINGS } from './default-settings';
+import { load_settings, remember_to_save_settings_before_unload } from './settings';
 import { version as APP_VERSION } from '../package.json';
 import butterup from 'butteruptoasts';
 import SwapIcon from './assets/SwapIcon.svelte';
 // have to do this because butteruptoasts places CSS in wrong place
 import '../node_modules/butteruptoasts/src/butterup.css';
 
-let directionToTypst = $state(true);
-
-let settings = $state(DEFAULT_SETTINGS);
+const init_settings = load_settings();
+if (!init_settings.rememberDirection) {
+  init_settings.directionToTypst = true;
+}
+let settings = $state(init_settings);
 
 let inputStr = $state('');
 
 function get_output(inputStr, settings) {
   try {
     const tex = inputStr;
-    if(directionToTypst) {
+    if(settings.directionToTypst) {
       const typst = convertTex2Typst(tex, {
         preferShorthands: settings.preferShorthands,
         fracToSlash: settings.texFracToTypstSlash,
@@ -114,8 +116,8 @@ function handleSettingsClick() {
 }
 
 
-function get_rendered_html(directionToTypst, inputStr, output, settings) {
-  const latex = directionToTypst ? inputStr : output.target;
+function get_rendered_html(inputStr, output, settings) {
+  const latex = settings.directionToTypst ? inputStr : output.target;
   if (latex === '') {
     return null;
   } else {
@@ -130,31 +132,22 @@ function get_rendered_html(directionToTypst, inputStr, output, settings) {
   }
 }
 
-const renderedFormulaHtml = $derived(get_rendered_html(directionToTypst, inputStr, output, settings));
+const renderedFormulaHtml = $derived(get_rendered_html(inputStr, output, settings));
 
 
 
 function handleNewSettings(data) {
-  settings = data;
-  localStorage.setItem('settings', JSON.stringify(data));
+  settings = Object.assign({directionToTypst: settings.directionToTypst}, data);
 }
 
 function handleFlipDirection() {
   const outputStr = output.target;
-  directionToTypst = !directionToTypst;
+  settings.directionToTypst = !settings.directionToTypst;
   inputStr = outputStr;
 }
 
 
 onMount(() => {
-  const settingsStr = localStorage.getItem('settings');
-  if(settingsStr) {
-    settings = Object.assign(settings, JSON.parse(settingsStr));
-  }
-  if(settings.rememberDirection && localStorage.getItem('lastDirection')) {
-    directionToTypst = localStorage.getItem('lastDirection') !== 'false';
-  }
-
   inputArea.focus();
 
   // Enable ":active" pseudo-class on mobile safari. https://stackoverflow.com/q/3885018/
@@ -165,9 +158,7 @@ onMount(() => {
     });
   }
 
-  window.addEventListener('beforeunload', function() {
-    localStorage.setItem('lastDirection', directionToTypst.toString());
-  });
+  remember_to_save_settings_before_unload(() => settings);
 
   const channel = new BroadcastChannel('SW_MESSAGES');
   channel.addEventListener('message', event => {
@@ -220,9 +211,9 @@ To use new version, close all tabs of this website then open again.
 <main class="flex-1 flex flex-col justify-between ml-6 mr-6">
   <div class="flex justify-between p-2 border-b border-gray-700">
     <div class="flex-1 flex justify-between">
-      <span class="app-text p-2">{ directionToTypst? "LaTeX": "Typst" }</span>
+      <span class="app-text p-2">{ settings.directionToTypst? "LaTeX": "Typst" }</span>
       <div>
-        <button class="mr-2 op-btn" onclick={() => {inputStr = getRandomFormula(directionToTypst);}}>
+        <button class="mr-2 op-btn" onclick={() => {inputStr = getRandomFormula(settings.directionToTypst);}}>
           <span class="hide-on-mobile">Random</span>
           <span class="hide-on-desktop">R</span>
         </button>
@@ -238,7 +229,7 @@ To use new version, close all tabs of this website then open again.
     </button>
 
     <div class="flex-1 flex justify-between relative">
-      <span class="app-text p-2">{ directionToTypst? "Typst": "LaTeX" }</span>
+      <span class="app-text p-2">{ settings.directionToTypst? "Typst": "LaTeX" }</span>
         <button class="op-btn"
                 onclick={sendToClipboard}>Copy</button>
         <CopiedToast style="position: absolute; top: -55px; right: -4px;" bind:this={copiedToast} msg="Copied!" />
