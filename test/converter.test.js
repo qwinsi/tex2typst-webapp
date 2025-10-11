@@ -13,7 +13,7 @@ nabla times bold(E) &= - (diff bold(B))/(diff t) \
 nabla dot.op bold(B) &= 0 \
 nabla dot.op bold(D) &= rho`,
     'upright(C H_3 C H_2 B r) + upright(O H)^- --> upright(C H_3 C H_2 O H) + upright(B r)^-',
-    String.raw`yen 2000 > \$ 3000`,
+    String.raw`#text(fill: red)[$yen$]2000 > #text(fill: green)[$\$$]3000`,
     'sum_(k = 1)^n 1/k = ln n + gamma + O(1/n)',
     'upright(e)^(upright(i) x) = cos x + upright(i) sin x',
     'integral.triple_Omega op("div")(arrow(F)) dif V = integral.surf_(diff Omega) arrow(F) dot.op dif arrow(S)',
