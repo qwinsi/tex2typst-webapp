@@ -1593,10 +1593,10 @@ tex2typst@^0.3.14:
   resolved "https://registry.yarnpkg.com/tex2typst/-/tex2typst-0.3.14.tgz#ce542470f51d99db3ea71b1bae3cbf143f1366bd"
   integrity sha512-44Cdj3ekzbyHGsFiOOynQKqc0IzxGzF6JElPkuAIKi7D0neNz81XEpLCUfT4uxQ3pha7KD9xDS4IGY6/uXl/gQ==
 
-tex2typst@^0.3.24:
-  version "0.3.24"
-  resolved "https://registry.yarnpkg.com/tex2typst/-/tex2typst-0.3.24.tgz#def83539cdad82a9f841b3b429695a23732d8842"
-  integrity sha512-z18yV5d3j1Lg3Ibi25XcDi2yxTQo8VEknYE9TBKopf9gx2w+fpb3VkgkX7m6M+foExOUIWicgcV/bbKpClyM1w==
+tex2typst@^0.3.25:
+  version "0.3.25"
+  resolved "https://registry.yarnpkg.com/tex2typst/-/tex2typst-0.3.25.tgz#165a4a088dd6a6f342050fc70c5dc09881443f88"
+  integrity sha512-5lhTQ5SQgnuh0Keq7WYYXHVS0Ar/WgG+WS9w4rC0bzjPa0dmyQHjqNjw0LMuL3r7eZqwfnyaNWQAjnuP3txYrA==
 
 tinyglobby@^0.2.13:
   version "0.2.14"
