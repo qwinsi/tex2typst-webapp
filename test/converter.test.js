@@ -1,4 +1,4 @@
-import assert from 'assert';
+import { describe, expect, test } from "bun:test";
 import { convertTex2Typst } from '../src/converter.js';
 import { tex2typst } from 'tex2typst';
 import { EXAMPLE_FORMULAS_LATEX  } from '../src/random.js';
@@ -37,33 +37,33 @@ x_1^(n - 1), x_2^(n - 1), ..., x_n^(n - 1))
 ];
 
 describe('tex2typst', function () {
-    it('convert case', function() {
+    test('convert case', function() {
         const input = "\\zeta(s) = \\sum_{n=1}^{\\infty}\\frac{1}{n^s}";
         const expectedOutput = "zeta(s) = sum_(n = 1)^infinity 1/(n^s)";
-        assert.strictEqual(convertTex2Typst(input), expectedOutput);
+        expect(convertTex2Typst(input)).toBe(expectedOutput);
     })
 
-    it('convert binom', function() {
+    test('convert binom', function() {
         const input = "\\binom{n}{k}";
         const expectedOutput = "binom(n, k)";
-        assert.strictEqual(convertTex2Typst(input), expectedOutput);
+        expect(convertTex2Typst(input)).toBe(expectedOutput);
     })
 
-    it('sech', function() {
+    test('sech', function() {
         const input = "\\sech(x)";
         const expectedOutput = "sech(x)";
-        assert.strictEqual(convertTex2Typst(input), expectedOutput);
+        expect(convertTex2Typst(input)).toBe(expectedOutput);
     })
 
-    it('throw error for input (\\right)', function () {
-        assert.throws(() => tex2typst("\\right"), Error);
+    test('throw error for input (\\right)', function () {
+        expect(() => tex2typst("\\right")).toThrow(Error);
     });
 
-    it('example formulas', function () {
+    test('example formulas', function () {
         for (let i = 0; i < EXAMPLE_FORMULAS_LATEX.length; i++) {
             const formula = EXAMPLE_FORMULAS_LATEX[i];
             const res = convertTex2Typst(formula);
-            assert.strictEqual(res, EXPECTED_TYPST_FORMULAS[i]);
+            expect(res).toBe(EXPECTED_TYPST_FORMULAS[i]);
         }
     });
 });

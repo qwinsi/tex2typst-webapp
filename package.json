@@ -11,8 +11,7 @@
     "build": "npm run make && vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
-    "test": "npx mocha"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@qwinsi/utilities-js": "^0.1.11",
@@ -26,7 +25,6 @@
     "@tailwindcss/vite": "^4.1.11",
     "esbuild": "^0.25.2",
     "gh-pages": "^6.1.1",
-    "mocha": "^10.6.0",
     "squirrelly": "^9.1.0",
     "svelte": "^5.35.5",
     "tailwindcss": "^4.1.11",
