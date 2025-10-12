@@ -160,6 +160,8 @@ onMount(() => {
 
   remember_to_save_settings_before_unload(() => settings);
 
+  butterup.options.toastLife = 999 * 24 * 3600 * 1000; // 999 days, basically never expire
+
   const channel = new BroadcastChannel('SW_MESSAGES');
   channel.addEventListener('message', event => {
     if(event.data.title === 'APP_UPDATE') {
