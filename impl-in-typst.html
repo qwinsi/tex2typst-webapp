@@ -64,19 +64,8 @@
 <article class="markdown-body"> <h1 id="implementing-latex-macros-unsupported-by-typst" tabindex="-1">Implementing LaTeX macros unsupported by Typst</h1>
 <h2 id="background" tabindex="-1">Background</h2>
 <p>There is not always a Typst equivalent for every LaTeX macro. This document provides a guide on how to implement unsupported LaTeX macros in Typst.</p>
-<h2 id="the-mathscr-macro" tabindex="-1">The <code>\mathscr</code> macro</h2>
-<p>LaTeX: <code>\mathscr</code></p>
-<p>Implementation in Typst <sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
-<pre><code>#let scr(it) = text(
-  features: (&quot;ss01&quot;,),
-  box($cal(it)$),
-)
-</code></pre>
-<p>Usage example:</p>
-<pre><code>$
-y = scr(A) x
-$
-</code></pre>
+<h2 id="the-mathscr-macro" tabindex="-1"><s>The <code>\mathscr</code> macro</s></h2>
+<p><code>scr</code> is natively supported in Typst since version 0.14.0! <sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
 <h2 id="the-latex-and-tex-macro" tabindex="-1">The <code>\LaTeX</code> and <code>\TeX</code> macro</h2>
 <p>LaTeX: <code>\LaTeX</code> and <code>\TeX</code></p>
 <p>Implementation in Typst <sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
@@ -161,7 +150,7 @@ $
 <h2 id="references-and-credits" tabindex="-1">References and Credits</h2>
 <p>The following resources were used to create this document:</p>
 <ol class="footnotes-list">
-<li id="fn1" class="footnote-item"><p><code>\mathscr</code>: <a href="https://typst.app/docs/reference/math/variants#functions-cal">Variants Functions – Typst Documentation</a> <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+<li id="fn1" class="footnote-item"><p><a href="https://typst.app/docs/changelog/0.14.0/#math">0.14.0 – Typst Documentation</a> <a href="#fnref1" class="footnote-backref">↩︎</a></p>
 </li>
 <li id="fn2" class="footnote-item"><p><code>\TeX</code> and <code>\LaTeX</code>: <a href="https://github.com/typst/typst/discussions/1732#discussioncomment-6566999">How do I insert the <code>LaTeX</code> symbol in Typst? · typst/typst · Discussion #1732</a> <a href="#fnref2" class="footnote-backref">↩︎</a></p>
 </li>
