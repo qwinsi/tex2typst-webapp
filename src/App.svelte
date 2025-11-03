@@ -31,9 +31,6 @@ function get_output(inputStr, settings) {
         inftyToOo: settings.texInftyToTypstOo,
       });
       const macros_to_define = [];
-      if(tex.includes('\\mathscr')) {
-        macros_to_define.push('scr');
-      }
       if(tex.includes('\\LaTeX')) {
         macros_to_define.push('#LaTeX');
       }
@@ -46,7 +43,6 @@ function get_output(inputStr, settings) {
       let messages = [];
       if(macros_to_define.length > 0) {
         const map = new Map([
-          ['scr', 'the-mathscr-macro'],
           ['#LaTeX', 'the-latex-and-tex-macro'],
           ['#TeX', 'the-latex-and-tex-macro'],
           ['cancelto', 'the-cancelto-macro'],

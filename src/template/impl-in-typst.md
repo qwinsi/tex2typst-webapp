@@ -4,26 +4,9 @@
 
 There is not always a Typst equivalent for every LaTeX macro. This document provides a guide on how to implement unsupported LaTeX macros in Typst.
 
-## The `\mathscr` macro
+## ~~The `\mathscr` macro~~
 
-LaTeX: `\mathscr`
-
-Implementation in Typst [^1]
-
-```
-#let scr(it) = text(
-  features: ("ss01",),
-  box($cal(it)$),
-)
-```
-
-Usage example:
-
-```
-$
-y = scr(A) x
-$
-```
+`scr` is natively supported in Typst since version 0.14.0! [^1]
 
 ## The `\LaTeX` and `\TeX` macro
 
@@ -165,7 +148,7 @@ $
 
 The following resources were used to create this document:
 
-[^1]: `\mathscr`: [Variants Functions – Typst Documentation](https://typst.app/docs/reference/math/variants#functions-cal)
+[^1]: [0.14.0 – Typst Documentation](https://typst.app/docs/changelog/0.14.0/#math)
 
 [^2]: `\TeX` and `\LaTeX`: [How do I insert the `LaTeX` symbol in Typst? · typst/typst · Discussion #1732](https://github.com/typst/typst/discussions/1732#discussioncomment-6566999)
 
