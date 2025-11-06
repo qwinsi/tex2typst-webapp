@@ -44,6 +44,6 @@ export function convertTex2Typst(input, options = {}) {
     return res;
 }
 
-export function convertTypst2Tex(input) {
-    return typst2tex(input);
+export function convertTypst2Tex(input, options = {}) {
+    return typst2tex(input, options);
 }

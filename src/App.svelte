@@ -71,7 +71,9 @@ function get_output(inputStr, settings) {
     } else {
       // convert Typst to LaTeX
       return {
-        target: convertTypst2Tex(tex),
+        target: convertTypst2Tex(tex, {
+          blockMathMode: settings.displayStyle,
+        }),
         message: '',
       }
     }
