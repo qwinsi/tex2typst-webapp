@@ -4,7 +4,7 @@
     "": {
       "name": "tex2typst-webapp",
       "dependencies": {
-        "@qwinsi/utilities-js": "^0.1.14",
+        "@qwinsi/utilities-js": "^0.2.0",
         "butteruptoasts": "^2.0.1",
         "katex": "^0.16.21",
         "tex2typst": "^0.4.0",
@@ -96,7 +96,7 @@
 
     "@qwinsi/mdc": ["@qwinsi/mdc@0.1.9", "", { "dependencies": { "command-line-args": "^6.0.1", "markdown-it": "^14.1.0", "markdown-it-anchor": "^9.2.0", "markdown-it-footnote": "^4.0.0", "markdown-it-math": "^5.2.1", "mathjax-full": "^3.2.2", "rendy": "^4.1.3", "tex2typst": "^0.3.16" }, "bin": { "mdc": "dist/cli.js" } }, "sha512-lLGhCVCdbEuielTUyKwCG3H4v52DRwPnMuMXui+6lvrEM2f4VAoTjBfUtji3KwThF4IX7euxMiqBwHxTq5JSkA=="],
 
-    "@qwinsi/utilities-js": ["@qwinsi/utilities-js@0.1.14", "", {}, "sha512-hK2iFR5kPz1qg25uLCoEjxkvjrvItVxyYKNZFkK2iD3nes54dE3oUYyNHgvFUexSm4cMLDOLbhF4RVxZ7ASREA=="],
+    "@qwinsi/utilities-js": ["@qwinsi/utilities-js@0.2.0", "", {}, "sha512-QYjh4daOpSn1fr9VUsq5OnF79oVMzMG4m+F+kTZRSWA2KhhIEn4acMDySKgyzNZB9axsdmp2O5BFepvUbYnufQ=="],
 
     "@rollup/rollup-android-arm-eabi": ["@rollup/rollup-android-arm-eabi@4.52.4", "", { "os": "android", "cpu": "arm" }, "sha512-BTm2qKNnWIQ5auf4deoetINJm2JzvihvGb9R6K/ETwKLql/Bb3Eg2H1FBp1gUb4YGbydMA3jcmQTR73q7J+GAA=="],
 

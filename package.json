@@ -14,7 +14,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
-    "@qwinsi/utilities-js": "^0.1.14",
+    "@qwinsi/utilities-js": "^0.2.0",
     "butteruptoasts": "^2.0.1",
     "katex": "^0.16.21",
     "tex2typst": "^0.4.0"
