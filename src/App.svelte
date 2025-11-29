@@ -166,8 +166,8 @@ onMount(() => {
         const new_version = event.data.version;
         if(new_version !== APP_VERSION) {
           const msg = `New version ${new_version} is available.
-To use new version, close all tabs of this website then open again.
-(Simply refreshing this page won't take effect.)
+To use new version, close your browser then open again.
+(Simply refreshing this tab won't take effect.)
           `;
           butterup.toast({
             title: 'Update Available',
