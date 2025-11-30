@@ -37,6 +37,18 @@ jobs:
       - name: Run tests
         run: bun test
 
+      - name: Setup Pages
+        if: github.ref == 'refs/heads/main'
+        uses: actions/configure-pages@v3
+
+      - name: Upload Artifact
+        if: github.ref == 'refs/heads/main'
+        id: deployment
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # build output folder
+          path: "./dist"
+
   deploy-pages:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
@@ -52,14 +64,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
-
-      - name: Upload Artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # location of the artifacts
-          path: "./dist"
 
       - name: Deploy to GitHub Pages
         id: deployment
