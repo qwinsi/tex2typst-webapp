@@ -24,14 +24,20 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: 'yarn'
 
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
       - name: Install dependencies
-        run: yarn install
+        run: bun install
 
       - name: Building the project
-        run: yarn build
+        run: bun build
 
-      # - name: Run tests
-      #   run: npx vitest run
+      - name: Run tests
+        run: bun test
+
   deploy-pages:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
@@ -47,6 +53,15 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # location of the artifacts
+          path: "./tex2typst-webapp"
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
