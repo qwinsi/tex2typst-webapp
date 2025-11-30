@@ -59,7 +59,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # location of the artifacts
-          path: "./tex2typst-webapp"
+          path: "./dist"
 
       - name: Deploy to GitHub Pages
         id: deployment
