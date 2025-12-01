@@ -7,7 +7,7 @@
         "@qwinsi/utilities-js": "^0.2.0",
         "butteruptoasts": "^2.0.1",
         "katex": "^0.16.21",
-        "tex2typst": "^0.5.0",
+        "tex2typst": "^0.5.1",
       },
       "devDependencies": {
         "@qwinsi/mdc": "^0.1.5",
@@ -315,7 +315,7 @@
 
     "tar": ["tar@7.5.1", "", { "dependencies": { "@isaacs/fs-minipass": "^4.0.0", "chownr": "^3.0.0", "minipass": "^7.1.2", "minizlib": "^3.1.0", "yallist": "^5.0.0" } }, "sha512-nlGpxf+hv0v7GkWBK2V9spgactGOp0qvfWRxUMjqHyzrt3SgwE48DIv/FhqPHJYLHpgW1opq3nERbz5Anq7n1g=="],
 
-    "tex2typst": ["tex2typst@0.5.0", "", {}, "sha512-jFN7WXqs+gKJLAdQxj50wsuPtvIaGKkplYavuYDYO/Urjg4nh6Kn48HtRv+9BPx141Y9aTPPHll+/4dAcXkJOw=="],
+    "tex2typst": ["tex2typst@0.5.1", "", {}, "sha512-D7V/NgeLQTSCEP41P+IrJfT/cMEoQiNuVcIeTU+T6wBx7Cnc8q9jRwyX4Ke4Z/54vdda3QxCHWUdq13NmJ9riA=="],
 
     "tinyglobby": ["tinyglobby@0.2.15", "", { "dependencies": { "fdir": "^6.5.0", "picomatch": "^4.0.3" } }, "sha512-j2Zq4NyQYG5XMST4cbs02Ak8iJUdxRM0XI5QyxXuZOzKOINmWurp3smXu3y5wDcJrptwpSjgXHzIQxR0omXljQ=="],
 
