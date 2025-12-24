@@ -140,7 +140,7 @@ $$
 
 ```
 $
-cancelto(0, (diff^2 Q)/(diff r^2))
+cancelto(0, (partial^2 Q)/(partial r^2))
 $
 ```
 

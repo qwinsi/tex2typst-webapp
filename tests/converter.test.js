@@ -8,16 +8,16 @@ const EXPECTED_TYPST_FORMULAS = [
     'upright(e) eq.def lim_(n -> infinity) (1 + 1/n)^n',
     'product_p 1/(1 - p^(-s)) = sum_(n = 1)^infinity 1/(n^s)',
     'a^(p - 1) equiv 1 mod p',
-    String.raw`nabla times bold(H) &= bold(J) + (diff bold(D))/(diff t) \
-nabla times bold(E) &= - (diff bold(B))/(diff t) \
+    String.raw`nabla times bold(H) &= bold(J) + (partial bold(D))/(partial t) \
+nabla times bold(E) &= - (partial bold(B))/(partial t) \
 nabla dot.op bold(B) &= 0 \
 nabla dot.op bold(D) &= rho`,
     'upright(C H_3 C H_2 B r) + upright(O H)^- --> upright(C H_3 C H_2 O H) + upright(B r)^-',
     String.raw`#text(fill: red)[$yen$]2000 > #text(fill: green)[$\$$]3000`,
     'sum_(k = 1)^n 1/k = ln n + gamma + O(1/n)',
     'upright(e)^(upright(i) x) = cos x + upright(i) sin x',
-    'integral.triple_Omega op("div")(arrow(F)) dif V = integral.surf_(diff Omega) arrow(F) dot.op dif arrow(S)',
-    'integral.double_Sigma op("curl")(arrow(F)) dot.op dif arrow(S) = integral.cont_(diff Sigma) arrow(F) times dif arrow(l)',
+    'integral.triple_Omega op("div")(arrow(F)) dif V = integral.surf_(partial Omega) arrow(F) dot.op dif arrow(S)',
+    'integral.double_Sigma op("curl")(arrow(F)) dot.op dif arrow(S) = integral.cont_(partial Sigma) arrow(F) times dif arrow(l)',
     'pi(x) ~ x/(log x)',
     'i_D = mu_n C_"ox" W/L [(v_"GS" - V_t) v_"DS" - 1/2 v_"DS"^2]',
     String.raw`C &= N(d_1) S_t - N(d_2) K e^(-r t) \

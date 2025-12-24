@@ -15,7 +15,7 @@
     "@qwinsi/utilities-js": "^0.2.0",
     "butteruptoasts": "^2.0.1",
     "katex": "^0.16.21",
-    "tex2typst": "^0.5.1"
+    "tex2typst": "^0.5.2"
   },
   "devDependencies": {
     "@qwinsi/mdc": "^0.1.5",
