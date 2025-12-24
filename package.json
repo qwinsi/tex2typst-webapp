@@ -1,6 +1,6 @@
 {
   "name": "tex2typst-webapp",
-  "version": "1.3.5",
+  "version": "1.3.6",
   "type": "module",
   "scripts": {
     "make:katex": "cp node_modules/katex/dist/katex.min.css public/ && cp -r node_modules/katex/dist/fonts public/",
