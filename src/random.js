@@ -80,7 +80,7 @@ nabla dot.op bold(D) & = rho`,
     'integral.triple_Omega op("div")(arrow(F)) dif V = integral.surf_(partial Omega) arrow(F) dot.op dif arrow(S)',
     'integral.double_Sigma op("curl")(arrow(F)) dot.op dif arrow(S) = integral.cont_(partial Sigma) arrow(F) times dif arrow(l)',
     'pi(x) tilde.op x/(log x)',
-    'i_D = mu_n C_"ox" W/L [(v_"GS" - V_t) v_"DS" - 1/2 v_"DS"^2 ]',
+    'i_D = mu_n C_"ox" W/L [(v_"GS" - V_t) v_"DS" - 1/2 v_"DS"^2]',
     String.raw`C & = N(d_1) S_t - N(d_2) K e^(-r t) \
 d_1 & = frac(ln frac(S_t, K) + (r + sigma^2/2) t, sigma sqrt(t)) \
 d_2 & = d_1 - sigma sqrt(t)`,
