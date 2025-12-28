@@ -61,6 +61,8 @@ x & \text{if } x > 0 \\
 \end{cases}`,
     // attention mechanism
     String.raw`\operatorname{Attention}(Q, K, V) = \operatorname{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right) V`,
+    // the qu-bit state
+    String.raw`\Ket{\psi} = \alpha \Ket{0} + \beta \Ket{1}`,
 ];
 
 const EXAMPLE_FORMULAS_TYPST = [
@@ -92,6 +94,7 @@ x_1^(n - 1), x_2^(n - 1), dots.h, x_n^(n - 1))
     String.raw`op("ReLU")(x) = cases(x & "if " x > 0,
 0 & "if " x <= 0)`,
     'op("Attention")(Q, K, V) = op("softmax")((Q K^T)/sqrt(d_k)) V',
+    String.raw`lr(|psi chevron.r) = alpha lr(|0 chevron.r) + beta lr(|1 chevron.r)`,
 ];
 
 let last_number = null;

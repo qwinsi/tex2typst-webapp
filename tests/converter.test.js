@@ -34,6 +34,7 @@ x_1^(n - 1), x_2^(n - 1), ..., x_n^(n - 1))
     String.raw`op("ReLU")(x) = cases(x & "if " x > 0,
 0 & "if " x <= 0)`,
     'op("Attention")(Q, K, V) = op("softmax")((Q K^T)/sqrt(d_k)) V',
+    String.raw`lr(|psi chevron.r) = alpha lr(|0 chevron.r) + beta lr(|1 chevron.r)`,
 ];
 
 describe('tex2typst', function () {
