@@ -72,7 +72,7 @@ nabla times bold(E) & = - (partial bold(B))/(partial t) \
 nabla dot.op bold(B) & = 0 \
 nabla dot.op bold(D) & = rho`,
     'upright(C H_3 C H_2 B r) + upright(O H)^- arrow.r.long upright(C H_3 C H_2 O H) + upright(B r)^-',
-    String.raw`#text(fill: red)[$yen$]2000 > #text(fill: green)[$\$$]3000`,
+    String.raw`#text(fill: red)[$yen$] 2000 > #text(fill: green)[$\$$] 3000`,
     'sum_(k = 1)^n 1/k = ln n + gamma + O(1/n)',
     'e^(i x) = cos x + i sin x',
     'integral.triple_Omega op("div")(arrow(F)) dif V = integral.surf_(partial Omega) arrow(F) dot.op dif arrow(S)',
@@ -80,7 +80,7 @@ nabla dot.op bold(D) & = rho`,
     'pi(x) tilde.op x/(log x)',
     'i_D = mu_n C_"ox" W/L [(v_"GS" - V_t) v_"DS" - 1/2 v_"DS"^2 ]',
     String.raw`C & = N(d_1) S_t - N(d_2) K e^(-r t) \
-d_1 & = frac(ln frac(S_t, K) +(r + sigma^2/2) t, sigma sqrt(t)) \
+d_1 & = frac(ln frac(S_t, K) + (r + sigma^2/2) t, sigma sqrt(t)) \
 d_2 & = d_1 - sigma sqrt(t)`,
     'f(z_0) = 1/(2 pi upright(i)) integral.cont_C f(z)/(z - z_0) dif z',
     String.raw`mat(delim: "|", 1, 1, dots.h, 1;
