@@ -43,10 +43,10 @@ const integral_symbols = [
 ];
 
 // Font symbols
-// latex: \boldsymbol{A} \mathbb{A} \mathbf{A} \mathcal{A} \mathit{A} \mathfrak{A} \mathrm{A} \mathsf{A} \mathtt{A}
-// typst: bold(A) bb(A) upright(bold(A)) cal(A) italic(A) frak(A) upright(A) sans(A) mono(A)
+// latex: \boldsymbol{A} \mathbb{A} \mathbf{A} \mathcal{A} \mathscr{A} \mathit{A} \mathfrak{A} \mathrm{A} \mathsf{A} \mathtt{A}
+// typst: bold(A) bb(A) upright(bold(A)) cal(A) scr(A) italic(A) frak(A) upright(A) sans(A) mono(A)
 const font_symbols = [
-    'boldsymbol{A}', 'mathbb{A}', 'mathbf{A}', 'mathcal{A}', 'mathit{A}', 'mathfrak{A}', 'mathrm{A}', 'mathsf{A}', 'mathtt{A}'
+    'boldsymbol{A}', 'mathbb{A}', 'mathbf{A}', 'mathcal{A}', 'mathscr{A}', 'mathit{A}', 'mathfrak{A}', 'mathrm{A}', 'mathsf{A}', 'mathtt{A}'
 ];
 
 
