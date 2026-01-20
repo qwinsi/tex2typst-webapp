@@ -2,20 +2,15 @@
 import ToggleSwitch from './ToggleSwitch.svelte';
 import { version as APP_VERSION } from '../../package.json';
 import { version as TEX2TYPST_VERSION } from '../../node_modules/tex2typst/package.json';
-
+import { DEFAULT_SETTINGS } from '../settings.js';
 
 let {
   initial,
   newSettingsHandler
 } = $props();
 
+let states = $state(initial);
 
-let switchShowPreview = null;
-let switchDisplayStyle = null;
-let switchRememberDirection = null;
-let switchPreferShorthands = null;
-let switchTexFracToTypstSlash = null;
-let switchtexInftyToTypstOo = null;
 
 let selfRef = null;
 
@@ -25,27 +20,14 @@ export function open() {
 }
 
 function close() {
-  const showPreview = switchShowPreview.checked();
-  const displayStyle = switchDisplayStyle.checked();
-  const rememberDirection = switchRememberDirection.checked();
-  const preferShorthands = switchPreferShorthands.checked();
-  const texFracToTypstSlash = switchTexFracToTypstSlash.checked();
-  const texInftyToTypstOo = switchtexInftyToTypstOo.checked();
   selfRef.close();
-  newSettingsHandler({
-    showPreview, displayStyle, rememberDirection,
-    preferShorthands,
-    texFracToTypstSlash, texInftyToTypstOo
-  });
+  newSettingsHandler(states);
 }
 
 function resetToDefault() {
-  switchShowPreview.setChecked(DEFAULT_SETTINGS.showPreview);
-  switchDisplayStyle.setChecked(DEFAULT_SETTINGS.displayStyle);
-  switchRememberDirection.setChecked(DEFAULT_SETTINGS.rememberDirection);
-  switchPreferShorthands.setChecked(DEFAULT_SETTINGS.preferShorthands);
-  switchTexFracToTypstSlash.setChecked(DEFAULT_SETTINGS.texFracToTypstSlash);
-  switchtexInftyToTypstOo.setChecked(DEFAULT_SETTINGS.texInftyToTypstOo);
+  for(const key in states) {
+    states[key] = DEFAULT_SETTINGS[key];
+  }
 }
 </script>
 
@@ -59,7 +41,7 @@ function resetToDefault() {
       <legend>Previewer</legend>
       <div class="flex-1 flex justify-between mb-4">
         <span>Show Preview</span>
-        <ToggleSwitch bind:this={switchShowPreview} initial={initial.showPreview} />
+        <ToggleSwitch bind:checked={states.showPreview} />
       </div>
       <div class="flex-1 flex justify-between">
         <span>
@@ -72,35 +54,35 @@ function resetToDefault() {
           -->
           {@html `<span title="Display style is used to render mathematical expressions in a more readable way. &#10;For example, subscripts and superscripts of \\sum or \\prod are rendered above and below the base symbol.">&#x24D8;</span>`}
         </span>
-        <ToggleSwitch bind:this={switchDisplayStyle} initial={initial.displayStyle} />
+        <ToggleSwitch bind:checked={states.displayStyle} />
       </div>
     </fieldset>
     <fieldset class="flex-1 flex flex-col border border-gray-300 p-4 mb-2">
       <legend>Translator</legend>
       <div class="flex-1 flex justify-between mb-4">
         <span>Remember Direction</span>
-        <ToggleSwitch bind:this={switchRememberDirection} initial={initial.rememberDirection} />
+        <ToggleSwitch bind:checked={states.rememberDirection} />
       </div>
       <div class="flex-1 flex justify-between mb-4">
         <span>
           Prefer Shorthands
           {@html `<span title=" On: LaTeX a \\rightarrow b to Typst a -> b&#10;Off: LaTeX a \\rightarrow b to Typst a arrow.r b&#10;(This option doesn't include the rule of \\infty to oo)">&#x24D8;</span>`}
         </span>
-        <ToggleSwitch bind:this={switchPreferShorthands} initial={initial.preferShorthands} />
+        <ToggleSwitch bind:checked={states.preferShorthands} />
       </div>
       <div class="flex-1 flex justify-between mb-4">
         <span>
           <code>\frac</code> to slash
           {@html `<span title=" On: LaTeX \\frac{a}{b} to Typst a/b&#10;Off: LaTeX \\frac{a}{b} to Typst frac(a,b)">&#x24D8;</span>`}
         </span>
-        <ToggleSwitch bind:this={switchTexFracToTypstSlash} initial={initial.texFracToTypstSlash} />
+        <ToggleSwitch bind:checked={states.texFracToTypstSlash} />
       </div>
       <div class="flex-1 flex justify-between">
         <span>
           <code>\infty</code> to <code>oo</code>
           {@html `<span title=" On: LaTeX \\infty to Typst oo&#10;Off: LaTeX \\infty to Typst infinity">&#x24D8;</span>`}
         </span>
-        <ToggleSwitch bind:this={switchtexInftyToTypstOo} initial={initial.texInftyToTypstOo} />
+        <ToggleSwitch bind:checked={states.texInftyToTypstOo} />
       </div>
     </fieldset>
   </div>

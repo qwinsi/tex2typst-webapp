@@ -9,6 +9,7 @@ export default defineConfig({
   base: './',
   plugins: [
     svelte(),
+    // https://tailwindcss.com/docs/installation/using-vite
     tailwindcss(),
   ],
   resolve: {

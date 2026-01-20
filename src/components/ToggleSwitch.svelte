@@ -1,22 +1,12 @@
 <!-- Code from https://www.w3schools.com/howto/howto_css_switch.asp -->
 
 <script>
-let { initial = false} = $props();
-
-let checkbox = null;
-
-export function checked() {
-  return checkbox.checked;
-}
-
-export function setChecked(value) {
-  checkbox.checked = value;
-}
+let { checked = $bindable() } = $props();
 
 </script>
 
 <label class="switch">
-  <input type="checkbox" bind:this={checkbox} checked={initial} />
+  <input type="checkbox" bind:checked={checked} />
   <span class="slider round"></span>
 </label>
 

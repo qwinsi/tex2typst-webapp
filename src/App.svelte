@@ -6,18 +6,15 @@ import { copyTextToClipboard } from '@qwinsi/utilities-js/clipboard'
 import CopiedToast from './components/CopiedToast.svelte'
 import SettingsDialog from './components/SettingsDialog.svelte'
 import { getRandomFormula } from './random'
-import { load_settings, remember_to_save_settings_before_unload } from './settings';
+import { SettingsManager, DEFAULT_SETTINGS } from './settings';
 import { version as APP_VERSION } from '../package.json';
 import butterup from 'butteruptoasts';
 import SwapIcon from './assets/SwapIcon.svelte';
 // have to do this because butteruptoasts places CSS in wrong place
 import '../node_modules/butteruptoasts/src/butterup.css';
 
-const init_settings = load_settings();
-if (!init_settings.rememberDirection) {
-  init_settings.directionToTypst = true;
-}
-let settings = $state(init_settings);
+const settingsManager = new SettingsManager('tex2typst-webapp-settings', DEFAULT_SETTINGS);
+let settings = $state(settingsManager.loadSettings());
 
 let inputStr = $state('');
 
@@ -156,7 +153,9 @@ onMount(() => {
     });
   }
 
-  remember_to_save_settings_before_unload(() => settings);
+  window.addEventListener('beforeunload', function () {
+      settingsManager.saveSettings(settings);
+  });
 
   butterup.options.toastLife = 999 * 24 * 3600 * 1000; // 999 days, basically never expire
 

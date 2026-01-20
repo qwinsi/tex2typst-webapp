@@ -1,4 +1,4 @@
-const DEFAULT_SETTINGS = {
+export const DEFAULT_SETTINGS = {
     showPreview: true,
     displayStyle: true,
     rememberDirection: true,
@@ -8,20 +8,23 @@ const DEFAULT_SETTINGS = {
     directionToTypst: true,
 };
 
-const SETTINGS_KEY = 'typing-practice-settings';
 
-
-export function load_settings() {
-    const settings_str = localStorage.getItem(SETTINGS_KEY);
-    const user_settings = settings_str ? JSON.parse(settings_str) : {};
-    return Object.assign(DEFAULT_SETTINGS, user_settings);
-}
-
-export function remember_to_save_settings_before_unload(fnGetSettings) {
-    window.addEventListener('beforeunload', function () {
-        const settings = fnGetSettings();
-        localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
-    });
+export class SettingsManager {
+    storageKey;
+    defaultSettings;
+    constructor(storageKey, defaultSettings) {
+        this.storageKey = storageKey;
+        this.defaultSettings = defaultSettings;
+    }
+    loadSettings() {
+        const settings_str = localStorage.getItem(this.storageKey);
+        const user_settings = settings_str ? JSON.parse(settings_str) : {};
+        const settings = Object.assign({}, this.defaultSettings);
+        return Object.assign(settings, user_settings);
+    }
+    saveSettings(settings) {
+        localStorage.setItem(this.storageKey, JSON.stringify(settings));
+    }
 }
 
 
