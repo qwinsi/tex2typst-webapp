@@ -271,7 +271,7 @@ To use new version, close your browser then open again.
 </div>
 
 <footer class="p-4">
-Dedicated to Typst hobbyists with creative hearts
+Dedicated to Typst enthusiasts with creative hearts
 </footer>
 <SettingsDialog bind:this={settingsDialog} newSettingsHandler={handleNewSettings} initial={settings} />
 
