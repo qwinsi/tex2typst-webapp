@@ -40,14 +40,20 @@ function resetToDefault() {
     <fieldset class="flex-1 flex flex-col border border-gray-300 p-4 mb-2">
       <legend>Previewer</legend>
       <div class="flex-1 flex justify-between mb-4">
-        <span>Show Preview</span>
+        <span>Show LaTeX Preview</span>
         <ToggleSwitch bind:checked={states.showPreview} />
+      </div>
+      <div class="flex-1 flex justify-between mb-4">
+        <span>Show Typst Preview
+          {@html `<span title="It may take a while for the first time to render Typst&#10;because of loading some large files (about 15MB) from the Internet.">&#x24D8;</span>`}
+        </span>
+        <ToggleSwitch bind:checked={states.showTypstPreview} />
       </div>
       <div class="flex-1 flex justify-between">
         <span>
           Display Style
           <!--
-            Browsers redner the '\n' in <span titie="A \n B"> as a space, so we need to use '&#10;' instead.
+            Browsers render the '\n' in <span titie="A \n B"> as a space, so we need to use '&#10;' instead.
             But the Svelte compiler will replace '&#10;' with a space in the final output,
             so here we use @html to prevent the compiler from making any modifications.
             This is embarrassing.

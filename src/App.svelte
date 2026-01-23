@@ -12,6 +12,7 @@ import butterup from 'butteruptoasts';
 import SwapIcon from './assets/SwapIcon.svelte';
 // have to do this because butteruptoasts places CSS in wrong place
 import '../node_modules/butteruptoasts/src/butterup.css';
+import "@myriaddreamin/typst.ts/dist/esm/contrib/all-in-one-lite.bundle.js";
 
 const settingsManager = new SettingsManager('tex2typst-webapp-settings', DEFAULT_SETTINGS);
 let settings = $state(settingsManager.loadSettings());
@@ -111,10 +112,30 @@ function handleSettingsClick() {
 }
 
 
+let renderedTypstSvg = $state(null);
+let renderedLaTeXHtml = $state(null);
+
+const TYPST_PREAMBLE = `#set page(width: auto, height: auto, margin: 0.5cm)
+#set text(size: 0.7cm)
+`;
+
 function get_rendered_html(inputStr, output, settings) {
   const latex = settings.directionToTypst ? inputStr : output.target;
+
+  if (settings.showTypstPreview) {
+    const typst = settings.directionToTypst ? output.target : inputStr;
+    if (typst === '') {
+      renderedTypstSvg = null;
+    } else {
+      const typst_math_fragment = settings.displayStyle ? `$ ${typst} $` : `$${typst}$`;
+      window.$typst.svg({mainContent: TYPST_PREAMBLE + typst_math_fragment}).then((svg) => {
+        renderedTypstSvg = svg;
+      })
+    }
+  }
+
   if (latex === '') {
-    return null;
+    renderedLaTeXHtml = null;
   } else {
     const options = {
       macros: customTexMacros,
@@ -123,12 +144,14 @@ function get_rendered_html(inputStr, output, settings) {
       throwOnError: false,
       errorColor: '#bc6f17',
     }
-    return katex.renderToString(latex, options)
+    renderedLaTeXHtml = katex.renderToString(latex, options)
   }
+
 }
 
-const renderedFormulaHtml = $derived(get_rendered_html(inputStr, output, settings));
-
+$effect(() => {
+  get_rendered_html(inputStr, output, settings);
+});
 
 
 function handleNewSettings(data) {
@@ -141,6 +164,13 @@ function handleFlipDirection() {
   inputStr = outputStr;
 }
 
+function toggleLatexPreview() {
+  settings.showPreview = !settings.showPreview;
+}
+
+function toggleTypstPreview() {
+  settings.showTypstPreview = !settings.showTypstPreview;
+}
 
 onMount(() => {
   inputArea.focus();
@@ -158,6 +188,16 @@ onMount(() => {
   });
 
   butterup.options.toastLife = 999 * 24 * 3600 * 1000; // 999 days, basically never expire
+
+
+  window.$typst.setCompilerInitOptions({
+    getModule: () =>
+      'https://cdn.jsdelivr.net/npm/@myriaddreamin/typst-ts-web-compiler@0.7.0-rc2/pkg/typst_ts_web_compiler_bg.wasm',
+  });
+  window.$typst.setRendererInitOptions({
+    getModule: () =>
+      'https://cdn.jsdelivr.net/npm/@myriaddreamin/typst-ts-renderer@0.7.0-rc2/pkg/typst_ts_renderer_bg.wasm',
+  });
 
   const channel = new BroadcastChannel('SW_MESSAGES');
   channel.addEventListener('message', event => {
@@ -257,18 +297,40 @@ To use new version, close your browser then open again.
 
 </main>
 
-<!-- items-center (i.e. style="align-items:center") is for vertical centering -->
-<div class="flex items-center pb-4 min-h-28">
-{#if settings.showPreview}
-  {#if renderedFormulaHtml !== null}
-    <div class="flex-1  text-center">{@html renderedFormulaHtml}</div>
-  {:else}
-    <div class="flex-1 text-center app-text">
-      <span style="opacity: 0.6;">LaTeX math code will be rendered here.</span>
+  <div class="min-h-28 flex md:flex-row flex-col ml-6 mr-6">
+    <div class="preview-panel flex-1 pb-2  flex items-center relative" class:preview-panel-on={settings.showPreview}
+     class:order-1={!settings.directionToTypst}>
+      <button class="switch-preview absolute left-0 top-0"
+        onclick={toggleLatexPreview}>
+         LaTeX
+      </button>
+    {#if settings.showPreview}
+      {#if renderedLaTeXHtml !== null}
+        <div class="flex-1">{@html renderedLaTeXHtml}</div>
+      {:else}
+        <div class="flex-1 text-center app-text">
+          <span style="opacity: 0.6;">LaTeX math code will be rendered here.</span>
+        </div>
+      {/if}
+    {/if}
     </div>
-  {/if}
-{/if}
-</div>
+    <div class="preview-panel flex-1 pb-2  flex items-center relative" class:preview-panel-on={settings.showTypstPreview}>
+      <button class="switch-preview absolute left-0 top-0"
+        title="It may take a while for the first time to render Typst&#10;because of loading some large files (about 15MB) from the Internet."
+        onclick={toggleTypstPreview}>
+         Typst&#x24D8;
+      </button>
+    {#if settings.showTypstPreview}
+      {#if renderedTypstSvg !== null}
+        <div class="flex-1  flex justify-center">{@html renderedTypstSvg}</div>
+      {:else}
+        <div class="flex-1 text-center app-text">
+          <span style="opacity: 0.6;">Typst math code will be rendered here.</span>
+        </div>
+      {/if}
+    {/if}
+    </div>
+  </div>
 
 <footer class="p-4">
 Dedicated to Typst enthusiasts with creative hearts
@@ -335,13 +397,39 @@ Dedicated to Typst enthusiasts with creative hearts
 
 main {
   border: 1px solid var(--color-gray-700);
-  border-radius: var(--radius-lg); /* rounded-lg */
+  border-top-left-radius: var(--radius-lg);
+  border-top-right-radius: var(--radius-lg);
 }
 
 
 nav, footer {
   background-color: var(--color-app-theme);
 }
+
+.preview-panel-on {
+  border-left: 1px solid var(--color-gray-700);
+  border-right: 1px solid var(--color-gray-700);
+}
+
+.switch-preview {
+  border: 1px solid #dddddd;
+  border-bottom-right-radius: 3px;
+  padding: 0 3px 0 3px;
+  font-size: var(--text-sm);
+  /* font-family: monospace; */
+  color: var(--color-gray-300);
+  background-color: inherit;
+}
+
+.preview-panel-on > .switch-preview {
+  border-right: 1px solid var(--color-gray-700);
+  border-bottom: 1px solid var(--color-gray-700);
+  color: #0D70B0;
+  background-color: #b3d7ef;
+  /* background-color: var(--color-gray-300); */
+}
+
+
 
 footer {
   text-align: center;

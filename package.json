@@ -12,6 +12,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@myriaddreamin/typst-ts-renderer": "0.7.0-rc2",
+    "@myriaddreamin/typst-ts-web-compiler": "0.7.0-rc2",
+    "@myriaddreamin/typst.ts": "0.7.0-rc2",
     "@qwinsi/utilities-js": "^0.2.0",
     "butteruptoasts": "^2.0.1",
     "katex": "^0.16.21",

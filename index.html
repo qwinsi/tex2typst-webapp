@@ -17,7 +17,7 @@
     <div id="app"></div>
     <script type="module" src="src/main.js"></script>
     <script>
-      if ('serviceWorker' in navigator) {
+      if ('serviceWorker' in navigator && window.location.hostname !== 'localhost') {
           navigator.serviceWorker.register("./sw.js");
       }
      </script>
