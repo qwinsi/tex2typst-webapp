@@ -5,12 +5,11 @@ import { version as TEX2TYPST_VERSION } from '../../node_modules/tex2typst/packa
 import { DEFAULT_SETTINGS } from '../settings.js';
 
 let {
-  initial,
+  states,
   newSettingsHandler
 } = $props();
 
-let states = $state(initial);
-
+// let states = $state(initial);
 
 let selfRef = null;
 

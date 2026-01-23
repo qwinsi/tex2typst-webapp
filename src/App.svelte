@@ -338,7 +338,7 @@ To use new version, close your browser then open again.
 <footer class="p-4">
 Dedicated to Typst enthusiasts with creative hearts
 </footer>
-<SettingsDialog bind:this={settingsDialog} newSettingsHandler={handleNewSettings} initial={settings} />
+<SettingsDialog bind:this={settingsDialog} newSettingsHandler={handleNewSettings} states={settings} />
 
 <style>
 @import "tailwindcss";
