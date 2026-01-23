@@ -319,7 +319,7 @@ To use new version, close your browser then open again.
     </div>
     <div class="preview-panel flex-1 pb-2  flex items-center relative" class:preview-panel-on={settings.showTypstPreview}>
       <button class="switch-preview absolute left-0 top-0"
-        title="It may take a while for the first time to preview Typst&#10;because of loading Typst previewer (about 15MB) from the Internet."
+        title="It may take a while for the first time to preview Typst&#10;because of loading a heavy Typst previewer from the Internet.&#10;(About 15MB data being transferred)"
         onclick={toggleTypstPreview}>
          Typst&#x24D8;
       </button>
