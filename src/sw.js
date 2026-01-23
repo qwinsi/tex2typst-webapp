@@ -81,6 +81,7 @@ const precacheResources = ([
 
 
 const typstFontResources = ([
+    "DejaVuSansMono.ttf",
     "DejaVuSansMono-Bold.ttf",
     "DejaVuSansMono-BoldOblique.ttf",
     "DejaVuSansMono-Oblique.ttf",
