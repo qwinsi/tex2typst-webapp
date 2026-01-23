@@ -40,7 +40,7 @@ function resetToDefault() {
       <legend>Previewer</legend>
       <div class="flex-1 flex justify-between mb-4">
         <span>Show LaTeX Preview</span>
-        <ToggleSwitch bind:checked={states.showPreview} />
+        <ToggleSwitch bind:checked={states.showLatexPreview} />
       </div>
       <div class="flex-1 flex justify-between mb-4">
         <span>Show Typst Preview

@@ -168,7 +168,7 @@ function handleFlipDirection() {
 }
 
 function toggleLatexPreview() {
-  settings.showPreview = !settings.showPreview;
+  settings.showLatexPreview = !settings.showLatexPreview;
 }
 
 function toggleTypstPreview() {
@@ -301,13 +301,13 @@ To use new version, close your browser then open again.
 </main>
 
   <div class="min-h-28 flex md:flex-row flex-col ml-6 mr-6">
-    <div class="preview-panel flex-1 pb-2  flex items-center relative" class:preview-panel-on={settings.showPreview}
+    <div class="preview-panel flex-1 pb-2  flex items-center relative" class:preview-panel-on={settings.showLatexPreview}
      class:order-1={!settings.directionToTypst}>
       <button class="switch-preview absolute left-0 top-0"
         onclick={toggleLatexPreview}>
          LaTeX
       </button>
-    {#if settings.showPreview}
+    {#if settings.showLatexPreview}
       {#if renderedLaTeXHtml !== null}
         <div class="flex-1">{@html renderedLaTeXHtml}</div>
       {:else}
