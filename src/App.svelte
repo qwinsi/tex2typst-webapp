@@ -127,6 +127,9 @@ function get_rendered_html(inputStr, output, settings) {
     if (typst === '') {
       renderedTypstSvg = null;
     } else {
+      if (!window.$typst.prepareUseOnce) {
+        renderedTypstSvg = `<span style="opacity: 0.6;">Loading...</span>`;
+      }
       const typst_math_fragment = settings.displayStyle ? `$ ${typst} $` : `$${typst}$`;
       window.$typst.svg({mainContent: TYPST_PREAMBLE + typst_math_fragment}).then((svg) => {
         renderedTypstSvg = svg;
@@ -316,7 +319,7 @@ To use new version, close your browser then open again.
     </div>
     <div class="preview-panel flex-1 pb-2  flex items-center relative" class:preview-panel-on={settings.showTypstPreview}>
       <button class="switch-preview absolute left-0 top-0"
-        title="It may take a while for the first time to render Typst&#10;because of loading some large files (about 15MB) from the Internet."
+        title="It may take a while for the first time to preview Typst&#10;because of loading Typst previewer (about 15MB) from the Internet."
         onclick={toggleTypstPreview}>
          Typst&#x24D8;
       </button>

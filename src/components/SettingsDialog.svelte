@@ -45,7 +45,7 @@ function resetToDefault() {
       </div>
       <div class="flex-1 flex justify-between mb-4">
         <span>Show Typst Preview
-          {@html `<span title="It may take a while for the first time to render Typst&#10;because of loading some large files (about 15MB) from the Internet.">&#x24D8;</span>`}
+          {@html `<span title="It may take a while for the first time to preview Typst&#10;because of loading Typst previewer (about 15MB) from the Internet.">&#x24D8;</span>`}
         </span>
         <ToggleSwitch bind:checked={states.showTypstPreview} />
       </div>
