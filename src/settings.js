@@ -1,6 +1,6 @@
 export const DEFAULT_SETTINGS = {
     showPreview: true,
-    showTypstPreview: true,
+    showTypstPreview: false,
     displayStyle: true,
     rememberDirection: true,
     preferShorthands: true,
