@@ -133,6 +133,16 @@ function get_rendered_html(inputStr, output, settings) {
       const typst_math_fragment = settings.displayStyle ? `$ ${typst} $` : `$${typst}$`;
       window.$typst.svg({mainContent: TYPST_PREAMBLE + typst_math_fragment}).then((svg) => {
         renderedTypstSvg = svg;
+      }).catch((err /*string*/) => {
+        const regex = /message: "([^"]+)"/;
+        const match = err.match(regex);
+        if(match) {
+          const msg = match[1];
+          renderedTypstSvg = `<span style="color: red;">[ERROR] ${msg}</span>`;
+        } else {
+          renderedTypstSvg = `<span style="color: red;">[ERROR] Failed to render Typst.</span>`;
+        }
+
       })
     }
   }
