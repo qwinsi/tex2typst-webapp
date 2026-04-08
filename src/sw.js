@@ -1,4 +1,4 @@
-import { setup } from "@qwinsi/utilities-js/sw";
+import { setup } from "./setup-sw";
 import { version as APP_VERSION } from "../package.json";
 
 const SUBDIRECTORY = "/tex2typst-webapp/";

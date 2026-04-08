@@ -2,7 +2,6 @@
 import { onMount } from 'svelte';
 import katex from 'katex'
 import { convertTex2Typst, convertTypst2Tex, customTexMacros } from './converter'
-import { copyTextToClipboard } from '@qwinsi/utilities-js/clipboard'
 import CopiedToast from './components/CopiedToast.svelte'
 import SettingsDialog from './components/SettingsDialog.svelte'
 import { getRandomFormula } from './random'
@@ -100,7 +99,7 @@ function sendToClipboard() {
   if(inputStr === '') {
     return;
   }
-  copyTextToClipboard(output.target).then(() => {
+  navigator.clipboard.writeText(output.target).then(() => {
     copiedToast.trigger();
   });
 }
