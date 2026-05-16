@@ -235,24 +235,22 @@ To use new version, close your browser then open again.
 
 </script>
 
-<header class="flex justify-between">
-  <h1 class="flex items-center ml-4 title">
+<header class="grid grid-cols-[1fr_auto_auto_auto] grid-rows-1">
+  <h1 class="justify-self-start flex items-center ml-4 title">
     tex2typst
   </h1>
-  <nav class="flex">
-    <a class="flex items-center mr-2 nav-btn" href="cheat-sheet.html" target="_blank">
-      <img class="inline w-9 h-9" src="./icons/notebook-icon.svg" alt="Cheat sheet icon" />
-      <span class="text-lg ml-2 mr-4 hide-on-mobile">Cheat Sheet</span>
-    </a>
-    <a class="flex items-center mr-2 nav-btn" href="https://github.com/qwinsi/tex2typst-webapp" target="_blank">
-      <img class="inline w-9 h-9" src="./icons/github-mark-white.svg" alt="Github logo"/>
-      <span class="text-lg ml-2 mr-4 hide-on-mobile">Open-source</span>
-    </a>
-    <button class="flex items-center mr-2 nav-btn" onclick={handleSettingsClick}>
-      <img class="inline w-9 h-9" src="./icons/settings-icon.svg" alt="Settings icon" />
-      <span class="text-lg ml-2 mr-4 hide-on-mobile">Settings</span>
-    </button>
-  </nav>
+  <a class="flex items-center mr-2 nav-btn" href="cheat-sheet.html" target="_blank">
+    <img class="inline w-9 h-9" src="./icons/notebook-icon.svg" alt="Cheat sheet icon" />
+    <span class="text-lg ml-2 mr-4 hide-on-mobile">Cheat Sheet</span>
+  </a>
+  <a class="flex items-center mr-2 nav-btn" href="https://github.com/qwinsi/tex2typst-webapp" target="_blank">
+    <img class="inline w-9 h-9" src="./icons/github-mark-white.svg" alt="Github logo"/>
+    <span class="text-lg ml-2 mr-4 hide-on-mobile">Open-source</span>
+  </a>
+  <button class="flex items-center mr-2 nav-btn" onclick={handleSettingsClick}>
+    <img class="inline w-9 h-9" src="./icons/settings-icon.svg" alt="Settings icon" />
+    <span class="text-lg ml-2 mr-4 hide-on-mobile">Settings</span>
+  </button>
 </header>
 
 <div class="text-center app-text p-4 m-2">
