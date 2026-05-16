@@ -235,11 +235,11 @@ To use new version, close your browser then open again.
 
 </script>
 
-<nav class="flex justify-between">
+<header class="flex justify-between">
   <h1 class="flex items-center ml-4 title">
     tex2typst
   </h1>
-  <div class="flex">
+  <nav class="flex">
     <a class="flex items-center mr-2 nav-btn" href="cheat-sheet.html" target="_blank">
       <img class="inline w-9 h-9" src="./icons/notebook-icon.svg" alt="Cheat sheet icon" />
       <span class="text-lg ml-2 mr-4 hide-on-mobile">Cheat Sheet</span>
@@ -252,8 +252,8 @@ To use new version, close your browser then open again.
       <img class="inline w-9 h-9" src="./icons/settings-icon.svg" alt="Settings icon" />
       <span class="text-lg ml-2 mr-4 hide-on-mobile">Settings</span>
     </button>
-  </div>
-</nav>
+  </nav>
+</header>
 
 <div class="text-center app-text p-4 m-2">
   Convert math code of LaTeX to Typst and vice versa. All runs in your browser.
@@ -409,7 +409,7 @@ main {
 }
 
 
-nav, footer {
+header, footer {
   background-color: var(--color-app-theme);
 }
 
