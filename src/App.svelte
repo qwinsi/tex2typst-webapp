@@ -259,8 +259,10 @@ To use new version, close your browser then open again.
   Convert math code of LaTeX to Typst and vice versa. All runs in your browser.
 </div>
 
-<main class="flex-1 flex flex-col justify-between ml-6 mr-6">
-  <div class="flex justify-between p-2 border-b border-gray-700">
+  <!-- grid-cols-2 grid-rows-[auto_1fr_auto] for desktop,
+   grid-cols-1 grid-rows-[auto_1fr_1fr_auto_auto] for mobile -->
+<main class="flex-1 grid md:grid-cols-2 md:grid-rows-[auto_1fr_auto] grid-cols-1 grid-rows-[auto_1fr_1fr_auto_auto] ml-6 mr-6">
+  <div class="col-span-full flex justify-between p-2 border-b border-gray-700">
     <div class="flex-1 flex justify-between">
       <span class="app-text p-2">{ settings.directionToTypst? "LaTeX": "Typst" }</span>
       <div>
@@ -287,8 +289,6 @@ To use new version, close your browser then open again.
     </div>
   </div>
 
-  <!-- flex-row for desktop, flex-col for mobile -->
-  <div class="flex-1 flex md:flex-row flex-col">
     <!-- input area -->
     <div class="flex-1 flex flex-col input-output-area">
       <textarea class="flex-1 code-block app-text p-4" bind:value={inputStr}
@@ -305,12 +305,8 @@ To use new version, close your browser then open again.
         {/if}
       </div>
     </div>
-  </div>
-
-</main>
-
-  <div class="min-h-28 flex md:flex-row flex-col ml-6 mr-6">
-    <div class="preview-panel flex-1 pb-2  flex items-center relative" class:preview-panel-on={settings.showLatexPreview}
+    <!-- input preview -->
+    <div class="preview-panel flex-1 pb-2  flex items-center relative md:min-h-28" class:preview-panel-on={settings.showLatexPreview}
      class:order-1={!settings.directionToTypst}>
       <button class="switch-preview absolute left-0 top-0"
         onclick={toggleLatexPreview}>
@@ -326,7 +322,8 @@ To use new version, close your browser then open again.
       {/if}
     {/if}
     </div>
-    <div class="preview-panel flex-1 pb-2  flex items-center relative" class:preview-panel-on={settings.showTypstPreview}>
+    <!-- output preview -->
+    <div class="preview-panel flex-1 pb-2  flex items-center relative md:min-h-28" class:preview-panel-on={settings.showTypstPreview}>
       <button class="switch-preview absolute left-0 top-0"
         title="It may take a while for the first time to preview Typst&#10;because of loading a heavy Typst previewer from the Internet.&#10;(About 15MB data to be transferred)"
         onclick={toggleTypstPreview}>
@@ -342,7 +339,7 @@ To use new version, close your browser then open again.
       {/if}
     {/if}
     </div>
-  </div>
+</main>
 
 <footer class="p-4">
 Dedicated to Typst enthusiasts with creative hearts
@@ -415,6 +412,7 @@ main {
 nav, footer {
   background-color: var(--color-app-theme);
 }
+
 
 .preview-panel-on {
   border-left: 1px solid var(--color-gray-700);
