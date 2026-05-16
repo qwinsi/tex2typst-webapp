@@ -359,8 +359,6 @@ Dedicated to Typst enthusiasts with creative hearts
 }
 
 :global(#app) {
-  display: flex;
-  flex-direction: column;
   min-height: 100vh;
 
   background-color: var(--color-app-bg);
