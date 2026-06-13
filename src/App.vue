@@ -6,6 +6,8 @@ import { copyTextToClipboard } from '@qwinsi/utilities-js/clipboard'
 import CopiedToast from './components/CopiedToast.vue'
 import SettingsDialog from './components/SettingsDialog.vue'
 import { getRandomFormula } from './random'
+import Skeleton from './components/Skeleton.vue'
+
 
 const directionToTypst = ref(true);
 
@@ -178,55 +180,47 @@ onMounted(() => {
       Convert LaTeX math formula code to Typst and vice versa. All running in your browser.
     </div>
 
-    <main class="flex-1 flex flex-col justify-between ml-6 mr-6 border border-gray-700 rounded-lg">
-      <div class="flex justify-between p-2 border-b border-gray-700">
-        <div class="flex-1 flex justify-between">
-          <span class="text-app-blue p-2">{{ directionToTypst? "LaTeX": "Typst" }}</span>
-          <div>
-            <button class="text-app-light-black p-2 mr-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
-              v-on:click="inputStr = getRandomFormula(directionToTypst)">
-              <span class="hide-on-mobile">Random</span>
-              <span class="hide-on-desktop">R</span>
-            </button>
-            <button class="text-app-light-black p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
-              v-on:click="inputStr = ''">
-              <span class="hide-on-mobile">Clear</span>
-              <span class="hide-on-desktop">C</span>
-            </button>
-          </div>
+    <Skeleton class="flex-1 ml-6 mr-6">
+      <template #top-left>
+        <span class="text-app-blue p-2">{{ directionToTypst? "LaTeX": "Typst" }}</span>
+        <div>
+          <button class="text-app-light-black p-2 mr-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
+            v-on:click="inputStr = getRandomFormula(directionToTypst)">
+            <span class="hide-on-mobile">Random</span>
+            <span class="hide-on-desktop">R</span>
+          </button>
+          <button class="text-app-light-black p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
+            v-on:click="inputStr = ''">
+            <span class="hide-on-mobile">Clear</span>
+            <span class="hide-on-desktop">C</span>
+          </button>
         </div>
+      </template>
 
+      <template #pivot>
         <button class="pl-1 pr-1 rounded-lg ml-3 mr-3 hover:bg-gray-300 active:bg-gray-400">
           <img class="inline" src="./assets/swap-icon.svg" alt="Swap icon" v-on:click="handleFlipDirection" />
         </button>
+      </template>
 
-        <div class="flex-1 flex-1 flex justify-between relative">
+      <template #top-right>
           <span class="text-app-blue p-2">{{ directionToTypst? "Typst": "LaTeX" }}</span>
-            <button class="text-app-light-black p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
+          <button class="text-app-light-black p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
                     v-on:click="sendToClipboard">Copy</button>
-            <CopiedToast ref="copiedToast" id="copiedToast" msg="Copied!" />
-        </div>
-      </div>
+          <CopiedToast ref="copiedToast" id="copiedToast" msg="Copied!" />
+      </template>
 
-      <!-- flex-row for desktop, flex-col for mobile -->
-      <div class="flex-1 flex md:flex-row flex-col">
-        <!-- input area -->
-        <div class="flex-1 flex flex-col border border-gray-700 min-h-[200px]">
+      <template #input-left>
           <textarea class="flex-1 text-app-light-black p-4" v-model="inputStr"
             spellcheck="false" autofocus></textarea>
-        </div>
+      </template>
 
-        <!-- output area -->
-        <div class="flex-1 flex flex-col border border-gray-700 min-h-[200px]">
-          <div class="flex-1 flex flex-col" id="typst">
-            <div class="flex-1 text-app-light-black p-4"> {{ output.target }} </div>
-            <div class="h-20 text-sm text-app-light-black theme-warning border-t rounded border-yellow-700 p-4"
+      <template #output-right>
+            <div class="typst flex-1 text-app-light-black p-4"> {{ output.target }} </div>
+            <div class="typst h-20 text-sm text-app-light-black theme-warning border-t rounded border-yellow-700 p-4"
               v-if="output.message" v-html="output.message"></div>
-          </div>
-        </div>
-      </div>
-
-    </main>
+      </template>
+    </Skeleton>
 
     <!-- items-center (i.e. style="align-items:center") is for vertical centering -->
     <div class="flex items-center text-center text-app-light-black pb-4 min-h-28">
@@ -262,24 +256,24 @@ onMounted(() => {
   color: #333333;
 }
 
-#typst a {
+.typst a {
   font-weight: bold;
   text-decoration: underline !important;
 }
 
-#typst a:link,
-#typst a:visited {
+.typst a:link,
+.typst a:visited {
   color: #0000EE !important;
 }
 
-#typst a:link:active,
-#typst a:visited:active {
+.typst a:link:active,
+.typst a:visited:active {
   color: #FF0000 !important;
 }
 
 
 /* https://stackoverflow.com/questions/36260013/react-display-line-breaks-from-saved-textarea */
-#typst {
+.typst {
   white-space: pre-line;
 }
 
