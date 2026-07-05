@@ -1,19 +1,27 @@
+<script setup>
+import FlexRow from "./FlexRow.vue";
+import FlexCol from "./FlexCol.vue";
+import FlexAuto from "./FlexAuto.vue";
+</script>
+
 <template>
-    <main class="flex flex-col border rounded-lg">
-        <div class="flex p-2 border-b">
+    <FlexCol class="border rounded-lg">
+        <FlexRow class="p-2 border-b">
             <div class="flex-1">
                 <slot name="top-left"></slot>
             </div>
 
-            <slot name="pivot"></slot>
+            <div class="ml-3 mr-3">
+                <slot name="pivot"></slot>
+            </div>
 
             <div class="flex-1">
                 <slot name="top-right"></slot>
             </div>
-        </div>
+        </FlexRow>
 
         <!-- flex-row for desktop, flex-col for mobile -->
-        <div class="flex-1 flex md:flex-row flex-col min-h-[200px]">
+        <FlexAuto class="flex-1 min-h-[200px]">
             <!-- input area -->
             <div class="flex-1 border-r">
                 <slot name="input-left"></slot>
@@ -23,17 +31,19 @@
             <div class="flex-1">
                 <slot name="output-right"></slot>
             </div>
-        </div>
-    </main>
+        </FlexAuto>
+    </FlexCol>
 </template>
 
-<style>
+<style scoped>
 /* To avoid overflow because of rounded-lg */
 main {
     overflow: hidden;
 }
 
-.border, .border-b, .border-r {
-    border-color: #374151; 
+.border,
+.border-b,
+.border-r {
+    border-color: #374151;
 }
 </style>
