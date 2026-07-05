@@ -1,30 +1,39 @@
 <template>
-    <main class="flex flex-col justify-between border border-gray-700 rounded-lg">
-      <div class="flex justify-between p-2 border-b border-gray-700">
-        <div class="flex-1 flex justify-between">
-            <slot name="top-left"></slot>
+    <main class="flex flex-col border rounded-lg">
+        <div class="flex p-2 border-b">
+            <div class="flex-1">
+                <slot name="top-left"></slot>
+            </div>
+
+            <slot name="pivot"></slot>
+
+            <div class="flex-1">
+                <slot name="top-right"></slot>
+            </div>
         </div>
 
-        <slot name="pivot"></slot>
+        <!-- flex-row for desktop, flex-col for mobile -->
+        <div class="flex-1 flex md:flex-row flex-col min-h-[200px]">
+            <!-- input area -->
+            <div class="flex-1 border-r">
+                <slot name="input-left"></slot>
+            </div>
 
-        <div class="flex-1 flex justify-between relative">
-            <slot name="top-right"></slot>
+            <!-- output area -->
+            <div class="flex-1">
+                <slot name="output-right"></slot>
+            </div>
         </div>
-      </div>
-
-      <!-- flex-row for desktop, flex-col for mobile -->
-      <div class="flex-1 flex md:flex-row flex-col">
-        <!-- input area -->
-        <div class="flex-1 flex flex-col border border-gray-700 min-h-[200px]">
-          <slot name="input-left"></slot>
-        </div>
-
-        <!-- output area -->
-        <div class="flex-1 flex flex-col border border-gray-700 min-h-[200px]">
-          <div class="flex-1 flex flex-col">
-            <slot name="output-right"></slot>
-          </div>
-        </div>
-      </div>
     </main>
 </template>
+
+<style>
+/* To avoid overflow because of rounded-lg */
+main {
+    overflow: hidden;
+}
+
+.border, .border-b, .border-r {
+    border-color: #374151; 
+}
+</style>

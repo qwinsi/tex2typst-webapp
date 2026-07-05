@@ -182,18 +182,20 @@ onMounted(() => {
 
     <Skeleton class="flex-1 ml-6 mr-6">
       <template #top-left>
-        <span class="text-app-blue p-2">{{ directionToTypst? "LaTeX": "Typst" }}</span>
-        <div>
-          <button class="text-app-light-black p-2 mr-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
-            v-on:click="inputStr = getRandomFormula(directionToTypst)">
-            <span class="hide-on-mobile">Random</span>
-            <span class="hide-on-desktop">R</span>
-          </button>
-          <button class="text-app-light-black p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
-            v-on:click="inputStr = ''">
-            <span class="hide-on-mobile">Clear</span>
-            <span class="hide-on-desktop">C</span>
-          </button>
+        <div class="flex justify-between">
+          <span class="text-app-blue p-2">{{ directionToTypst? "LaTeX": "Typst" }}</span>
+          <div>
+            <button class="text-app-light-black p-2 mr-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
+              v-on:click="inputStr = getRandomFormula(directionToTypst)">
+              <span class="hide-on-mobile">Random</span>
+              <span class="hide-on-desktop">R</span>
+            </button>
+            <button class="text-app-light-black p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
+              v-on:click="inputStr = ''">
+              <span class="hide-on-mobile">Clear</span>
+              <span class="hide-on-desktop">C</span>
+            </button>
+          </div>
         </div>
       </template>
 
@@ -204,21 +206,25 @@ onMounted(() => {
       </template>
 
       <template #top-right>
+        <div class="flex justify-between relative">
           <span class="text-app-blue p-2">{{ directionToTypst? "Typst": "LaTeX" }}</span>
           <button class="text-app-light-black p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400"
                     v-on:click="sendToClipboard">Copy</button>
           <CopiedToast ref="copiedToast" id="copiedToast" msg="Copied!" />
+        </div>
       </template>
 
       <template #input-left>
-          <textarea class="flex-1 text-app-light-black p-4" v-model="inputStr"
+          <textarea class="w-full h-full text-app-light-black p-4" v-model="inputStr"
             spellcheck="false" autofocus></textarea>
       </template>
 
       <template #output-right>
+          <div class="w-full h-full flex flex-col">
             <div class="typst flex-1 text-app-light-black p-4"> {{ output.target }} </div>
             <div class="typst h-20 text-sm text-app-light-black theme-warning border-t rounded border-yellow-700 p-4"
               v-if="output.message" v-html="output.message"></div>
+          </div>
       </template>
     </Skeleton>
 
